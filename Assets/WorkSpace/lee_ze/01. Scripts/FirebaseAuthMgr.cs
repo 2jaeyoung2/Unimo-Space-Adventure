@@ -8,11 +8,21 @@ using Firebase.Auth;
 using Firebase.Database;
 using System.Threading.Tasks;
 using ZL.Unity;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class FirebaseAuthMgr : MonoBehaviour
 {
+    public static FirebaseAuthMgr Instance { get; private set; }
+
     [SerializeField]
     private Button startButton;
+
+    [SerializeField]
+    private Button loginButton;
+
+    [SerializeField]
+    private Button signUpButton;
 
     public static FirebaseUser user; // 인증된 유저 정보
 
@@ -39,6 +49,19 @@ public class FirebaseAuthMgr : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+
+            return;
+        }
+        else
+        {
+            Instance = this;
+
+            DontDestroyOnLoad(gameObject);
+        }
+
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
             DependencyStatus dependencyStatus = task.Result;
@@ -61,11 +84,22 @@ public class FirebaseAuthMgr : MonoBehaviour
 
     private void Start()
     {
-        startButton.interactable = false;
+        if (startButton != null) startButton.interactable = false;
 
-        warningText.text = "";
+        if (warningText != null) warningText.text = "";
 
-        confirmText.text = "";
+        if (confirmText != null) confirmText.text = "";
+
+        loginButton.onClick.AddListener(() => Login());
+
+        signUpButton.onClick.AddListener(() => Register());
+    }
+
+    private void OnDisable()
+    {
+        loginButton.onClick.RemoveListener(() => Login());
+
+        signUpButton.onClick.RemoveListener(() => Register());
     }
 
     public void Login()
@@ -78,6 +112,15 @@ public class FirebaseAuthMgr : MonoBehaviour
         StartCoroutine(RegisterCor(emailField.text + "@unimo.com", passwordField.text, nicknameField.text));
     }
 
+    private void SetButtonInteractable()
+    {
+        startButton.interactable = !startButton.interactable;
+
+        loginButton.interactable = !loginButton.interactable;
+
+        signUpButton.interactable = !signUpButton.interactable;
+    }
+
     #region 로그인 코루틴
 
     private IEnumerator LoginCor(string email, string password)
@@ -86,7 +129,7 @@ public class FirebaseAuthMgr : MonoBehaviour
 
         yield return new WaitUntil(predicate: () => LoginTask.IsCompleted);
 
-        // 로그인에 문제가 있다면
+        // 로그인 계정에 문제가 있다면
         if (LoginTask.Exception != null)
         {
             Debug.LogWarning(message: "다음과 같은 이유로 로그인 실패: " + LoginTask.Exception);
@@ -135,12 +178,14 @@ public class FirebaseAuthMgr : MonoBehaviour
                     
                     break;
             }
+
             warningText.text = message;
         }
 
-        // 로그인에 문제가 없다면
+        // 로그인 계정에 문제가 없다면
         else
         {
+            // 로그인
             user = LoginTask.Result.User; // 유저 정보 기억
 
             warningText.text = "";
@@ -149,7 +194,7 @@ public class FirebaseAuthMgr : MonoBehaviour
 
             confirmText.text = "nickname: " + user.DisplayName;
 
-            startButton.interactable = true;
+            SetButtonInteractable();
         }
     }
 
@@ -219,17 +264,18 @@ public class FirebaseAuthMgr : MonoBehaviour
             // 회원가입 문제가 없다면
             else
             {
+                // 바로 로그인
                 user = RegisterTask.Result.User;
 
                 if (user != null)
                 {
-                    yield return StartCoroutine(InitPlayerCurrency());
-
                     UserProfile profile = new UserProfile { DisplayName = username };
 
                     Task ProfileTask = user.UpdateUserProfileAsync(profile);
 
                     yield return new WaitUntil(predicate: () => ProfileTask.IsCompleted);
+
+                    yield return StartCoroutine(InitPlayerCurrency());
 
                     if (ProfileTask.Exception != null)
                     {
@@ -247,25 +293,24 @@ public class FirebaseAuthMgr : MonoBehaviour
 
                         confirmText.text = "nickname: " + user.DisplayName;
 
-                        startButton.interactable = true;
+                        SetButtonInteractable();
                     }
                 }
             }
         }
     }
 
-    #endregion
-
     private IEnumerator InitPlayerCurrency() // 회원가입 시 재화 초기값 설정
     {
         // 초기 인게임 재화 생성
-        var DBTask = dbRef.Child("users").Child(user.UserId).Child("rewardIngameCurrency").SetValueAsync(0);
+        var DBTask = dbRef.Child("users").Child(user.UserId).Child(user.DisplayName).Child("rewardIngameCurrency").SetValueAsync(0);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
         // 초기 메타 재화 생성
-        DBTask = dbRef.Child("users").Child(user.UserId).Child("rewardMetaCurrency").SetValueAsync(0);
+        DBTask = dbRef.Child("users").Child(user.UserId).Child(user.DisplayName).Child("rewardMetaCurrency").SetValueAsync(0);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
     }
+    #endregion
 }

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using JDG;
 
 namespace JDG
 {
@@ -13,7 +14,7 @@ namespace JDG
         [SerializeField] private Image _displayImage;
         [SerializeField] private TextMeshProUGUI _displayText;
         [SerializeField] private Transform _rewardParent;
-        [SerializeField] private GameObject _rewardPrefab;
+        private GameObject _rewardPrefab;
         [SerializeField] private Button _actionButton;
         [SerializeField] private TextMeshProUGUI _actionButtonName;
 
@@ -49,9 +50,8 @@ namespace JDG
             _isUIOpen = true;
 
             var env = TileEnvironmentManager.Instance.GetEnvironmentInfo(tile.TileData.EnvironmentType);
-            var display = TileDisplayInfoManager.Instance.GetDisplayInfo(tile.TileData.TileType, tile.TileData.ModeName);
-            var rewards = RewardManager.Instance.GetTileRewardRuleSO(tile.TileData.TileType, tile.TileData.ModeName);
-
+            var display = TileDisplayInfoManager.Instance.GetDisplayInfo(tile.TileData.TileType, tile.TileData.ModeType);
+            var rewards = RewardManager.Instance.GetTileRewardRuleSO(tile.TileData.TileType, tile.TileData.ModeType);
             if (env != null)
             {
                 _envImage.sprite = env.EnviromentIcon;
@@ -69,6 +69,8 @@ namespace JDG
                 Destroy(child.gameObject);
             }
 
+            _rewardPrefab = Resources.Load<GameObject>("WorldMap/RewardSlot");
+
             foreach (RewardData reward in rewards)
             {
                 GameObject obj = Instantiate(_rewardPrefab, _rewardParent);
@@ -82,11 +84,11 @@ namespace JDG
 
             if (tile.TileData.IsCleared || tile.TileData.TileType == TileType.Event || tile.TileData.TileType == TileType.Base)
             {
-                _actionButtonName.text = "Move";
+                _actionButtonName.text = "이동";
             }
             else
             {
-                _actionButtonName.text = "Play";
+                _actionButtonName.text = "시작";
             }
         }
 
@@ -118,9 +120,13 @@ namespace JDG
             else if (_currentTile.TileData.TileType == TileType.Event)
             {
                 //나중에 이벤트 발동 함수 넣으면됨
-                Debug.Log("이벤트 실행됨");
                 _currentTile.TileData.IsCleared = true;
                 MovePlayerTo(_currentTile);
+
+                if(_currentTile.TileData.EventType == EventType.Shop)
+                {
+
+                }
             }
             else
             {

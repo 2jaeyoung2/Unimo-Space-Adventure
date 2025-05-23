@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JDG;
 
 namespace JDG
 {
@@ -33,13 +34,13 @@ namespace JDG
             }
         }
 
-        public TileDisplayInfoSO GetDisplayInfo(TileType tileType, string modeName)
+        public TileDisplayInfoSO GetDisplayInfo(TileType tileType, ModeType modeType)
         {
             foreach(var data in _tileDisplayInfoSOs)
             {
                 if (data.TileType != tileType)
                     continue;
-                if (data.TileType == TileType.Mode && data.ModeName != modeName)
+                if (data.TileType == TileType.Mode && data.ModeType != modeType)
                     continue;
 
                 return data;

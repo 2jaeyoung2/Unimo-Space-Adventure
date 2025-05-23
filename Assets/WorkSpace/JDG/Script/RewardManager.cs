@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using JDG;
 
 namespace JDG
 {
@@ -13,6 +14,7 @@ namespace JDG
             if (_instance == null)
             {
                 _instance = this;
+                DontDestroyOnLoad(gameObject);
             }
             else
             {
@@ -32,13 +34,13 @@ namespace JDG
             }
         }
 
-        public List<RewardData> GetTileRewardRuleSO(TileType tileType, string modeName)
+        public List<RewardData> GetTileRewardRuleSO(TileType tileType, ModeType modeType)
         {
             foreach(TileRewardRuleSO data in _tileRewardRuleSOs)
             {
                 if (data.TileType != tileType)
                     continue;
-                if (tileType == TileType.Mode && modeName != data.ModeName)
+                if (tileType == TileType.Mode && modeType != data.ModeType)
                     continue;
 
                 return data.RewardDatas;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JDG;
 
 namespace JDG
 {
@@ -9,7 +10,7 @@ namespace JDG
         None
     }
 
-    [CreateAssetMenu(fileName = "TileEnvironmentSO", menuName = "SO/TileEnvironmentSO")]
+    [CreateAssetMenu(fileName = "TileEnvironmentSO", menuName = "SO/TileSO/TileEnvironmentSO")]
     public class TileEnvironmentSO : ScriptableObject
     {
         public EnvironmentType EnvironmentType;

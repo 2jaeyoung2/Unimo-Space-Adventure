@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JDG;
 
 namespace JDG
 {
+    public enum ModeType
+    {
+        None ,Explore, Gather
+    }
+
     [System.Serializable]
     public class ModeRatioEntry
     {
-        public string modeName;
-        [Range(0f, 1f)] public float ratio;
+        public ModeType _modeType;
+        [Range(0f, 1f)] public float _modeRatio;
     }
 }

@@ -8,26 +8,24 @@ namespace ZL.Unity.Pooling
 {
     [AddComponentMenu("ZL/Pooling/Object Pool Manager")]
 
-    public sealed class ObjectPoolManager : ObjectPoolManager<ObjectPoolManager, Transform>
-    {
-
-    }
-
-    public abstract class ObjectPoolManager<TMonoSingleton, TClone> : MonoSingleton<TMonoSingleton>
-
-        where TMonoSingleton : MonoSingleton<TMonoSingleton>
-
-        where TClone : Component
+    public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
     {
         [Space]
 
         [SerializeField]
 
-        protected SerializableDictionary<string, ObjectPool<TClone>> objectPoolDictionary = null;
+        private SerializableDictionary<string, ObjectPool> poolDictionary = null;
 
-        public virtual TClone Cloning(string key)
+        public TPooledObject Cloning<TPooledObject>(string key)
+
+            where TPooledObject : PooledObject
         {
-            return objectPoolDictionary[key].Cloning();
+            return (TPooledObject)Cloning(key);
+        }
+
+        public PooledObject Cloning(string key)
+        {
+            return poolDictionary[key].Cloning();
         }
     }
 }

@@ -8,41 +8,45 @@ namespace ZL.Unity.Pooling
 
     public class PooledObject : MonoBehaviour
     {
-        private Action onDisableAction = null;
+        public event Action OnDisableAction = null;
 
-        public static TClone Instantiate<TClone>(ObjectPool<TClone> pool)
+        private event Action OnCollectedAction = null;
 
-            where TClone : Component
+        public static TPooledObject Instantiate<TPooledObject>(ObjectPool<TPooledObject> objectPool)
+
+            where TPooledObject : PooledObject
         {
-            var clone = Instantiate(pool.Prefab, pool.Parent);
+            var clone = Instantiate(objectPool.Prefab, objectPool.Parent);
 
-            if (clone.TryGetComponent<PooledObject>(out var pooledObject) == false)
-            {
-                FixedDebug.LogWarning($"Prefab '{pool.Prefab.name}' being pooled does not have a component of type 'Pooled Object'. We recommend adding it to the prefab to improve performance.");
-
-                pooledObject = clone.AddComponent<PooledObject>();
-            }
-
-            pooledObject.onDisableAction = () => pool.Collect(clone);
+            clone.OnCollectedAction += () => objectPool.Collect(clone);
 
             return clone;
         }
 
         #if UNITY_EDITOR
 
-        private void Start()
+        protected virtual void Start()
         {
-            if (onDisableAction == null)
+            if (OnCollectedAction == null)
             {
-                FixedDebug.LogWarning($"Game Object '{gameObject.name}' is a 'Pooled Object' but was not created from an'Object Pool'.");
+                FixedDebug.LogWarning($"Game Object '{gameObject.name}' is a 'Pooled Object' but was not created from an 'Object Pool'.");
             }
         }
 
         #endif
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
-            onDisableAction?.Invoke();
+            OnDisableAction?.Invoke();
+
+            OnDisableAction = null;
+
+            OnCollectedAction?.Invoke();
+        }
+
+        public virtual void Initialize(ScriptableObject data)
+        {
+
         }
     }
 }

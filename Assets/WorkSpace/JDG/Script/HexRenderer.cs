@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JDG;
 
 namespace JDG
 {
@@ -199,9 +200,9 @@ namespace JDG
                     color = Color.yellow;
                     break;
                 case TileType.Mode:
-                    if (_tileData.ModeName == "Explore")
+                    if (_tileData.ModeType == ModeType.Explore)
                         color = Color.cyan;
-                    else if (_tileData.ModeName == "Gather")
+                    else if (_tileData.ModeType == ModeType.Gather)
                         color = Color.green;
                     else
                         color = Color.magenta;
