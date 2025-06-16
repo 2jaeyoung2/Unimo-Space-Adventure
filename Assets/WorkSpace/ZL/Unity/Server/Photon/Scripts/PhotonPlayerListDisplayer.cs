@@ -16,10 +16,6 @@ namespace ZL.Unity.Server.Photon
 
         [SerializeField]
 
-        [UsingCustomProperty]
-
-        [ReadOnlyWhenPlayMode]
-
         protected ManagedObjectPool<int> playerListItemPool = null;
 
         public void Refresh()
@@ -38,12 +34,12 @@ namespace ZL.Unity.Server.Photon
 
             item.transform.SetAsLastSibling();
 
-            item.SetActive(true);
+            item.gameObject.SetActive(true);
         }
 
         public void Remove(Player player)
         {
-            playerListItemPool[player.ActorNumber].SetActive(false);
+            playerListItemPool[player.ActorNumber].gameObject.SetActive(false);
         }
     }
 }

@@ -1,10 +1,9 @@
 using JDG;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UI;
 
+/// <summary>
+/// 스테이지 클리어 여부(성공/실패)에 따라 보여지는 UI 관리
+/// </summary>
 public class StationOrWorldMap : MonoBehaviour
 {
     private GameObject station;

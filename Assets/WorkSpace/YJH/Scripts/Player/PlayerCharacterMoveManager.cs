@@ -41,10 +41,10 @@ public partial class PlayerManager : MonoBehaviourPun
     // 최종속도
     private float moveSpeed = 4f;
 
-    [SerializeField]
+    //[SerializeField]
 
     // 기본 속도
-    private float baseSpeed = 4f;
+    //private float baseSpeed = 4f;
 
     //[SerializeField]
     //
@@ -96,7 +96,42 @@ public partial class PlayerManager : MonoBehaviourPun
 
             GetRotate(headDirection);
 
-            transform.position += moveSpeed * Time.deltaTime * playerMoveDirection;// + pushSpeed * Time.deltaTime * playerPushDirection;
+            transform.position += playerStatus.moveSpeed * Time.deltaTime * playerMoveDirection;// + pushSpeed * Time.deltaTime * playerPushDirection;
+            //Debug.Log(playerStatus.moveSpeed);
+            if (isMoveSoundPlay)
+            {
+                moveSoundSource?.Play();
+            }
+
+            else
+            {
+                moveSoundSource?.Stop();
+            }
+        } else if (PhotonNetwork.IsConnected == true && photonView.IsMine == true)
+        {
+            Vector2 headDirection = new Vector2(playerMoveDirection.x, playerMoveDirection.z);
+
+            if (playerMoveDirection.magnitude > float.Epsilon)
+            {
+                isMoveSoundPlay = true;
+
+                //Vector2 headDirection = new Vector2(playerMoveDirection.x, playerMoveDirection.z);
+
+            }
+            else
+            {
+                isMoveSoundPlay = false;
+
+                //Vector2 headDirection = new Vector2(playerMoveDirection.x, playerMoveDirection.z);
+
+                //GetRotate(transform.forward);
+            }
+
+            //Debug.Log(headDirection);
+
+            GetRotate(headDirection);
+
+            transform.position += playerStatus.moveSpeed * Time.deltaTime * playerMoveDirection;// + pushSpeed * Time.deltaTime * playerPushDirection;
 
             if (isMoveSoundPlay)
             {

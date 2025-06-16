@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using JDG;
+using ZL.Unity.Unimo;
 
 namespace JDG
 {
@@ -22,36 +24,41 @@ namespace JDG
         [SerializeField] private Vector3 _offSet;
 
         [Header("필요한 컴포넌트")]
-        [SerializeField] private Camera _worldCam;
+        private EventTileConfig _eventTileConfig;
+        private ShopUI _shopUI;
+        private ScriptEventUI _scriptEventUI;
+        [SerializeField] private StageDataSheet _stageDataSheet;
 
+        private Vector3 _uiPos;
         private HexRenderer _currentTile;
         private PlayerController _playerController;
         private HexGridLayout _hexGrid;
-        private bool _isUIOpen = false;
 
         private void Start()
         {
             HideUI();
         }
 
-        public bool IsUIOpen => _isUIOpen;
-
-        public void Init(PlayerController playerController, HexGridLayout hexGird)
+        public void Init(PlayerController playerController, HexGridLayout hexGird, EventTileConfig tileConfig)
         {
             _playerController = playerController;
             _hexGrid = hexGird;
+            _eventTileConfig = tileConfig;
+            _shopUI = UIManager.Instance.ShopUI;
+            _scriptEventUI = UIManager.Instance.ScriptEventUI;
         }
 
         public void ShowUI(HexRenderer tile, Vector3 wordPos = default)
         {
             _currentTile = tile;
             transform.position = wordPos + _offSet;
+            _uiPos = wordPos;
             _root.SetActive(true);
-            _isUIOpen = true;
+            UIManager.Instance.IsUIOpen = true;
 
             var env = TileEnvironmentManager.Instance.GetEnvironmentInfo(tile.TileData.EnvironmentType);
             var display = TileDisplayInfoManager.Instance.GetDisplayInfo(tile.TileData.TileType, tile.TileData.ModeType);
-            var rewards = RewardManager.Instance.GetTileRewardRuleSO(tile.TileData.TileType, tile.TileData.ModeType);
+            var rewards = RewardManager.Instance.GetTileRewards(tile.TileData.TileType, tile.TileData.ModeType, tile.TileData.DifficultyType);
             if (env != null)
             {
                 _envImage.sprite = env.EnviromentIcon;
@@ -71,17 +78,37 @@ namespace JDG
 
             _rewardPrefab = Resources.Load<GameObject>("WorldMap/RewardSlot");
 
-            foreach (RewardData reward in rewards)
+            if (tile.TileData.TileType != TileType.Event && tile.TileData.TileType != TileType.None)
             {
-                GameObject obj = Instantiate(_rewardPrefab, _rewardParent);
-                RewardSlot rewardSlot = obj.GetComponent<RewardSlot>();
+                string key = tile.TileData.SceneName;
 
-                if (rewardSlot != null)
+                var stageData = _stageDataSheet[key];
+
+                if (stageData.InGameMoneyAmountMin > 0)
                 {
-                    rewardSlot.SetRewardSlot(reward.RewardIcon, reward.RewardName, reward.RewardAmount);
+                    CreateRewardSlot("InGameCurrency", stageData.InGameMoneyAmountMin, stageData.InGameMoneyAmountMax, "InGameCurrencyIcon");
                 }
-            }
 
+                // 아웃게임 재화
+                if (stageData.OutGameMoneyAmountMin > 0)
+                {
+                    CreateRewardSlot("OutGameCurrency", stageData.OutGameMoneyAmountMin, stageData.OutGameMoneyAmountMax, "OutGameCurrencyIcon");
+                }
+
+                // 설계도
+                if (stageData.BluePrintCount > 0)
+                {
+                    Debug.Log(stageData.BluePrintCount);
+                    CreateRewardSlot("BluePrint", stageData.BluePrintCount, stageData.BluePrintCount, "BluePrintIcon");
+                }
+
+                // 유물
+                if (stageData.RelicCount > 0)
+                {
+                    CreateRewardSlot("랜덤유물", 0, stageData.RelicCount, "RandomRelicIcon");
+                }
+
+            }
             if (tile.TileData.IsCleared || tile.TileData.TileType == TileType.Event || tile.TileData.TileType == TileType.Base)
             {
                 _actionButtonName.text = "이동";
@@ -92,17 +119,42 @@ namespace JDG
             }
         }
 
+        private void CreateRewardSlot(string name, int min, int max, string iconName)
+        {
+            if (min <= 0 && max <= 0)
+                return;
+
+            GameObject obj = Instantiate(_rewardPrefab, _rewardParent);
+            RewardSlot rewardSlot = obj.GetComponent<RewardSlot>();
+            Sprite icon = Resources.Load<Sprite>($"WorldMap/Reward/{iconName}");
+
+            if (rewardSlot != null)
+            {
+                string count = "";
+
+                if (min == max)
+                {
+                    count = $"{min}";
+                }
+                else
+                {
+                    count = $"{min} ~ {max}";
+                    rewardSlot.SetRewardSlot(icon, name, count);
+                }
+            }
+        }
+
         public void HideUI()
         {
             _root.SetActive(false);
-            _isUIOpen = false;
+            UIManager.Instance.IsUIOpen = false;
         }
 
         private void MovePlayerTo(HexRenderer tile)
         {
             Vector3 target = _hexGrid.GetPositionForHexFromCoordinate(tile.TileData.Coord);
             _playerController.MoveTo(target);
-            _hexGrid.UpdateFog();
+            _playerController.UpdateFog();
         }
 
         public void OnActionButtonClicked()
@@ -119,13 +171,20 @@ namespace JDG
 
             else if (_currentTile.TileData.TileType == TileType.Event)
             {
-                //나중에 이벤트 발동 함수 넣으면됨
                 _currentTile.TileData.IsCleared = true;
                 MovePlayerTo(_currentTile);
 
-                if(_currentTile.TileData.EventType == EventType.Shop)
+                if (_currentTile.TileData.EventType == EventType.Shop)
                 {
-
+                    EventDataSO eventData = GetRandomEvent(EventType.Shop);
+                    List<RelicData> relicDatas = GetRandomRelics(_shopUI.ItemCount);
+                    StartCoroutine(WaitAndOpenShop(relicDatas));
+                }
+                else if (_currentTile.TileData.EventType == EventType.script)
+                {
+                    EventDataSO eventData = GetRandomEvent(EventType.script);
+                    List<ChoiceDataSO> choiceDatas = GetRandomChoice(eventData._eventChoices, _scriptEventUI.ChoiceCount);
+                    StartCoroutine(WaitAndOpenScriptEvent(eventData, choiceDatas));
                 }
             }
             else
@@ -139,7 +198,96 @@ namespace JDG
         public void OnCancleButtonClicked()
         {
             HideUI();
-            _isUIOpen = false;
+            UIManager.Instance.IsUIOpen = false;
+        }
+
+        private EventDataSO GetRandomEvent(EventType type)
+        {
+            foreach (var eve in _eventTileConfig._eventTypes)
+            {
+                if (eve._eventType == type && eve._eventData.Count > 0)
+                {
+                    float totalPercent = 0;
+                    foreach (var per in eve._eventData)
+                    {
+                        totalPercent += per._eventWeight;
+                    }
+
+                    float random = Random.Range(0, totalPercent);
+                    float current = 0;
+
+                    foreach (var data in eve._eventData)
+                    {
+                        current += data._eventWeight;
+                        if (current >= random)
+                        {
+                            return data;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        private List<RelicData> GetRandomRelics(int count)
+        {
+            var relicDic = RelicDataSheet.Instance.RelicDictionary;
+            List<RelicData> allRelic = new List<RelicData>();
+
+            foreach (var relDic in relicDic)
+            {
+                foreach (RelicData relic in relDic.Value)
+                {
+                    if (!PlayerInventoryManager.RelicDatas.Contains(relic)) //가지고 있는 아이템 중복 방지
+                    {
+                        allRelic.Add(relic);
+                    }
+                }
+            }
+
+            count = Mathf.Min(count, allRelic.Count);
+            List<RelicData> select = new List<RelicData>();
+
+            for (int i = 0; i < count; i++)
+            {
+                int temp = Random.Range(0, allRelic.Count);
+                select.Add(allRelic[temp]);
+                allRelic.RemoveAt(temp);
+            }
+
+            return select;
+        }
+
+        private List<ChoiceDataSO> GetRandomChoice(List<ChoiceDataSO> choiceDatas, int count)
+        {
+            List<ChoiceDataSO> copy = new List<ChoiceDataSO>(choiceDatas);
+            List<ChoiceDataSO> result = new List<ChoiceDataSO>();
+
+            int maxCount = Mathf.Min(count, copy.Count);
+
+            for (int i = 0; i < maxCount; i++)
+            {
+                int random = Random.Range(0, copy.Count);
+                result.Add(copy[random]);
+                copy.RemoveAt(random);
+            }
+            return result;
+        }
+
+        private IEnumerator WaitAndOpenShop(List<RelicData> relics)
+        {
+            yield return new WaitUntil(() => !_playerController.IsMoving);
+
+            _shopUI.OpenShopUI(relics, _uiPos);
+            UIManager.Instance.IsUIOpen = true;
+        }
+
+        private IEnumerator WaitAndOpenScriptEvent(EventDataSO eventData, List<ChoiceDataSO> choices)
+        {
+            yield return new WaitUntil(() => !_playerController.IsMoving);
+
+            _scriptEventUI.OpenScriptEventUI(eventData, choices, _uiPos);
+            UIManager.Instance.IsUIOpen = true;
         }
     }
 }

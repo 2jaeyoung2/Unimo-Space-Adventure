@@ -1,6 +1,12 @@
+using Photon.Pun;
+
+using System;
+
 using System.Collections;
 
 using UnityEngine;
+
+using UnityEngine.Events;
 
 using ZL.Unity;
 
@@ -8,14 +14,14 @@ using ZL.Unity.Unimo;
 
 public partial class PlayerManager : IDamageable
 {
-    [SerializeField]
+    //[SerializeField]
 
     //체력 필요 없나?
-    private float currentHealth = 300f;
+    //private float currentHealth = 300f;
 
-    [SerializeField]
+    //[SerializeField]
     
-    private float maxHP = 300f;
+    //private float maxHP = 300f;
 
     [SerializeField]
 
@@ -41,7 +47,7 @@ public partial class PlayerManager : IDamageable
 
     [SerializeField]
     
-    private float playerDamage = 5f;
+    private static float playerDamage = 5f;
 
     [SerializeField]
     
@@ -50,21 +56,21 @@ public partial class PlayerManager : IDamageable
     [SerializeField]
 
     private Collider mainCollider;
-
+    //public RelicData tempRelic;
     public float CurrentHealth
     {
-        get => currentHealth;
+        get => playerStatus.currentHealth;
 
         set
         {
             if (value < 0f)
             {
-                currentHealth = 0f;
+                playerStatus.currentHealth = 0f;
             }
 
             else
             {
-                currentHealth = value;
+                playerStatus.currentHealth = value;
             }
         }
     }
@@ -72,9 +78,33 @@ public partial class PlayerManager : IDamageable
     //맞았는지?
     private bool isOnHit = false;
 
-    public delegate void onPlayerDead();
+    [Space]
 
-    public event onPlayerDead OnPlayerDead;
+    [SerializeField]
+
+    private UnityEvent<float> onHealthChanged;
+
+    public UnityEvent<float> OnHealthChanged
+    {
+        get => onHealthChanged;
+    }
+
+    [Space]
+
+    [SerializeField]
+
+    private UnityEvent onPlayerDead;
+
+    public UnityEvent OnPlayerDead
+    {
+        get => onPlayerDead;
+    }
+
+    public delegate void onStageClear();
+
+    public static event onStageClear OnStageClear;
+
+    public static event onStageClear OnStageFail;
 
     private void OnCollisionStay(Collision collision)
     {
@@ -98,17 +128,29 @@ public partial class PlayerManager : IDamageable
     {
         isOnHit = true;
 
-        PlayHitEffect(contact);
-
-        currentHealth -= damage;//데미지 입음
-
-        if (currentHealth <= 0f)
+        if (PhotonNetwork.IsConnected == true)
         {
-            currentHealth = 0f;
+            photonView.RPC("PlayHitEffect", RpcTarget.All, contact);
+        }
+
+        else
+        {
+            PlayHitEffect(contact);
+        }
+
+        playerStatus.currentHealth -= damage;//데미지 입음
+        
+        OnHealthChanged.Invoke(playerStatus.currentHealth);
+
+        if (playerStatus.currentHealth <= 0f)
+        {
+            playerStatus.currentHealth = 0f;
 
             canMove = false;
 
             OnPlayerDead?.Invoke();
+
+            OnStageFail?.Invoke();  
         }
 
         else
@@ -132,7 +174,15 @@ public partial class PlayerManager : IDamageable
         
         for (int i = 0; i < blinkCount; i++)
         {
-            BlinkRenderer();
+            if (PhotonNetwork.IsConnected)
+            {
+                photonView.RPC("BlinkRenderer", RpcTarget.All);
+            }
+
+            else
+            {
+                BlinkRenderer();
+            }
 
             yield return new WaitForSeconds(onHitBlinkTime);
         }
@@ -143,6 +193,8 @@ public partial class PlayerManager : IDamageable
 
         yield break;
     }
+
+    [PunRPC]
 
     public void BlinkRenderer()
     {

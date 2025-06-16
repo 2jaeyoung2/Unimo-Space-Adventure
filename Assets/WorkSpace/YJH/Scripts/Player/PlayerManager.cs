@@ -1,18 +1,64 @@
+using Photon.Pun;
+
 using UnityEngine;
+
+using ZL.Unity;
+
+using ZL.Unity.Phys;
+
+using ZL.Unity.Unimo;
 
 public partial class PlayerManager 
 {
-    [SerializeField]
+    private static PlayerStatus originStatus = new PlayerStatus(10, 10, 5, 5, 4, 0.5f, 4);
+
+    private static PlayerStatus playerStatus = originStatus.Clone();
     
-    private PlayerStatus playerStatus;
+    public static PlayerStatus PlayerStatus {  get { return playerStatus; } set { playerStatus = value; } }
+
+    public static PlayerStatus OriginStatus { get { return originStatus; } }
+
+    private void OnDestroy()
+    {
+        if (selfManager == this)
+        {
+            selfManager = null;
+        }
+    }
+
+    private void Awake()
+    {
+        if (selfManager != null)
+        {
+            return;
+        }
+
+        else
+        {
+            selfManager = this;
+
+            //Debug.Log(playerSpellType);
+
+            if (playerSpellType != null)
+            {
+                playerSpellType.SetPlayer(selfManager);
+            }
+        }
+
+        //selfManager = this;
+    }
 
     private void Start()
     {
         ActionStart();
 
         MoveStart();
-
-        currentHealth = maxHP;
+        ConstructManager.SetFinalStatusToPlayer();
+        //PlayerInventoryManager.AddRelic(tempRelic);
+        ActiveRelic();
+        ShowStatusDebug();
+        //currentHealth = maxHP;//기획 의도를 보니 이 코드는 조정이 필요함 한 스테이지에서 까인 체력은 안돌아오는듯?
+        //SetPlayerStatus(playerStatus);
     }
 
     private void Update()
@@ -22,52 +68,112 @@ public partial class PlayerManager
         MoveUpdate();
     }
 
-    public void SetPlayerStatus()
+    public void ShowStatusDebug()
     {
-        currentHealth = playerStatus.currentHealth;
+        Debug.Log(playerStatus.currentHealth);
+        Debug.Log(playerStatus.maxHP);
+        Debug.Log(playerStatus.gatheringDelay);
+        Debug.Log(playerStatus.gatheringSpeed );
+        Debug.Log(playerStatus.playerDamage);
 
-        maxHP = playerStatus.maxHP;
+    }
 
-        playerDamage = playerStatus.playerDamage;
+    public static void ActiveRelic()
+    {
+        Debug.Log("try use relic");
+        Debug.Log(PlayerInventoryManager.RelicDatas.Count);
+        foreach (var relic in PlayerInventoryManager.RelicDatas)
+        {
+            Debug.Log("relic data exist");
+            foreach (var relicEffect in relic.Effects)
+            {
+                Debug.Log("relic effect exist");
+                switch (relicEffect.Type)
+                {
+                    case RelicEffectType.AttackPower:
+                        playerStatus.playerDamage += relicEffect.Value;
+                        Debug.Log(playerStatus.playerDamage);
+                        break;
+                    case RelicEffectType.MaxHealth:
+                        playerStatus.maxHP += relicEffect.Value;
+                        Debug.Log(playerStatus.maxHP);
+                        break;
+                    case RelicEffectType.MovementSpeed:
+                        playerStatus.moveSpeed += relicEffect.Value;
+                        Debug.Log(playerStatus.moveSpeed);
+                        break;
+                    default:
+                        Debug.Log("no exist relic type");
+                        break;
+                }
 
-        itemDetectionRange = playerStatus.itemDetectionRange;
-
-        gatheringSpeed = playerStatus.gatheringSpeed;
-
-        gatheringDelay = playerStatus.gatheringDelay;
-
-        //최종속도
-        moveSpeed = playerStatus.moveSpeed;
-
-        //baseSpeed = playerStatus.baseSpeed;
+            }
+        }
+        
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.gameObject.layer);
-
-        //Debug.Log(LayerMask.NameToLayer("Energy"));
-
-        if (other.gameObject.layer == LayerMask.NameToLayer("Energy"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
-            //Debug.Log("tri");
+            var item = other.GetComponent<Item>();
 
-            GetEnergy(3);
-
-            Destroy(other.gameObject);
+            item.GetItem(this);
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Gathering"))
+        if (PhotonNetwork.IsConnected == false)
         {
-            isItemNear = true;
+            if (other.gameObject.layer == LayerMask.NameToLayer("Gathering"))
+            {
+                isItemNear = true;
+            }
+
+            else
+            {
+                isItemNear = false;
+            }
         }
+
         else
         {
-            isItemNear = false;
+            if (photonView.IsMine == true)
+            {
+                if (other.gameObject.layer == LayerMask.NameToLayer("Gathering"))
+                {
+                    isItemNear = true;
+                }
+
+                else
+                {
+                    isItemNear = false;
+                }
+            }
+
+            else
+            {
+                return;
+            }
+        }
+
+        if (isOnHit == true)
+        {
+            return;
+        }
+
+        if (enemyLayerMask.Contains(other.gameObject.layer) == false)
+        {
+            return;
+        }
+
+        if (other.gameObject.TryGetComponent<IDamager>(out var damager) == true)
+        {
+            var contact = mainCollider.ClosestPoint(other);
+
+            damager.GiveDamage(this, contact);
         }
     }
-
-
 }

@@ -16,6 +16,13 @@ MonoBehaviour:
   _eventMinDistance: 2
   _eventTypes:
   - _eventType: 1
-    _ratio: 1
+    _ratio: 0.5
     _eventData:
     - {fileID: 11400000, guid: 236578a8a72f6d5449c107fa518d3057, type: 2}
+  - _eventType: 2
+    _ratio: 0.5
+    _eventData:
+    - {fileID: 11400000, guid: 890c603c91f39814886b55f0fcbe4378, type: 2}
+    - {fileID: 11400000, guid: 4ac498f2673b6874186706c0ee262358, type: 2}
+    - {fileID: 11400000, guid: 89f98a2fab6f6c1449f49fcc9cf521a4, type: 2}
+    - {fileID: 11400000, guid: d8c4ad4e24061f546a2ac5349379495d, type: 2}

@@ -1,30 +1,30 @@
 using UnityEngine;
 
-using ZL.Unity.Singleton;
+using ZL.CS.Singleton;
 
 namespace ZL.Unity.Unimo
 {
     [AddComponentMenu("ZL/Unimo/Data Sheet Manager")]
 
-    public sealed class DataSheetManager : MonoSingleton<DataSheetManager>
+    [DefaultExecutionOrder((int)ScriptExecutionOrder.Singleton)]
+
+    public sealed class DataSheetManager : MonoBehaviour
     {
-        [Space]
-
-        [SerializeField]
-
-        private bool updateDataOnAwake = false;
-
         [Space]
 
         [SerializeField]
 
         [UsingCustomProperty]
 
-        [Button(nameof(UpdateData))]
+        [Button(nameof(UpdateAllSheets))]
 
-        [Essential]
+        [Margin]
 
-        [ReadOnlyWhenPlayMode]
+        private bool updateAllSheetsOnAwake = false;
+
+        [Space]
+
+        [SerializeField]
 
         private EnemyDataSheet enemyDataSheet = null;
 
@@ -32,39 +32,97 @@ namespace ZL.Unity.Unimo
 
         [UsingCustomProperty]
 
-        [Essential]
-
-        [ReadOnlyWhenPlayMode]
-
-        private SpawnerDataSheet spawnerDataSheet = null;
+        private RelicDataSheet relicDataSheet = null;
 
         [SerializeField]
 
         [UsingCustomProperty]
 
-        [Essential]
+        private RelicDropTableSheet relicDropTableSheet = null;
 
-        [ReadOnlyWhenPlayMode]
+        [SerializeField]
 
         private SpawnPatternDataSheet spawnPatternDataSheet = null;
 
-        protected override void Awake()
-        {
-            base.Awake();
+        [SerializeField]
 
-            if (updateDataOnAwake == true)
+        private SpawnerDataSheet spawnerDataSheet = null;
+
+        [SerializeField]
+
+        private StageDataSheet stageDataSheet = null;
+
+        [SerializeField]
+
+        private RelicEffectStringTableSheet relicEffectStringTableSheet = null;
+
+        private void Awake()
+        {
+            ISingleton<RelicDataSheet>.TrySetInstance(relicDataSheet);
+
+            ISingleton<RelicDropTableSheet>.TrySetInstance(relicDropTableSheet);
+
+            ISingleton<RelicEffectStringTableSheet>.TrySetInstance(relicEffectStringTableSheet);
+
+            ISingleton<SpawnPatternDataSheet>.TrySetInstance(spawnPatternDataSheet);
+
+            ISingleton<SpawnerDataSheet>.TrySetInstance(spawnerDataSheet);
+
+            if (updateAllSheetsOnAwake == true)
             {
-                UpdateData();
+                UpdateAllSheets();
             }
         }
 
-        public void UpdateData()
+        private void OnDestroy()
         {
-            enemyDataSheet.Read();
+            ISingleton<RelicDataSheet>.Release(relicDataSheet);
 
-            spawnerDataSheet.Read();
+            ISingleton<RelicDropTableSheet>.Release(relicDropTableSheet);
 
-            spawnPatternDataSheet.Read();
+            ISingleton<RelicEffectStringTableSheet>.Release(relicEffectStringTableSheet);
+
+            ISingleton<SpawnPatternDataSheet>.Release(spawnPatternDataSheet);
+
+            ISingleton<SpawnerDataSheet>.Release(spawnerDataSheet);
+        }
+
+        public void UpdateAllSheets()
+        {
+            if (enemyDataSheet != null)
+            {
+                enemyDataSheet.Read();
+            }
+
+            if (relicDataSheet != null)
+            {
+                relicDataSheet.Read();
+            }
+
+            if (relicDropTableSheet != null)
+            {
+                relicDropTableSheet.Read();
+            }
+
+            if (relicEffectStringTableSheet != null)
+            {
+                relicEffectStringTableSheet.Read();
+            }
+
+            if (spawnPatternDataSheet != null)
+            {
+                spawnPatternDataSheet.Read();
+            }
+
+            if (spawnerDataSheet != null)
+            {
+                spawnerDataSheet.Read();
+            }
+
+            if (stageDataSheet != null)
+            {
+                stageDataSheet.Read();
+            }
         }
     }
 }

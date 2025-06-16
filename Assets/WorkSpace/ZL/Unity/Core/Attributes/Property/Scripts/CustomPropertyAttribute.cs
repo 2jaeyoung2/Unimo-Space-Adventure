@@ -26,42 +26,55 @@ namespace ZL.Unity
 
         protected const int defaultFontSize = 12;
 
-        protected static readonly Color defaultTextColor;
-
-        protected static readonly GUIStyle defaultLabelStyle;
-
-        #if UNITY_EDITOR
-
-        private string nameTag = null;
-
-        public string NameTag
+        protected static Color DefaultTextColor
         {
             get
             {
-                nameTag ??= $"[{GetType().Name.RemoveFromBehind("Attribute")}]";
+                #if UNITY_EDITOR
 
-                return nameTag;
+                if (EditorGUIUtility.isProSkin == true)
+                {
+                    return new Color(0.769f, 0.769f, 0.769f, 1f);
+                }
+
+                #endif
+
+                return new Color(0.035f, 0.035f, 0.03f, 1f);
             }
         }
 
-        static CustomPropertyAttribute()
-        {
-            if (EditorGUIUtility.isProSkin == true)
-            {
-                defaultTextColor = new Color(0.769f, 0.769f, 0.769f, 1f);
-            }
-            
-            else
-            {
-                defaultTextColor = new Color(0.035f, 0.035f, 0.03f, 1f);
-            }
+        private static GUIStyle defaultLabelStyle = null;
 
-            defaultLabelStyle = new GUIStyle()
+        protected static GUIStyle DefaultLabelStyle
+        {
+            get
             {
-                fontSize = defaultFontSize,
-            };
-            
-            defaultLabelStyle.normal.textColor = defaultTextColor;
+                if (defaultLabelStyle == null)
+                {
+                    defaultLabelStyle = new GUIStyle()
+                    {
+                        fontSize = defaultFontSize,
+                    };
+
+                    defaultLabelStyle.normal.textColor = DefaultTextColor;
+                }
+
+                return defaultLabelStyle;
+            }
+        }
+
+        #if UNITY_EDITOR
+
+        private string attributeNameTag = null;
+
+        protected string AttributeNameTag
+        {
+            get
+            {
+                attributeNameTag ??= $"[{GetType().Name.RemoveFromBehind("Attribute")}]";
+
+                return attributeNameTag;
+            }
         }
 
         protected virtual void Initialize(Drawer drawer)
@@ -115,12 +128,12 @@ namespace ZL.Unity
 
                 PropertyLabel = label;
 
-                if (TargetObject == null)
+                TargetObject = property.serializedObject.targetObject;
+
+                TargetComponent = TargetObject as Component;
+
+                if (attributes == null)
                 {
-                    TargetObject = property.serializedObject.targetObject;
-
-                    TargetComponent = TargetObject as Component;
-
                     attributes = fieldInfo.GetCustomAttributes<CustomPropertyAttribute>();
 
                     foreach (var attribute in attributes)
@@ -170,9 +183,24 @@ namespace ZL.Unity
 
             public void DrawPropertyField()
             {
-                EditorGUI.PropertyField(drawPosition, Property, PropertyLabel, true);
+                try
+                {
+                    EditorGUI.PropertyField(drawPosition, Property, PropertyLabel, true);
 
-                Margin(EditorGUI.GetPropertyHeight(Property, PropertyLabel, true) + 2f);
+                    Margin(EditorGUI.GetPropertyHeight(Property, PropertyLabel, true) + 2f);
+                }
+
+                catch
+                {
+
+                }
+            }
+
+            public void DrawDefaultPropertyField()
+            {
+                var editor = Editor.CreateEditor(Property.serializedObject.targetObject);
+
+                editor.OnInspectorGUI();
             }
 
             public void DrawLayerField()
@@ -196,7 +224,7 @@ namespace ZL.Unity
 
             public void DrawText(GUIContent label)
             {
-                DrawText(defaultLabelStyle.CalcSize(label).y, label, defaultLabelStyle);
+                DrawText(DefaultLabelStyle.CalcSize(label).y, label, DefaultLabelStyle);
             }
 
             public void DrawText(GUIContent label, GUIStyle style)
@@ -206,7 +234,7 @@ namespace ZL.Unity
 
             public void DrawText(float height, GUIContent label)
             {
-                DrawText(height, label, defaultLabelStyle);
+                DrawText(height, label, DefaultLabelStyle);
             }
 
             public void DrawText(float height, GUIContent label, GUIStyle style)

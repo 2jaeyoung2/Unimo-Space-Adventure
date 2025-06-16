@@ -14,16 +14,11 @@ namespace ZL.Unity
 
         private UnityEvent onStartEvent = null;
 
-        public UnityEvent OnStartEvent
-        {
-            get => onStartEvent;
-        }
-
         private void Start()
         {
             onStartEvent.Invoke();
 
-            Destroy(this);
+            enabled = false;
         }
     }
 }

@@ -1,11 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
-using JDG;
 
 namespace JDG
 {
     public enum RelicEffectType
     {
-        None
+        None, Useful, Harmful
+    }
+
+    public enum TargetType
+    {
+        None, IngameCurrency, MetaCurrency, Blueprint, MaxHP, CurrentHP, MaxFuel, CurrentFuel
     }
 
     [CreateAssetMenu(fileName = "RelicDataSO", menuName = "SO/EventSO/RelicDataSO")]
@@ -14,8 +19,15 @@ namespace JDG
         public string _relicName;
         public Sprite _relicImage;
         public string _relicDesc;
-        public ConditionData _relicPrice;
-        public RelicEffectType _relicEffectType;
-        public float _relicEffectValue;
+        public ResourceCost _relicPrice;
+        public List<RelicEffect> _relicEffects;
+    }
+
+    [System.Serializable]
+    public class RelicEffect
+    {
+        public RelicEffectType _effectType;
+        public TargetType _target;
+        public float _value;
     }
 }

@@ -4,7 +4,7 @@ using ZL.Unity.Pooling;
 
 namespace ZL.Unity.Unimo
 {
-    [AddComponentMenu("ZL/Unimo/Gathering")]
+    [AddComponentMenu("ZL/Unimo/Gathering (Pooled)")]
 
     public sealed class Gathering : PooledObject, IDamageable
     {
@@ -62,7 +62,7 @@ namespace ZL.Unity.Unimo
         {
             CancelInvoke();
 
-            GatherStageSceneDirector.Instance.GetResource(gatheringData.ResourceAmount);
+            ++GatheringManager.Instance.GatheringCount;
 
             Disappear();
         }
