@@ -58,7 +58,6 @@ namespace JDG
 
             var env = TileEnvironmentManager.Instance.GetEnvironmentInfo(tile.TileData.EnvironmentType);
             var display = TileDisplayInfoManager.Instance.GetDisplayInfo(tile.TileData.TileType, tile.TileData.ModeType);
-            var rewards = RewardManager.Instance.GetTileRewards(tile.TileData.TileType, tile.TileData.ModeType, tile.TileData.DifficultyType);
             if (env != null)
             {
                 _envImage.sprite = env.EnviromentIcon;

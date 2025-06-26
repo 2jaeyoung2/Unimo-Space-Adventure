@@ -14,6 +14,10 @@ namespace JDG
     {
         public void Execute(EventEffect eventEffect)
         {
+            Debug.Log("[DEBUG] ChangeResource.Execute 호출됨");
+            Debug.Log("eventEffect: " + eventEffect);
+            Debug.Log("eventEffect.ResourceType: " + eventEffect?._target);
+            Debug.Log("eventEffect.Amount: " + eventEffect?._value);
             Debug.Log("자원 변경");
             if(eventEffect._target == TargetType.IngameCurrency)
             {

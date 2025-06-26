@@ -8,7 +8,6 @@ namespace JDG
         private static bool _initialized = false;
         private GameObject _sceneLoaderPrefab;
         private GameObject _stateManagerPrefab;
-        private GameObject _rewardManagerPrefab;
 
         private void Awake()
         {
@@ -23,7 +22,6 @@ namespace JDG
 
             _sceneLoaderPrefab = Resources.Load<GameObject>("WorldMap/SceneLoader");
             _stateManagerPrefab = Resources.Load<GameObject>("WorldMap/GameStateManager");
-            _rewardManagerPrefab = Resources.Load<GameObject>("WorldMap/RewardManager");
 
             if (SceneLoader.Instance == null)
             {
@@ -33,11 +31,6 @@ namespace JDG
             if (GameStateManager.Instance == null)
             {
                 Instantiate(_stateManagerPrefab);
-            }
-
-            if (RewardManager.Instance == null)
-            {
-                Instantiate(_rewardManagerPrefab);
             }
         }
     }

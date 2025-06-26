@@ -27,7 +27,7 @@
 
                 foreach (ResourceCost resourceCost in resourceCosts)
                 {
-                    int playerResource = GetPlayerResource(resourceCost._resourceData._resourcesType);
+                    int playerResource = GetPlayerResource(resourceCost._resourceType);
 
                     if (resourceCost._value > playerResource)
                         return false;

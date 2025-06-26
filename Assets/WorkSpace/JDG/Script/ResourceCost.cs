@@ -8,7 +8,7 @@ namespace JDG
     [System.Serializable]
     public class ResourceCost
     {
-        public ResourceDataSO _resourceData;
+        public ResourcesType _resourceType;
         public int _value;
     }
 }
