@@ -14,11 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventID: 01
   _eventType: 1
+  _eventImage: {fileID: 0}
   _eventTitle: Shop
   _eventDesc: Here is Shop
+  _eventWeight: 0
   _eventChoices: []
-  _relicDatas:
-  - {fileID: 11400000, guid: 4918cf223bfe75f4693cb4348662f2fc, type: 2}
-  - {fileID: 11400000, guid: c7f2012502ca1464e963dfd6d515db3d, type: 2}
-  - {fileID: 11400000, guid: a0e5b9e30f4bebc40ba6b146c8ee6c1c, type: 2}
-  - {fileID: 11400000, guid: 05cbf7deaa777b24cbdab8b992cff19e, type: 2}
