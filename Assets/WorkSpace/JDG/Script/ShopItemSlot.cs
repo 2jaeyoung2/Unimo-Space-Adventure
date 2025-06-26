@@ -73,6 +73,9 @@ namespace JDG
 
         public void OnBuyButtonClicked()
         {
+            if (UIManager.Instance.IsResultUIOpen)
+                return;
+
             //아이템 가격
             int relicPrice = _relicData.Price;
 
@@ -90,11 +93,13 @@ namespace JDG
                 PlayerEvents.ChangeCurrency();
 
                 PlayerEvents.ChangeRelic();
+
+                UIManager.Instance.ShopUI.ShowResultPanel($"{_relicName}을 구입하였습니다");
             }
 
             else
             {
-                Debug.Log("소지금 부족");
+                UIManager.Instance.ShopUI.ShowResultPanel("소지금이 부족합니다");
             }
         }
     }

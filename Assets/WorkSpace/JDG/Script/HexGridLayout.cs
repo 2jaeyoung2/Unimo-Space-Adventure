@@ -418,6 +418,15 @@ namespace JDG
                     index++;
                 }
             }
+
+            for(int i = index; i < total; i++)
+            {
+                var coord = selectedCoords[i];
+                if (_hexMap[coord].TileData.EventType == EventType.None)
+                {
+                    _hexMap[coord].TileData.EventType = EventType.Script;
+                }
+            }
         }
 
         private void AssignModeTiles(List<Vector2Int> candidateCoords)

@@ -33,6 +33,11 @@ MonoBehaviour:
       _target: 2
       _value: -20
       _relicData: {fileID: 0}
+    _resultSprit: {fileID: 21300000, guid: 15b3313d6b7611b4ba49f219543c3bbf, type: 3}
+    _resultName: "\uC218\uB9AC\uB97C \uC131\uACF5\uD558\uB2E4"
+    _resultDescription: "\uC218\uB9AC\uB85C\uBD07\uC774 \uC218\uB9AC\uB97C \uC131\uACF5\uC801\uC73C\uB85C
+      \uB9C8\uCCE4\uC2B5\uB2C8\uB2E4"
+    _result: "HP\uC804\uBD80 \uD68C\uBCF5"
   - _probability: 0.2
     _effects:
     - _choiceEffectType: 2
@@ -45,3 +50,8 @@ MonoBehaviour:
       _target: 2
       _value: -20
       _relicData: {fileID: 0}
+    _resultSprit: {fileID: 21300000, guid: eaca5fe53bb7c7e44989b541bec61621, type: 3}
+    _resultName: "\uC218\uB9AC\uB97C \uC2E4\uD328\uD558\uB2E4"
+    _resultDescription: "\uC774\uB7F0 \uC218\uB9AC\uB85C\uBD07\uC758 \uC190\uC774
+      \uBBF8\uB044\uB7EC\uC84C\uC2B5\uB2C8\uB2E4"
+    _result: "\uCCB4\uB825 10 \uAC10\uC18C"

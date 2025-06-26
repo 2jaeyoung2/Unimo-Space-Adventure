@@ -19,6 +19,12 @@ namespace JDG
     public class ProbabilisticEffect
     {
         [Range(0f, 1f)] public float _probability;
-        public List<EventEffect> _effects;   
+        public List<EventEffect> _effects;
+
+        [Header("이벤트 결과")]
+        public Sprite _resultSprit;
+        public string _resultName;
+        public string _resultDescription;
+        public string _result;  
     }
 }

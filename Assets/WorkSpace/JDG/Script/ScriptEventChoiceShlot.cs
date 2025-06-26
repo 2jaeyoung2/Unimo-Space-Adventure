@@ -101,48 +101,6 @@ namespace JDG
         {
             _choiceData = choiceData;
 
-            //유용한지 해로운지에 따라 버튼 색깔바꾸는 코드 필요없으면 후에 제거
-            //bool isUseful = false;
-            //bool isHarmful = false;
-
-            //foreach (var probEffect in choiceData._probabilisticEffect)
-            //{
-            //    foreach (var effect in probEffect._effects)
-            //    {
-            //        if (effect._choiceEffectType == ChoiceEffectType.Useful)
-            //        {
-            //            isUseful = true;
-            //        }
-            //        else if (effect._choiceEffectType == ChoiceEffectType.Harmful)
-            //        {
-            //            isHarmful = true;
-            //        }
-            //        else if (effect._choiceEffectType == ChoiceEffectType.None)
-            //        {
-            //            isUseful = true;
-            //        }
-
-            //        if (isUseful && isHarmful)
-            //            break;
-            //    }
-
-            //    if (isUseful && isHarmful)
-            //        break;
-            //}
-
-            //if (isUseful && isHarmful)
-            //{
-            //    _button.image.sprite = _buttonUseAndHarmfulImage;
-            //}
-            //else if (isUseful)
-            //{
-            //    _button.image.sprite = _buttonUsefulImage;
-            //}
-            //else if (isHarmful)
-            //{
-            //    _button.image.sprite = _buttonHarmfulImage;
-            //}
-
             //유용한 효과의 문장은 초록색으로 해로운 효과의 문장은 붉은색으로
             List<string> allDes = new List<string>();
             bool isChoiceValid = true;
@@ -254,6 +212,9 @@ namespace JDG
 
         public void OnClickChoice()
         {
+            if (UIManager.Instance.IsResultUIOpen)
+                return;
+            Debug.Log("눌림");
             if (_choiceData == null)
             {
                 return;
@@ -280,13 +241,12 @@ namespace JDG
                     foreach (var effect in prob._effects)
                     {
                         EffectExecutor.ExecuteEffect(effect);
+                        UIManager.Instance.ScriptEventUI.ShowResultUI(prob._resultSprit, prob._resultName, prob._resultDescription, prob._result);
                     }
 
                     break;
                 }
             }
-
-            UIManager.Instance.ScriptEventUI.HideUI();
         }
 
         private string GetEffectText(EventEffect eventEffect)

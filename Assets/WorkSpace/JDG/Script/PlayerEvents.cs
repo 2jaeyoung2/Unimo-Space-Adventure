@@ -22,7 +22,6 @@ public static class PlayerEvents
 
     public static void ChangeCurrency()
     {
-        Debug.Log("ÀÚ¿ø ¹Ù²ñ");
         _OnCurrencyChanged?.Invoke();
     }
 

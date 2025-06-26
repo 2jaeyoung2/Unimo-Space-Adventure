@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Relic 2
   m_EditorClassIdentifier: 
   rarity: 1
-  price: 150
+  price: 0
   score: 100
   effects:
   - type: 2

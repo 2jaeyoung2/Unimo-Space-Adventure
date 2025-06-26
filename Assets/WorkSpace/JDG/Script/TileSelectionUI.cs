@@ -186,9 +186,9 @@ namespace JDG
                     List<RelicData> relicDatas = GetRandomRelics(_shopUI.ItemCount);
                     StartCoroutine(WaitAndOpenShop(relicDatas));
                 }
-                else if (_currentTile.TileData.EventType == EventType.script)
+                else if (_currentTile.TileData.EventType == EventType.Script)
                 {
-                    EventDataSO eventData = GetRandomEvent(EventType.script);
+                    EventDataSO eventData = GetRandomEvent(EventType.Script);
                     List<ChoiceDataSO> choiceDatas = GetRandomChoice(eventData._eventChoices, _scriptEventUI.ChoiceCount);
                     StartCoroutine(WaitAndOpenScriptEvent(eventData, choiceDatas));
                 }

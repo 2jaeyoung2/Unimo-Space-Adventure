@@ -14,11 +14,6 @@ namespace JDG
     {
         public void Execute(EventEffect eventEffect)
         {
-            Debug.Log("[DEBUG] ChangeResource.Execute 호출됨");
-            Debug.Log("eventEffect: " + eventEffect);
-            Debug.Log("eventEffect.ResourceType: " + eventEffect?._target);
-            Debug.Log("eventEffect.Amount: " + eventEffect?._value);
-            Debug.Log("자원 변경");
             if(eventEffect._target == TargetType.IngameCurrency)
             {
                 EffectCoroutineLuncher.Instance.RunCoroutine(FirebaseDataBaseMgr.Instance.UpdateRewardIngameCurrency(eventEffect._value), PlayerEvents.ChangeCurrency);
@@ -30,7 +25,6 @@ namespace JDG
             else if(eventEffect._target == TargetType.Blueprint)
             {
                 EffectCoroutineLuncher.Instance.RunCoroutine(FirebaseDataBaseMgr.Instance.UpdateRewardBluePrint(eventEffect._value), PlayerEvents.ChangeCurrency);
-                Debug.Log("자원 변경2");
             }
         }
     }

@@ -1,17 +1,39 @@
+using JDG;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using ZL.Unity.Pooling;
 using ZL.Unity.Unimo;
 
-public class RelicUISlot : MonoBehaviour
+public class RelicUISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] Image _relicImage;
-    [SerializeField] TextMeshProUGUI _relicName;
+    [SerializeField] private Image _relicImage;
+    [SerializeField] private TextMeshProUGUI _relicName;
     [SerializeField] private ImageTable _imageTable;
+    [SerializeField] private GameObject _cardPrefab;
+    private RelicData _data;
 
-    public void Init(string name)
+    public void Init(RelicData data)
     {
-        _relicImage.sprite = _imageTable[name];
-        _relicName.text = name;
+        _data = data;
+        _relicImage.sprite = _imageTable[data.name];
+        _relicName.text = data.name;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(_data != null)
+        {
+            var obj = Instantiate(_cardPrefab);
+            var card = obj.GetComponent<RelicCard>();
+            card.Initialize(_data);
+            card.Appear();
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -22,11 +22,18 @@ namespace JDG
         [Header("선택지 갯수 조정")]
         [SerializeField] private int _choiceCount;
 
+        [Header("결과창")]
+        [SerializeField] private GameObject _resultPanel;
+        [SerializeField] private Image _resultImage;
+        [SerializeField] private TextMeshProUGUI _resultHeadText;
+        [SerializeField] private TextMeshProUGUI _resultText;
+
         private GameObject _choiceShlotPrefab;
 
         private void Start()
         {
-            _root.SetActive(false);
+            HideUI();
+            HideResultUI();
         }
 
         public int ChoiceCount => _choiceCount;
@@ -57,6 +64,22 @@ namespace JDG
         {
             _root.SetActive(false);
             UIManager.Instance.IsUIOpen = false;
+        }
+
+        public void ShowResultUI(Sprite image, string head, string message, string result)
+        {
+            _resultImage.sprite = image;
+            _resultHeadText.text = head;
+            _resultText.text = $"{message}\n{result}";
+            _resultPanel.SetActive(true);
+            UIManager.Instance.IsResultUIOpen = true;
+        }
+
+        public void HideResultUI()
+        {
+            _resultPanel.SetActive(false);
+            UIManager.Instance.IsResultUIOpen = false;
+            HideUI();
         }
     }
 }
