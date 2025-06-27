@@ -183,7 +183,7 @@ namespace JDG
                 hexRenderer.Height = _height;
                 hexRenderer.SetMaterial(_material);
 
-                var data = new TileData(coord, TileType.None, TileVisibility.Hidden, TileEnvironmentManager.Instance.GetRandomEnvironment(), false, DifficultyType.Easy);
+                var data = new TileData(coord, TileType.None, TileVisibility.Hidden, TileEnvironmentManager.Instance.GetRandomEnvironment(), false, DifficultyType.Initiate);
                 hexRenderer.SetTileData(data);
 
                 hexRenderer.DrawMesh();
@@ -581,7 +581,7 @@ namespace JDG
 
         private DifficultyType GetDifficultyTypeByDistance(int distance)
         {
-            DifficultyType difficultyType = DifficultyType.Easy;
+            DifficultyType difficultyType = DifficultyType.Initiate;
 
             foreach (var entry in _difficultyEntries)
             {

@@ -11,10 +11,10 @@ public class RelicUISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private Image _relicImage;
     [SerializeField] private TextMeshProUGUI _relicName;
     [SerializeField] private ImageTable _imageTable;
-    [SerializeField] private GameObject _cardPrefab;
     [SerializeField] private Transform _parent;
     [SerializeField] private Vector3 _offset;
     private RelicData _data;
+    private RelicCard _activeCard;
 
     public void Init(RelicData data)
     {
@@ -25,18 +25,38 @@ public class RelicUISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(_data != null)
+        if (_activeCard != null)
         {
-            var obj = Instantiate(_cardPrefab, _parent);
-            obj.transform.position = transform.position + _offset;
-            var card = obj.GetComponent<RelicCard>();
-            card.Initialize(_data);
-            card.Appear();
+            RelicCardPool.Instance.Release(_activeCard);
+            _activeCard = null;
+        }
+
+        if (_data != null)
+        {
+            Vector3 finalOffset = _offset;
+            Vector3 cardWorldPos = transform.position + transform.TransformVector(finalOffset);
+            Vector3 screenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, cardWorldPos);
+
+            if(screenPos.x > Screen.width * 0.9f)
+            {
+                finalOffset *= -1f;
+            }
+
+            Transform container = GameObject.Find("InvenRelicCardContainer").transform;
+
+            _activeCard = RelicCardPool.Instance.Get(_parent, finalOffset);
+            _activeCard.transform.SetParent(container, worldPositionStays: true);
+            _activeCard.Initialize(_data);
+            _activeCard.Appear();
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        if(_activeCard != null)
+        {
+            RelicCardPool.Instance.Release(_activeCard);
+            _activeCard = null;
+        }
     }
 }

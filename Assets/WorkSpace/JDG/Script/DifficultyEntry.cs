@@ -4,7 +4,7 @@ namespace JDG
 {
     public enum DifficultyType
     {
-        Easy, Normal, Hard
+        Initiate, Novice, Adept, Expert, Veteran, Elite, Master, Grandmaster, Supreme
     }
 
     [System.Serializable]

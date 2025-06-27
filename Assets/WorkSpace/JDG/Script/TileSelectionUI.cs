@@ -19,6 +19,7 @@ namespace JDG
         private GameObject _rewardPrefab;
         [SerializeField] private Button _actionButton;
         [SerializeField] private TextMeshProUGUI _actionButtonName;
+        [SerializeField] private TextMeshProUGUI _difficultText;
 
         [Header("UI 오프셋")]
         [SerializeField] private Vector3 _offSet;
@@ -108,6 +109,16 @@ namespace JDG
                 }
 
             }
+
+            if (tile.TileData.TileType == TileType.Event)
+            {
+                _difficultText.text = "";
+            }
+            else
+            {
+                _difficultText.text = $"현재 난이도 : {(int)tile.TileData.DifficultyType + 1}단계";
+            }
+
             if (tile.TileData.IsCleared || tile.TileData.TileType == TileType.Event || tile.TileData.TileType == TileType.Base)
             {
                 _actionButtonName.text = "이동";
