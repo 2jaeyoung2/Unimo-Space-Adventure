@@ -1,8 +1,6 @@
-using ZL.Unity.Collections;
-
 namespace ZL.Unity.Pooling
 {
-    public abstract class ManagedPooledObject<TKey> : PooledObject, IKeyValuePair<TKey, ManagedPooledObject<TKey>>
+    public abstract class ManagedPooledObject<TKey> : PooledObject
     {
         private TKey key;
 
@@ -11,13 +9,6 @@ namespace ZL.Unity.Pooling
             get => key;
 
             set => key = value;
-        }
-
-        public ManagedPooledObject<TKey> Value
-        {
-            get => this;
-
-            set { }
         }
     }
 }

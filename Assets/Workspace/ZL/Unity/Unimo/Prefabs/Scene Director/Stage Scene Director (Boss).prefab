@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: destination
       value: 
       objectReference: {fileID: 5813047454945659377}
+    - target: {fileID: 3260556865696310298, guid: 0671f9ce97f36b7489724e9bc31de000, type: 3}
+      propertyPath: skillTarget
+      value: 
+      objectReference: {fileID: 5813047454945659377}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -885,6 +889,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4149018148762161712, guid: 6278f434f53ce65489172d9dab2eb6df, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071666072122435374, guid: 6278f434f53ce65489172d9dab2eb6df, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6592831641172216263, guid: 6278f434f53ce65489172d9dab2eb6df, type: 3}

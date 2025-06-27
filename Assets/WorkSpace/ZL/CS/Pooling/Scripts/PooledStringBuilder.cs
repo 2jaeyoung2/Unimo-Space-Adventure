@@ -39,7 +39,7 @@ namespace ZL.CS.Pooling
 
         public static StringBuilder Generate()
         {
-            var stringBuilder = ClassPool<StringBuilder>.Generate();
+            var stringBuilder = ClassPool<StringBuilder>.Clone();
 
             return stringBuilder;
         }

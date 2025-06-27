@@ -14,18 +14,18 @@ namespace ZL.Unity.Unimo
 
         public override void Appear()
         {
-            movementSpeed = 0f;
-
             base.Appear();
+
+            movementSpeed = 0f;
         }
 
         public override void OnAppeared()
         {
-            base.OnAppeared();
-
             animatorGroup.SetFloat(nameof(chargeDashTime), chargeDashTime);
 
             animatorGroup.SetTrigger("ChargeDash");
+
+            base.OnAppeared();
         }
 
         public void GiveDamage(IDamageable damageable, Vector3 contact)

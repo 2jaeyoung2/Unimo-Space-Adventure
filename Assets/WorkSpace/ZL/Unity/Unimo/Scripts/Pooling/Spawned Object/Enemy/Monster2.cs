@@ -56,9 +56,9 @@ namespace ZL.Unity.Unimo
                 return;
             }
 
-            if (Destination != null)
+            if (destination != null)
             {
-                if (IsWithinRange(Destination.position, attackRange) == true)
+                if (IsWithinRange(destination.position, attackRange) == true)
                 {
                     return;
                 }
@@ -71,14 +71,14 @@ namespace ZL.Unity.Unimo
 
         public override void OnDisappeared()
         {
-            base.OnDisappeared();
-
             attackCooldownTimer = 0f;
+
+            base.OnDisappeared();
         }
 
         protected override void Move()
         {
-            if (IsWithinRange(Destination.position, stopDistance) == true)
+            if (IsWithinRange(destination.position, stopDistance) == true)
             {
                 movementSpeed = enemyData.MovementSpeed;
             }

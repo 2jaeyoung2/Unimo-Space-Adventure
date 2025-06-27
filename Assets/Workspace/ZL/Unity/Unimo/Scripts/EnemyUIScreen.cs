@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.Serialization;
 using ZL.Unity.Pooling;
 
 using ZL.Unity.UI;
@@ -14,22 +14,23 @@ namespace ZL.Unity.Unimo
 
         [SerializeField]
 
-        private HashSetObjectPool<NamedEnemyHealthBar> enemyHealthBarPool = null;
+        [FormerlySerializedAs("enemyHealthBarPool")]
 
-        public NamedEnemyHealthBar AppearHealthBar(Enemy targetEnemy)
+        private DictionaryObjectPool<Enemy, NamedEnemyHealthBar> enemyHealthBarPool = null;
+
+        public void AppearNamedEnemyHealthBar(Enemy targetEnemy)
         {
-            var enemyHealthBar = enemyHealthBarPool.Clone();
+            if (enemyHealthBarPool.TryClone(targetEnemy, out var healthBar) == true)
+            {
+                healthBar.Initialize(targetEnemy);
 
-            enemyHealthBar.Initialize(targetEnemy);
-
-            enemyHealthBar.Appear();
-
-            return enemyHealthBar;
+                healthBar.Appear();
+            }
         }
 
-        public void DisappearHealthBar(NamedEnemyHealthBar enemyHealthBar)
+        public void DisappearNamedEnemyHealthBar(Enemy targetEnemy)
         {
-            enemyHealthBarPool.Collect(enemyHealthBar);
+            enemyHealthBarPool[targetEnemy].Disappear();
         }
     }
 }

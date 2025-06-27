@@ -682,7 +682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8601688208422327645, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 170.08
       objectReference: {fileID: 0}
     - target: {fileID: 8601688208422327645, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -857,6 +857,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3260556865696310298, guid: 0671f9ce97f36b7489724e9bc31de000, type: 3}
       propertyPath: destination
+      value: 
+      objectReference: {fileID: 685160210423565519}
+    - target: {fileID: 3260556865696310298, guid: 0671f9ce97f36b7489724e9bc31de000, type: 3}
+      propertyPath: skillTarget
       value: 
       objectReference: {fileID: 685160210423565519}
     m_RemovedComponents: []

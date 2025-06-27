@@ -10,18 +10,6 @@ namespace ZL.Unity.Unimo
 
         [UsingCustomProperty]
 
-        [GetComponentInChildren]
-
-        [ReadOnly(true)]
-
-        protected AnimatorGroup animatorGroup = null;
-
-        [Space]
-
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
@@ -29,6 +17,11 @@ namespace ZL.Unity.Unimo
         [ReadOnly(true)]
 
         protected Collider mainCollider = null;
+
+        public Collider MainCollider
+        {
+            get => mainCollider;
+        }
 
         public override void OnAppeared()
         {
@@ -39,24 +32,9 @@ namespace ZL.Unity.Unimo
 
         public override void Disappear()
         {
-            base.Disappear();
-
             mainCollider.enabled = false;
-        }
 
-        protected override void OnDisappear()
-        {
-            animatorGroup.SetTrigger("Disappear");
-        }
-
-        public override void OnDisappeared()
-        {
-            base.OnDisappeared();
-
-            if (animatorGroup != null)
-            {
-                animatorGroup.Rebind();
-            }
+            base.Disappear();
         }
 
         public abstract void GetItem<TMonoBehaviour>(TMonoBehaviour getter)

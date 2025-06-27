@@ -8,16 +8,16 @@ namespace ZL.Unity.Pooling
 {
     [Serializable]
 
-    public sealed class DictionaryObjectPool<TKey> : DictionaryObjectPool<TKey, PooledObject>
+    public sealed class ManagedObjectPool<TKey> : ManagedObjectPool<TKey, ManagedPooledObject<TKey>>
     {
 
     }
 
     [Serializable]
 
-    public class DictionaryObjectPool<TKey, TClone> : ObjectPool<TClone>
+    public class ManagedObjectPool<TKey, TClone> : ObjectPool<TClone>
 
-        where TClone : PooledObject
+        where TClone : ManagedPooledObject<TKey>
     {
         private readonly Dictionary<TKey, TClone> clones = new();
 
@@ -35,7 +35,9 @@ namespace ZL.Unity.Pooling
                 return false;
             }
 
-            clone = base.Clone();
+            clone = Clone();
+
+            clone.Key = key;
 
             clones.Add(key, clone);
 
@@ -46,22 +48,7 @@ namespace ZL.Unity.Pooling
         {
             base.Collect(clone);
 
-            foreach (var pair in clones)
-            {
-                if (pair.Value.Equals(clone) == true)
-                {
-                    clones.Remove(pair.Key);
-
-                    break;
-                }
-            }
-        }
-
-        public void Collect(TKey key)
-        {
-            base.Collect(clones[key]);
-
-            clones.Remove(key);
+            clones.Remove(clone.Key);
         }
 
         public void CollectAll()

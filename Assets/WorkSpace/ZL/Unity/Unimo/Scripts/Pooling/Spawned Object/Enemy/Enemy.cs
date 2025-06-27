@@ -43,18 +43,6 @@ namespace ZL.Unity.Unimo
 
         #pragma warning restore CS0108
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
-        [GetComponentInChildren]
-
-        [Essential]
-
-        [ReadOnly(true)]
-
-        protected AnimatorGroup animatorGroup = null;
-
         [Space]
 
         [SerializeField]
@@ -77,26 +65,6 @@ namespace ZL.Unity.Unimo
         public StringTable EnemyNameTable
         {
             get => enemyNameTable;
-        }
-
-        [Space]
-
-        [SerializeField]
-
-        protected float rotationSpeedMultiplier = 1f;
-
-        public float RotationSpeedMultiplier
-        {
-            set => rotationSpeedMultiplier = value;
-        }
-
-        [SerializeField]
-
-        protected float movementSpeedMultiplier = 1f;
-
-        public float MovementSpeedMultiplier
-        {
-            set => movementSpeedMultiplier = value;
         }
 
         private float currentHealth = 0f;
@@ -124,22 +92,23 @@ namespace ZL.Unity.Unimo
 
         protected float movementSpeed = 0f;
 
-        private EnemyManager enemyManager = null;
-
-        protected virtual Transform Destination
-        {
-            get => enemyManager.Destination;
-        }
-
         protected bool isStoped = true;
 
         public event Action<float> OnHealthChangedAction = null;
 
         public event Action OnKiiledAction = null;
 
-        protected virtual void Awake()
+        public override float MovementSpeedMultiplier
         {
-            enemyManager = EnemyManager.Instance;
+            set
+            {
+                movementSpeedMultiplier = value;
+
+                if (gameObject.activeSelf == true)
+                {
+                    animatorGroup.SetFloat(nameof(movementSpeedMultiplier), value);
+                }
+            }
         }
 
         protected virtual void FixedUpdate()
@@ -156,18 +125,18 @@ namespace ZL.Unity.Unimo
             CheckDespawnCondition();
         }
 
-        protected virtual void OnEnable()
-        {
-            animatorGroup.SetFloat(nameof(movementSpeedMultiplier), movementSpeedMultiplier);
-        }
-
         protected virtual void Look()
         {
+            if (destination  == null)
+            {
+                return;
+            }
+
             float rotationSpeed = this.rotationSpeed * rotationSpeedMultiplier;
 
             if (rotationSpeed != 0f)
             {
-                rigidbody.LookTowards(Destination.position, enemyData.RotationSpeed * Time.fixedDeltaTime, Axis.Y);
+                rigidbody.LookTowards(destination.position, enemyData.RotationSpeed * Time.fixedDeltaTime, Axis.Y);
             }
         }
 
@@ -190,53 +159,44 @@ namespace ZL.Unity.Unimo
 
         public override void Appear()
         {
+            base.Appear();
+
             currentHealth = enemyData.MaxHealth;
 
             rotationSpeed = enemyData.RotationSpeed;
 
             movementSpeed = enemyData.MovementSpeed;
-
-            base.Appear();
         }
 
         public override void OnAppeared()
         {
+            base.OnAppeared();
+
             mainCollider.enabled = true;
 
             isStoped = false;
 
-            base.OnAppeared();
+            MovementSpeedMultiplier = movementSpeedMultiplier;
         }
 
         public override void Disappear()
         {
-            base.Disappear();
-
             mainCollider.enabled = false;
 
             isStoped = true;
 
-            OnHealthChangedAction = null;
-            
-            OnKiiledAction = null;
-        }
-
-        protected override void OnDisappear()
-        {
-            animatorGroup.SetTrigger("Disappear");
+            base.Disappear();
         }
 
         public override void OnDisappeared()
         {
-            base.OnDisappeared();
-
             rigidbody.velocity = Vector3.zero;
 
-            animatorGroup.Rebind();
+            OnHealthChangedAction = null;
 
-            rotationSpeedMultiplier = 1f;
+            OnKiiledAction = null;
 
-            movementSpeedMultiplier = 1f;
+            base.OnDisappeared();
         }
 
         public virtual void TakeDamage(float damage, Vector3 contact)

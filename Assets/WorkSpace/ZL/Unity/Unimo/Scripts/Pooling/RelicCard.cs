@@ -127,17 +127,15 @@ namespace ZL.Unity.Unimo
 
         public override void Appear()
         {
+            base.Appear();
+
             RefreshTexts();
 
             StringTableManager.Instance.OnLanguageChangedAction += RefreshTexts;
-
-            base.Appear();
         }
 
         public override void Disappear()
         {
-            base.Disappear();
-
             toggle.isOn = false;
 
             OnSelectAction = null;
@@ -145,6 +143,8 @@ namespace ZL.Unity.Unimo
             OnDeselectAction = null;
 
             StringTableManager.Instance.OnLanguageChangedAction -= RefreshTexts;
+
+            base.Disappear();
         }
 
         private void RefreshTexts()

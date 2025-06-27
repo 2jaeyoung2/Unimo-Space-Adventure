@@ -30,6 +30,11 @@ namespace ZL.Unity.Unimo
 
         protected float cooldownTimer = 0f;
 
+        public float CooldownTimer
+        {
+            get => cooldownTimer;
+        }
+
         public virtual float GetWeight()
         {
             if (cooldownTimer > 0f)

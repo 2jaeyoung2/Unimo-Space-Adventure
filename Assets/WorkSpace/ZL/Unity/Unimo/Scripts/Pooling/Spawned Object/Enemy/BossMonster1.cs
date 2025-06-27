@@ -36,7 +36,7 @@ namespace ZL.Unity.Unimo
 
         [SerializeField]
 
-        private EnergyBoltSkill energyBoltskill = null;
+        private EnergyBoltSkill energyBoltSkill = null;
 
         private int energy = 0;
 
@@ -49,18 +49,9 @@ namespace ZL.Unity.Unimo
 
         private SkillSequence<BossMonster1> skillSequence = null;
 
-        private NamedEnemyHealthBar healthBar = null;
-
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-
-            skillSequence = new(dashSkill, energyBoltskill);
-        }
-
-        private void Update()
-        {
-            skillSequence.Cooldown(Time.deltaTime);
+            skillSequence = new(dashSkill, energyBoltSkill);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -77,20 +68,28 @@ namespace ZL.Unity.Unimo
         {
             base.OnAppeared();
 
-            skillSequence.StartRoutine(this);
+            skillSequenceRoutine = SkillSequenceRoutine();
 
-            healthBar = EnemyUIScreen.Instance.AppearHealthBar(this);
+            StartCoroutine(skillSequenceRoutine);
+
+            EnemyUIScreen.Instance.AppearNamedEnemyHealthBar(this);
+        }
+
+        private IEnumerator skillSequenceRoutine = null;
+
+        private IEnumerator SkillSequenceRoutine()
+        {
+            while (true)
+            {
+                yield return skillSequence.Routine();
+            }
         }
 
         public override void Disappear()
         {
+            EnemyUIScreen.Instance.DisappearNamedEnemyHealthBar(this);
+
             base.Disappear();
-
-            skillSequence.StopRoutine(this);
-
-            EnemyUIScreen.Instance.DisappearHealthBar(healthBar);
-
-            healthBar = null;
         }
 
         public override void TakeDamage(float damage, Vector3 contact)
@@ -111,7 +110,7 @@ namespace ZL.Unity.Unimo
         {
             Energy += value;
 
-            energyBoltskill.Cooldown();
+            energyBoltSkill.Cooldown();
         }
 
         [Serializable]
@@ -132,7 +131,7 @@ namespace ZL.Unity.Unimo
             {
                 skillUser.rotationSpeed = 0f;
 
-                skillUser.movementSpeed *= skillData.Power;
+                skillUser.MovementSpeedMultiplier *= skillData.Power;
 
                 dashSFX.SetActive(true);
 
@@ -140,7 +139,7 @@ namespace ZL.Unity.Unimo
 
                 skillUser.rotationSpeed = skillUser.enemyData.RotationSpeed;
 
-                skillUser.movementSpeed = skillUser.enemyData.MovementSpeed;
+                skillUser.MovementSpeedMultiplier /= skillData.Power;
 
                 dashSFX.SetActive(false);
             }
@@ -182,7 +181,7 @@ namespace ZL.Unity.Unimo
 
             public override float GetWeight()
             {
-                if (skillUser.IsWithinRange(skillUser.Destination.position, skillData.Range) == false)
+                if (skillUser.IsWithinRange(EnemyManager.Instance.SkillTarget.position, skillData.Range) == false)
                 {
                     return 0f;
                 }
@@ -206,15 +205,19 @@ namespace ZL.Unity.Unimo
                     projectile = ObjectPoolManager.Instance.Clone<EnemyProjectile>(projectileName);
                 }
 
-                var muzzleRotation = muzzle.LookRotation(skillUser.Destination.position, Axis.Y);
-
-                projectile.transform.SetPositionAndRotation(muzzle.position, muzzleRotation);
+                projectile.transform.SetPositionAndRotation(muzzle);
 
                 projectile.LifeTime = skillData.Duration;
 
+                projectile.Destination = EnemyManager.Instance.SkillTarget;
+
                 projectile.Appear();
 
-                yield return null;
+                skillUser.movementSpeed = 0f;
+
+                yield return WaitForSecondsCache.Get(0.5f);
+
+                skillUser.movementSpeed = skillUser.enemyData.MovementSpeed;
             }
         }
     }

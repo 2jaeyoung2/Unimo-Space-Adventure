@@ -16,7 +16,7 @@ namespace ZL.Unity.Server.Photon
 
         [SerializeField]
 
-        protected DictionaryObjectPool<int> playerListItemPool = null;
+        protected ManagedObjectPool<int> playerListItemPool = null;
 
         public void Refresh()
         {
@@ -30,7 +30,7 @@ namespace ZL.Unity.Server.Photon
 
         public virtual void Add(Player player)
         {
-            playerListItemPool.TryGenerate(player.ActorNumber, out var item);
+            playerListItemPool.TryClone(player.ActorNumber, out var item);
 
             item.transform.SetAsLastSibling();
 

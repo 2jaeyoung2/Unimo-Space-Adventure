@@ -8,6 +8,17 @@ namespace ZL.Unity.Pooling
 
     public class PooledObject : MonoBehaviour
     {
+        [Space]
+
+        [SerializeField]
+
+        private float lifeTime = -1f;
+
+        public float LifeTime
+        {
+            set => lifeTime = value;
+        }
+
         public event Action OnDisappearedAction = null;
 
         private event Action OnCollectedAction = null;
@@ -26,12 +37,22 @@ namespace ZL.Unity.Pooling
         public virtual void Appear()
         {
             gameObject.SetActive(true);
+
+            OnAppeared();
+        }
+
+        public virtual void OnAppeared()
+        {
+            if (lifeTime != -1f)
+            {
+                Invoke(nameof(Disappear), lifeTime);
+
+                lifeTime = -1f;
+            }
         }
 
         public virtual void Disappear()
         {
-            gameObject.SetActive(false);
-
             OnDisappeared();
         }
 
@@ -45,6 +66,8 @@ namespace ZL.Unity.Pooling
             }
 
             OnCollectedAction?.Invoke();
+
+            gameObject.SetActive(false);
         }
     }
 }

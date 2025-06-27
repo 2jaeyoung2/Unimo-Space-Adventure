@@ -14,7 +14,7 @@ namespace ZL.Unity.Unimo
 
         [SerializeField]
 
-        private HashSetObjectPool relicCardPool = null;
+        private HashSetObjectPool<RelicCard> relicCardPool = null;
 
         private RelicCard selectedRelicCard = null;
 
@@ -33,7 +33,7 @@ namespace ZL.Unity.Unimo
 
             foreach (var relicData in PlayerInventoryManager.RelicDatas)
             {
-                var relicCard = (RelicCard)relicCardPool.Clone();
+                var relicCard = relicCardPool.Clone();
 
                 relicCard.Initialize(relicData);
 

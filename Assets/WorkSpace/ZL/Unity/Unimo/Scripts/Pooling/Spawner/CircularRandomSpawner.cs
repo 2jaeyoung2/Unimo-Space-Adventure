@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.Serialization;
 using ZL.Unity.Debugging;
 
 namespace ZL.Unity.Unimo
@@ -12,9 +12,11 @@ namespace ZL.Unity.Unimo
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        //[UsingCustomProperty]
 
-        [Text("<b>소환 반경 반지름</b>")]
+        //[Text("<b>소환 반경 반지름</b>")]
+
+        [FormerlySerializedAs("radius")]
 
         private float radius = 0f;
 

@@ -18,12 +18,12 @@ namespace ZL.Unity
         {
             if (targetValue == null)
             {
-                drawer.IsEnabled = (property.objectReferenceValue == null) == condition;
+                drawer.IsEnabled = (property.objectReferenceValue == null) != condition;
 
                 return;
             }
 
-            drawer.IsEnabled = property.boxedValue.Equals(targetValue) == condition;
+            drawer.IsEnabled = property.boxedValue.Equals(targetValue) != condition;
         }
 
         #endif

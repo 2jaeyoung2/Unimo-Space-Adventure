@@ -12,15 +12,11 @@ namespace ZL.Unity.Unimo
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private Transform skillTarget = null;
 
-        [Text("<b>적이 추적하는 목표</b>")]
-
-        private Transform destination = null;
-
-        public Transform Destination
+        public Transform SkillTarget
         {
-            get => destination;
+            get => skillTarget;
         }
     }
 }

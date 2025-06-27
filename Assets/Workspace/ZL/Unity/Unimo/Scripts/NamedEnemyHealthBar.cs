@@ -59,6 +59,8 @@ namespace ZL.Unity.Unimo
 
         public override void Appear()
         {
+            base.Appear();
+
             RefreshText();
 
             healthBar.SetMaxValue(targetEnemy.EnemyData.MaxHealth);
@@ -66,8 +68,6 @@ namespace ZL.Unity.Unimo
             healthBar.SetValue(targetEnemy.CurrentHealth);
 
             targetEnemy.OnHealthChangedAction += healthBar.SetValue;
-
-            base.Appear();
         }
 
         public override void OnDisappeared()

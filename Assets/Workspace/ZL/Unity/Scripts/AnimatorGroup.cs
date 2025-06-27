@@ -16,7 +16,7 @@ namespace ZL.Unity
 
         [ReadOnlyWhenPlayMode]
 
-        [Button("FindAnimators")]
+        [Button(nameof(FindAnimators))]
 
         [Margin]
 
@@ -30,8 +30,6 @@ namespace ZL.Unity
 
         private int childAnimatorsCount = 0;
 
-        #if UNITY_EDITOR
-
         public void FindAnimators()
         {
             if (transform.TryGetComponentInChildren(out mainAnimator) == false)
@@ -43,8 +41,6 @@ namespace ZL.Unity
 
             FixedEditorUtility.SetDirty(this);
         }
-
-        #endif
 
         private void Awake()
         {

@@ -30,7 +30,7 @@ namespace ZL.Unity.Unimo
 
         private void Update()
         {
-            if (detector.Detect(Destination) == false)
+            if (detector.Detect(EnemyManager.Instance.SkillTarget) == false)
             {
                 return;
             }
@@ -51,9 +51,9 @@ namespace ZL.Unity.Unimo
 
         public override void Disappear()
         {
-            base.Disappear();
-
             detector.enabled = false;
+
+            base.Disappear();
         }
 
         protected override void OnDisappear()
@@ -71,9 +71,9 @@ namespace ZL.Unity.Unimo
 
         public override void OnDisappeared()
         {
-            base.OnDisappeared();
-
             isDashing = false;
+
+            base.OnDisappeared();
         }
 
         public void GiveDamage(IDamageable damageable, Vector3 contact)

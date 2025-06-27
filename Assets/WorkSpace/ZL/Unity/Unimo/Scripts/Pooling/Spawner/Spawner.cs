@@ -1,7 +1,7 @@
 using System.Collections;
 
 using UnityEngine;
-using UnityEngine.Serialization;
+
 using ZL.Unity.Coroutines;
 
 using ZL.Unity.Debugging;
@@ -90,13 +90,21 @@ namespace ZL.Unity.Unimo
 
         [SerializeField]
 
-        //[UsingCustomProperty]
+        [UsingCustomProperty]
 
-        //[Text("<b>오브젝트가 디스폰되는 거리 (-1: 무한)</b>")]
+        [Text("<b>스폰 시 바라볼 대상 (None: 지정 방향)</b>")]
 
-        [FormerlySerializedAs("despawnDistance")]
+        protected Transform lookPoint = null;
 
-        protected float despawnDistance = -1f;
+        [Space]
+
+        [SerializeField]
+
+        [UsingCustomProperty]
+
+        [Text("<b>추적할 목표</b>")]
+
+        protected Transform destination = null;
 
         [Space]
 
@@ -119,7 +127,7 @@ namespace ZL.Unity.Unimo
 
         [UsingCustomProperty]
 
-        [Text("<b>목표를 향해 다가오는 속도 배수</b>")]
+        [Text("<b>목표를 향해 이동하는 속도 배수</b>")]
 
         private float movementSpeedMultiplier = 1f;
 
@@ -134,9 +142,9 @@ namespace ZL.Unity.Unimo
 
         [UsingCustomProperty]
 
-        [Text("<b>스폰 시 바라볼 목표 (None: 지정 방향)</b>")]
+        [Text("<b>오브젝트가 디스폰되는 거리 (-1: 무한)</b>")]
 
-        protected Transform lookPoint = null;
+        protected float despawnDistance = -1f;
 
         protected int objectCount = 0;
 
@@ -231,18 +239,17 @@ namespace ZL.Unity.Unimo
 
             spawnedObject.LifeTime = lifeTime;
 
-            spawnedObject.SpawnPosition = transform.position;
+            spawnedObject.Destination = destination;
 
-            spawnedObject.DespawnRange = despawnDistance;
+            spawnedObject.RotationSpeedMultiplier = rotationSpeedMultiplier;
 
-            if (spawnedObject is Enemy enemy)
-            {
-                enemy.RotationSpeedMultiplier = rotationSpeedMultiplier;
-
-                enemy.MovementSpeedMultiplier = movementSpeedMultiplier;
-            }
+            spawnedObject.MovementSpeedMultiplier = movementSpeedMultiplier;
 
             spawnedObject.Appear();
+
+            spawnedObject.DespawnDistance = despawnDistance;
+
+            spawnedObject.SpawnPosition = transform.position;
         }
 
         private void Despawn()

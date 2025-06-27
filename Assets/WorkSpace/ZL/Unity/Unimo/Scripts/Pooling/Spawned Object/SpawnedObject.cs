@@ -8,11 +8,62 @@ namespace ZL.Unity.Unimo
 {
     public abstract class SpawnedObject : PooledObject
     {
-        private float lifeTime = -1f;
+        [Space]
 
-        public float LifeTime
+        [SerializeField]
+
+        [UsingCustomProperty]
+
+        [GetComponentInChildren]
+
+        [Essential]
+
+        [ReadOnly(true)]
+
+        protected AnimatorGroup animatorGroup = null;
+
+        [Space]
+
+        [SerializeField]
+
+        protected Transform destination = null;
+
+        public virtual Transform Destination
         {
-            set => lifeTime = value;
+            set => destination = value;
+        }
+
+        [Space]
+
+        [SerializeField]
+
+        protected float rotationSpeedMultiplier = 1f;
+
+        public float RotationSpeedMultiplier
+        {
+            set => rotationSpeedMultiplier = value;
+        }
+
+        [SerializeField]
+
+        protected float movementSpeedMultiplier = 1f;
+
+        public virtual float MovementSpeedMultiplier
+        {
+            get => movementSpeedMultiplier;
+
+            set => movementSpeedMultiplier = value;
+        }
+
+        [Space]
+
+        [SerializeField]
+
+        private float despawnDistance = -1f;
+
+        public float DespawnDistance
+        {
+            set => despawnDistance = value;
         }
 
         private Vector3 spawnPosition = Vector3.zero;
@@ -22,19 +73,11 @@ namespace ZL.Unity.Unimo
             set => spawnPosition = value;
         }
 
-        private float despawnRange = -1f;
-
-        public float DespawnRange
+        public override void Appear()
         {
-            set => despawnRange = value;
-        }
+            gameObject.SetActive(true);
 
-        public virtual void OnAppeared()
-        {
-            if (lifeTime != -1f)
-            {
-                Invoke(nameof(Disappear), lifeTime);
-            }
+            spawnPosition = transform.position;
         }
 
         public override void Disappear()
@@ -46,24 +89,32 @@ namespace ZL.Unity.Unimo
 
         protected virtual void OnDisappear()
         {
-            OnDisappeared();
+            animatorGroup.SetTrigger("Disappear");
         }
 
-        public virtual void OnDisappeared()
+        public override void OnDisappeared()
         {
-            gameObject.SetActive(false);
+            animatorGroup.Rebind();
 
-            lifeTime = -1f;
+            destination = null;
+
+            rotationSpeedMultiplier = 1f;
+
+            movementSpeedMultiplier = 1f;
+
+            despawnDistance = -1f;
+
+            base.OnDisappeared();
         }
 
         protected virtual void CheckDespawnCondition()
         {
-            if (despawnRange == -1f)
+            if (despawnDistance == -1f)
             {
                 return;
             }
 
-            if (IsWithinRange(spawnPosition, despawnRange) == true)
+            if (IsWithinRange(spawnPosition, despawnDistance) == true)
             {
                 return;
             }

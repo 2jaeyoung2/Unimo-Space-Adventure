@@ -2,6 +2,8 @@ using System.Collections;
 
 using UnityEngine;
 
+using ZL.Unity.Coroutines;
+
 namespace ZL.Unity.Unimo
 {
     public sealed class SkillSequence<TSkillUser>
@@ -15,47 +17,20 @@ namespace ZL.Unity.Unimo
             this.skills = skills;
         }
 
-        public void StartRoutine(TSkillUser skillUser)
+        public IEnumerator Routine()
         {
-            if (routine != null)
+            Cooldown(Time.fixedDeltaTime);
+
+            if (MathfEx.CDF(skills, GetWeight, out int index) == true)
             {
-                return;
+                skills[index].SetCooldownTimer();
+
+                yield return skills[index].Routine();
             }
 
-            routine = Routine();
-
-            skillUser.StartCoroutine(routine);
-        }
-
-        public void StopRoutine(TSkillUser skillUser)
-        {
-            if (routine == null)
+            else
             {
-                return;
-            }
-
-            skillUser.StopCoroutine(routine);
-
-            routine = null;
-        }
-
-        private IEnumerator routine = null;
-
-        private IEnumerator Routine()
-        {
-            while (true)
-            {
-                if (MathfEx.CDF(skills, GetWeight, out int index) == true)
-                {
-                    skills[index].SetCooldownTimer();
-
-                    yield return skills[index].Routine();
-                }
-
-                else
-                {
-                    yield return null;
-                }
+                yield return WaitForFixedUpdateCache.Get();
             }
         }
 

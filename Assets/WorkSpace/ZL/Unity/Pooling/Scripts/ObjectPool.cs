@@ -10,15 +10,12 @@ namespace ZL.Unity.Pooling
 
     public class ObjectPool : ObjectPool<PooledObject>
     {
-        public virtual TClone Clone<TClone>()
 
-            where TClone : PooledObject
-        {
-            return (TClone)base.Clone();
-        }
     }
 
-    public abstract class ObjectPool<TClone> : Pool<TClone>
+    [Serializable]
+
+    public class ObjectPool<TClone> : Pool<TClone>
 
         where TClone : PooledObject
     {
