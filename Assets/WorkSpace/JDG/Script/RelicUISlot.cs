@@ -12,6 +12,8 @@ public class RelicUISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private TextMeshProUGUI _relicName;
     [SerializeField] private ImageTable _imageTable;
     [SerializeField] private GameObject _cardPrefab;
+    [SerializeField] private Transform _parent;
+    [SerializeField] private Vector3 _offset;
     private RelicData _data;
 
     public void Init(RelicData data)
@@ -25,7 +27,8 @@ public class RelicUISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if(_data != null)
         {
-            var obj = Instantiate(_cardPrefab);
+            var obj = Instantiate(_cardPrefab, _parent);
+            obj.transform.position = transform.position + _offset;
             var card = obj.GetComponent<RelicCard>();
             card.Initialize(_data);
             card.Appear();

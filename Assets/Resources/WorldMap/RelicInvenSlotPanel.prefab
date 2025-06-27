@@ -93,7 +93,9 @@ MonoBehaviour:
   _relicImage: {fileID: 8492361465456336463}
   _relicName: {fileID: 1891390719399248912}
   _imageTable: {fileID: 11400000, guid: b39b1c7f2fab9e44aba922c73b673167, type: 2}
-  _cardPrefab: {fileID: 4048298774653746078, guid: 0c732e57711ad4c4db21755eda0c3452, type: 3}
+  _cardPrefab: {fileID: 856116963469206321, guid: 8f91f7129eb463949bb98a347e173b37, type: 3}
+  _parent: {fileID: 7698672455626261283}
+  _offset: {x: 1, y: 0, z: -0.2}
 --- !u!1 &5313811156625231340
 GameObject:
   m_ObjectHideFlags: 0
