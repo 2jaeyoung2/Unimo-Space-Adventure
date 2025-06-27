@@ -70,7 +70,7 @@ namespace YJH
             {
                 PlayerInventoryManager.AddRelic(relicCardScript1.RelicData);
             }
-            
+            PlayerEvents.ChangeRelic();
         }
         public void SetRelicCard(RelicCard card)
         {
