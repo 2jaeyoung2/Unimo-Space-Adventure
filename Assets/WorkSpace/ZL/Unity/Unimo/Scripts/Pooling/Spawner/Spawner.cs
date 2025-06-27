@@ -1,9 +1,7 @@
 using System.Collections;
 
 using UnityEngine;
-
-using UnityEngine.Animations;
-
+using UnityEngine.Serialization;
 using ZL.Unity.Coroutines;
 
 using ZL.Unity.Debugging;
@@ -88,24 +86,31 @@ namespace ZL.Unity.Unimo
 
         protected float lifeTime = -1f;
 
-        public float LifeTime
-        {
-            get => lifeTime;
-        }
-
         [Space]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        //[UsingCustomProperty]
 
-        [Text("<b>오브젝트가 디스폰되는 거리 (-1: 무한)</b>")]
+        //[Text("<b>오브젝트가 디스폰되는 거리 (-1: 무한)</b>")]
+
+        [FormerlySerializedAs("despawnDistance")]
 
         protected float despawnDistance = -1f;
 
-        public float DespawnDistance
+        [Space]
+
+        [SerializeField]
+
+        [UsingCustomProperty]
+
+        [Text("<b>목표를 향해 회전하는 속도 배수</b>")]
+
+        private float rotationSpeedMultiplier = 1f;
+
+        public float RotationSpeedMultiplier
         {
-            get => despawnDistance;
+            get => rotationSpeedMultiplier;
         }
 
         [Space]
@@ -114,13 +119,13 @@ namespace ZL.Unity.Unimo
 
         [UsingCustomProperty]
 
-        [Text("<b>플레이어를 향해 회전하는 속도 (-1: 기본값)</b>")]
+        [Text("<b>목표를 향해 다가오는 속도 배수</b>")]
 
-        private float rotationSpeed = -1f;
+        private float movementSpeedMultiplier = 1f;
 
-        public float RotationSpeed
+        public float MovementSpeedMultiplier
         {
-            get => rotationSpeed;
+            get => movementSpeedMultiplier;
         }
 
         [Space]
@@ -129,21 +134,9 @@ namespace ZL.Unity.Unimo
 
         [UsingCustomProperty]
 
-        [Text("<b>스폰 시 바라볼 지점 (None: 지정 방향)</b>")]
+        [Text("<b>스폰 시 바라볼 목표 (None: 지정 방향)</b>")]
 
-        private Transform lookPoint = null;
-
-        [Space]
-
-        [SerializeField]
-
-        [UsingCustomProperty]
-
-        [ReadOnlyIf(nameof(lookPoint), null, true)]
-
-        [Text("<b>스폰 시 Y축 방향 (-1: 랜덤 방향)</b>")]
-
-        private float lookAngle = -1f;
+        protected Transform lookPoint = null;
 
         protected int objectCount = 0;
 
@@ -154,7 +147,7 @@ namespace ZL.Unity.Unimo
                 return;
             }
 
-            Gizmos.color = Color.red;
+            Gizmos.color = new(1f, 0f, 0f, 0.5f);
 
             GizmosEx.DrawPolygon(transform.position, despawnDistance, 64);
         }
@@ -223,38 +216,36 @@ namespace ZL.Unity.Unimo
 
         protected void Spawn(Vector3 position)
         {
+            Spawn(position, Quaternion.identity);
+        }
+
+        protected void Spawn(Vector3 position, Quaternion rotation)
+        {
             ++objectCount;
 
             var spawnedObject = ObjectPoolManager.Instance.Clone<SpawnedObject>(spawnObjectName);
 
-            Quaternion rotation;
-
-            if (lookPoint != null)
-            {
-                if (QuaternionEx.TryLookRotation(position, lookPoint.position, Axis.Y, out rotation) == false)
-                {
-                    rotation = spawnedObject.transform.rotation;
-                }
-            }
-
-            else if (lookAngle == -1)
-            {
-                rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
-            }
-
-            else
-            {
-                rotation = Quaternion.Euler(0f, lookAngle, 0f);
-            }
-
             spawnedObject.transform.SetPositionAndRotation(position, rotation);
 
-            spawnedObject.Spawner = this;
+            spawnedObject.OnDisappearedAction += Despawn;
+
+            spawnedObject.LifeTime = lifeTime;
+
+            spawnedObject.SpawnPosition = transform.position;
+
+            spawnedObject.DespawnRange = despawnDistance;
+
+            if (spawnedObject is Enemy enemy)
+            {
+                enemy.RotationSpeedMultiplier = rotationSpeedMultiplier;
+
+                enemy.MovementSpeedMultiplier = movementSpeedMultiplier;
+            }
 
             spawnedObject.Appear();
         }
 
-        public void Despawn()
+        private void Despawn()
         {
             --objectCount;
         }

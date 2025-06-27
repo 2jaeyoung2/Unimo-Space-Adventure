@@ -1,47 +1,31 @@
 using UnityEngine;
 
-using UnityEngine.Animations;
-
 namespace ZL.Unity.Unimo
 {
     [AddComponentMenu("ZL/Unimo/Monster 4 (Spawned)")]
 
     public sealed class Monster4 : Enemy, IDamager
     {
-        private bool isDashing = false;
+        [Space]
 
-        private void FixedUpdate()
+        [SerializeField]
+
+        private float chargeDashTime = 0f;
+
+        public override void Appear()
         {
-            if (isStoped == true)
-            {
-                return;
-            }
-            
-            if (rotationSpeed != 0f)
-            {
-                rigidbody.LookTowards(Destination.position, rotationSpeed * Time.fixedDeltaTime, Axis.Y);
-            }
+            movementSpeed = 0f;
 
-            if (isDashing == false)
-            {
-                return;
-            }
-
-            if (enemyData.MovementSpeed != 0f)
-            {
-                rigidbody.MoveForward(enemyData.MovementSpeed * Time.fixedDeltaTime);
-            }
-
-            CheckDistanceToSpawner();
+            base.Appear();
         }
 
-        public override void Disappear()
+        public override void OnAppeared()
         {
-            base.Disappear();
+            base.OnAppeared();
 
-            isDashing = false;
+            animatorGroup.SetFloat(nameof(chargeDashTime), chargeDashTime);
 
-            OnDisappeared();
+            animatorGroup.SetTrigger("ChargeDash");
         }
 
         public void GiveDamage(IDamageable damageable, Vector3 contact)
@@ -51,7 +35,7 @@ namespace ZL.Unity.Unimo
 
         public void Dash()
         {
-            isDashing = true;
+            movementSpeed = enemyData.MovementSpeed;
         }
     }
 }

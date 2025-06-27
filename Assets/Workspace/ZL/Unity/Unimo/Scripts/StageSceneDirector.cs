@@ -131,7 +131,7 @@ namespace ZL.Unity.Unimo
 
                 if (value == true)
                 {
-                    PlayerManager.Instance.StopCoroutine("PlayerBlink");
+                    PlayerManager.Instance.StopPlayerBlink();
 
                     PlayerManager.Instance.IsOnHit = true;
                 }
@@ -186,6 +186,8 @@ namespace ZL.Unity.Unimo
 
         [Margin]
 
+        [ReadOnlyWhenEditMode]
+
         [Button(nameof(StageClear))]
 
         [Button(nameof(StageFail))]
@@ -218,7 +220,7 @@ namespace ZL.Unity.Unimo
 
             if (GatheringManager.Instance != null)
             {
-                GatheringManager.Instance.OnGatherCompleted += StageClear;
+                GatheringManager.Instance.OnGatherCompletedAction += StageClear;
             }
 
             PlayerManager.Instance.OnPlayerDead += StageFail;

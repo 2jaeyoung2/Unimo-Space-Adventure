@@ -1,29 +1,9 @@
 using UnityEngine;
 
-using ZL.Unity.Animating;
-
 namespace ZL.Unity.Unimo
 {
     public abstract class Item : SpawnedObject
     {
-        [Space]
-
-        [SerializeField]
-
-        [UsingCustomProperty]
-
-        [GetComponent]
-
-        [Essential]
-
-        [ReadOnly(true)]
-
-        #pragma warning disable CS0108
-
-        private Collider collider = null;
-
-        #pragma warning restore CS0108
-
         [Space]
 
         [SerializeField]
@@ -36,9 +16,23 @@ namespace ZL.Unity.Unimo
 
         protected AnimatorGroup animatorGroup = null;
 
+        [Space]
+
+        [SerializeField]
+
+        [UsingCustomProperty]
+
+        [GetComponent]
+
+        [Essential]
+
+        [ReadOnly(true)]
+
+        protected Collider mainCollider = null;
+
         public override void OnAppeared()
         {
-            collider.enabled = true;
+            mainCollider.enabled = true;
 
             base.OnAppeared();
         }
@@ -47,7 +41,7 @@ namespace ZL.Unity.Unimo
         {
             base.Disappear();
 
-            collider.enabled = false;
+            mainCollider.enabled = false;
         }
 
         protected override void OnDisappear()
@@ -65,6 +59,8 @@ namespace ZL.Unity.Unimo
             }
         }
 
-        public abstract void GetItem(PlayerManager player);
+        public abstract void GetItem<TMonoBehaviour>(TMonoBehaviour getter)
+            
+            where TMonoBehaviour : MonoBehaviour;
     }
 }
