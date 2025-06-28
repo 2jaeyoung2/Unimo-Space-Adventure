@@ -5,10 +5,15 @@ using UnityEngine;
 
 namespace JDG
 {
+    public enum ResourcesType
+    {
+        None, IngameCurrency, MetaCurrency, Blueprint
+    }
+
     [System.Serializable]
     public class ResourceCost
     {
-        public ResourceDataSO _resourceData;
+        public ResourcesType _resourceType;
         public int _value;
     }
 }

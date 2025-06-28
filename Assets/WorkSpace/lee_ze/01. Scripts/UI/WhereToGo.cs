@@ -19,6 +19,9 @@ public class WhereToGo : MonoBehaviour
 
     //private GameObject develop;
 
+    [SerializeField]
+    private GameObject closeWorldMap;
+
     private void Start()
     {
         worldMap = GameObject.Find("World Map");
@@ -33,6 +36,8 @@ public class WhereToGo : MonoBehaviour
         worldMap.SetActive(true);
 
         gameObject.SetActive(false);
+
+        closeWorldMap.SetActive(true);
     }
 
     private void OnDisable()

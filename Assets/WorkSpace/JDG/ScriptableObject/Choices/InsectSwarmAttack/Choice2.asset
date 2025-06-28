@@ -25,3 +25,9 @@ MonoBehaviour:
       _target: 5
       _value: -20
       _relicData: {fileID: 0}
+    _resultSprit: {fileID: 21300000, guid: 99f0601472834d14a9030f5255068271, type: 3}
+    _resultName: "\uB9DE\uC11C\uC2F8\uC6B0\uB2E4"
+    _resultDescription: "\uB2F9\uC2E0\uC740 \uBC8C\uB808\uB4E4\uACFC \uC6A9\uAC10\uD788
+      \uB9DE\uC11C\uC2F8\uC6CC \uBB3C\uB9AC\uCCE4\uC9C0\uB9CC \uC0C1\uCC98\uB97C
+      \uC785\uC5C8\uC2B5\uB2C8\uB2E4"
+    _result: "\uCCB4\uB825 20 \uAC10\uC18C"

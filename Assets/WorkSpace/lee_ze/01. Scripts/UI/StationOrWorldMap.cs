@@ -10,11 +10,15 @@ public class StationOrWorldMap : MonoBehaviour
 
     private GameObject worldMap;
 
+    private GameObject closeWorldMap;
+
     private void Start()
     {
         station = GameObject.Find("Station Canvas");
 
         worldMap = GameObject.Find("World Map");
+
+        closeWorldMap = GameObject.Find("Close World Map Canvas");
 
         UISettings();
     }
@@ -26,5 +30,7 @@ public class StationOrWorldMap : MonoBehaviour
         station.SetActive(!isClear);
 
         worldMap.SetActive(isClear);
+
+        closeWorldMap.SetActive(isClear);
     }
 }

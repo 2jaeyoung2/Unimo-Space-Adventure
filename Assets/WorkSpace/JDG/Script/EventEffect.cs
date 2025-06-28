@@ -4,6 +4,10 @@ using ZL.Unity.Unimo;
 
 namespace JDG
 {
+    public enum TargetType
+    {
+        None, IngameCurrency, MetaCurrency, Blueprint, MaxHP, CurrentHP, MaxFuel, CurrentFuel
+    }
     public enum ChoiceEffectType
     {
         None , Useful, Harmful

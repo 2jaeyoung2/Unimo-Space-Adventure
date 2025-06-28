@@ -10,12 +10,6 @@ using ZL.Unity.Unimo;
 public class WorldMapPlayerInvenUI : MonoBehaviour
 {
     [Header("UI ฐüทร")]
-    //[SerializeField] private Image _ingameImage;
-    //[SerializeField] private Image _metaImage;
-    //[SerializeField] private Image _blueprinImage;
-    //[SerializeField] private TextMeshProUGUI _ingameText;
-    //[SerializeField] private TextMeshProUGUI _metaText;
-    //[SerializeField] private TextMeshProUGUI _blueprintText;
     [SerializeField] private Button _prevButton;
     [SerializeField] private Button _nextButton;
     [SerializeField] private Transform _slotParent;
@@ -29,32 +23,15 @@ public class WorldMapPlayerInvenUI : MonoBehaviour
 
     private void OnEnable()
     {
-        //_ingameImage.sprite = Resources.Load<Sprite>($"WorldMap/Reward/InGameCurrencyIcon");
-        //_metaImage.sprite = Resources.Load<Sprite>($"WorldMap/Reward/OutGameCurrencyIcon");
-        //_blueprinImage.sprite = Resources.Load<Sprite>($"WorldMap/Reward/BluePrintIcon");
         PlayerEvents._OnRelicChanged += UpdateRelicUI;
         StartCoroutine(DelayedInit());
-        //UpdateCurrencyUI();
         _currentPage = 0;
-        //PlayerEvents._OnCurrencyChanged += UpdateCurrencyUI;
     }
 
     private void OnDisable()
     {
-        //PlayerEvents._OnCurrencyChanged -= UpdateCurrencyUI;
         PlayerEvents._OnRelicChanged -= UpdateRelicUI;
     }
-
-    //public void UpdateCurrencyUI()
-    //{
-    //    _ingame = FirebaseDataBaseMgr.IngameCurrency;
-    //    _meta = FirebaseDataBaseMgr.MetaCurrency;
-    //    _blueprint = FirebaseDataBaseMgr.Blueprint;
-
-    //    _ingameText.text = $"X {_ingame}";
-    //    _metaText.text = $"X {_meta}";
-    //    _blueprintText.text = $"X {_blueprint}";
-    //}
 
     public void UpdateRelicUI()
     {
@@ -74,7 +51,7 @@ public class WorldMapPlayerInvenUI : MonoBehaviour
             var relic = _relicDatas[i];
             var obj = Instantiate(slotPrefab, _slotParent);
             var slot = obj.GetComponent<RelicUISlot>();
-            slot.Init(relic.name);
+            slot.Init(relic);
         }
 
         _prevButton.interactable = _currentPage > 0;
@@ -104,7 +81,6 @@ public class WorldMapPlayerInvenUI : MonoBehaviour
     {
         yield return null;
 
-        //UpdateCurrencyUI();
         UpdateRelicUI();
     }
 }

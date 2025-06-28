@@ -33,9 +33,14 @@ namespace JDG
         [SerializeField] private int _repair1Price;
         [SerializeField] private int _repair2Price;
 
+        [Header("결과 보여주는 패널")]
+        [SerializeField] private GameObject _resultPanel;
+        [SerializeField] private TextMeshProUGUI _resultText;
+
         private void Start()
         {
             HideShopUI();
+            HideResultPanel();
         }
 
         public int ItemCount => _itemCount;
@@ -64,12 +69,31 @@ namespace JDG
 
         public void HideShopUI()
         {
+            if (UIManager.Instance.IsResultUIOpen)
+                return;
+
             _root.SetActive(false);
             UIManager.Instance.IsUIOpen = false;
         }
 
+        public void ShowResultPanel(string message)
+        {
+            _resultText.text = message;
+            _resultPanel.SetActive(true);
+            UIManager.Instance.IsResultUIOpen = true;
+        }
+
+        public void HideResultPanel()
+        {
+            _resultPanel.SetActive(false);
+            UIManager.Instance.IsResultUIOpen = false;
+        }
+
         public void On10RepairButtonClicked()
         {
+            if (UIManager.Instance.IsResultUIOpen)
+                return;
+
             //소지금 감소
             if(ConditionChecker.IsEnoughPlayerResource(_repair1Price, ResourcesType.IngameCurrency))
             {
@@ -87,11 +111,20 @@ namespace JDG
                 }
 
                 PlayerEvents.ChangeCurrency();
+
+                ShowResultPanel("10%의 체력이 회복되었습니다");
+            }
+            else
+            {
+                ShowResultPanel("소지금이 부족합니다");
             }
         }
 
         public void On100RepairButtonClicked()
         {
+            if (UIManager.Instance.IsResultUIOpen)
+                return;
+
             if (ConditionChecker.IsEnoughPlayerResource(_repair2Price, ResourcesType.IngameCurrency))
             {
                 FirebaseDataBaseMgr.Instance.UpdateRewardIngameCurrency(-_repair2Price);
@@ -106,6 +139,12 @@ namespace JDG
                 }
 
                 PlayerEvents.ChangeCurrency();
+
+                ShowResultPanel("100%의 체력이 회복되었습니다");
+            }
+            else
+            {
+                ShowResultPanel("소지금이 부족합니다");
             }
         }
     }

@@ -93,6 +93,8 @@ MonoBehaviour:
   _relicImage: {fileID: 8492361465456336463}
   _relicName: {fileID: 1891390719399248912}
   _imageTable: {fileID: 11400000, guid: b39b1c7f2fab9e44aba922c73b673167, type: 2}
+  _parent: {fileID: 7698672455626261283}
+  _offset: {x: 1.8, y: 0, z: -0.2}
 --- !u!1 &5313811156625231340
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +130,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 6, y: 3}
+  m_SizeDelta: {x: 0.9, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &768570664126002854
 CanvasRenderer:
@@ -185,8 +187,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.2
-  m_fontSizeBase: 1.2
+  m_fontSize: 0.2
+  m_fontSizeBase: 0.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -262,7 +264,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 3, y: 3}
+  m_SizeDelta: {x: 0.6, y: 0.6}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8057018658366907809
 CanvasRenderer:

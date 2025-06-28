@@ -19,6 +19,7 @@ namespace JDG
         private GameObject _rewardPrefab;
         [SerializeField] private Button _actionButton;
         [SerializeField] private TextMeshProUGUI _actionButtonName;
+        [SerializeField] private TextMeshProUGUI _difficultText;
 
         [Header("UI 오프셋")]
         [SerializeField] private Vector3 _offSet;
@@ -58,7 +59,6 @@ namespace JDG
 
             var env = TileEnvironmentManager.Instance.GetEnvironmentInfo(tile.TileData.EnvironmentType);
             var display = TileDisplayInfoManager.Instance.GetDisplayInfo(tile.TileData.TileType, tile.TileData.ModeType);
-            var rewards = RewardManager.Instance.GetTileRewards(tile.TileData.TileType, tile.TileData.ModeType, tile.TileData.DifficultyType);
             if (env != null)
             {
                 _envImage.sprite = env.EnviromentIcon;
@@ -109,6 +109,16 @@ namespace JDG
                 }
 
             }
+
+            if (tile.TileData.TileType == TileType.Event)
+            {
+                _difficultText.text = "";
+            }
+            else
+            {
+                _difficultText.text = $"현재 난이도 : {(int)tile.TileData.DifficultyType + 1}단계";
+            }
+
             if (tile.TileData.IsCleared || tile.TileData.TileType == TileType.Event || tile.TileData.TileType == TileType.Base)
             {
                 _actionButtonName.text = "이동";
@@ -187,9 +197,9 @@ namespace JDG
                     List<RelicData> relicDatas = GetRandomRelics(_shopUI.ItemCount);
                     StartCoroutine(WaitAndOpenShop(relicDatas));
                 }
-                else if (_currentTile.TileData.EventType == EventType.script)
+                else if (_currentTile.TileData.EventType == EventType.Script)
                 {
-                    EventDataSO eventData = GetRandomEvent(EventType.script);
+                    EventDataSO eventData = GetRandomEvent(EventType.Script);
                     List<ChoiceDataSO> choiceDatas = GetRandomChoice(eventData._eventChoices, _scriptEventUI.ChoiceCount);
                     StartCoroutine(WaitAndOpenScriptEvent(eventData, choiceDatas));
                 }

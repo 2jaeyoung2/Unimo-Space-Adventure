@@ -15,6 +15,5 @@ namespace JDG
         public string _eventDesc;
         [Range(0, 1)] public float _eventWeight;
         public List<ChoiceDataSO> _eventChoices;
-        public List<RelicDataSO> _relicDatas;
     }
 }
