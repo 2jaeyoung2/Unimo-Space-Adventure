@@ -1,22 +1,24 @@
 using UnityEngine;
 
+using ZL.Unity.Pooling;
+
 namespace ZL.Unity.Unimo
 {
     [AddComponentMenu("ZL/Unimo/Gathering (Spawned)")]
 
-    public sealed class Gathering : SpawnedObject, IDamageable
+    public sealed class Gathering : SpawnedObject
     {
-        [Space]
-
-        [SerializeField]
-
-        [UsingCustomProperty]
+        [Line]
 
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private Collider mainCollider = null;
 
@@ -27,17 +29,15 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
 
-        private GatheringData gatheringData = null;
+        [UsingCustomProperty]
 
-        [SerializeField] GameObject gatheringVFX;
+        [SerializeField]
+
+        private GatheringData gatheringData = null;
 
         public GatheringData GatheringData
         {
@@ -53,12 +53,31 @@ namespace ZL.Unity.Unimo
 
         public override void Appear()
         {
-            currentHealth = gatheringData.MaxHealth;
-
             base.Appear();
+
+            currentHealth = gatheringData.MaxHealth;
         }
 
-        public void TakeDamage(float damage, Vector3 contact = default)
+        public override void OnAppeared()
+        {
+            base.OnAppeared();
+
+            mainCollider.enabled = true;
+        }
+
+        public override void Disappear()
+        {
+            mainCollider.enabled = false;
+
+            base.Disappear();
+        }
+
+        public override void OnDisappeared()
+        {
+            base.OnDisappeared();
+        }
+
+        public void Harvest(float damage, Transform harvester)
         {
             currentHealth -= damage;
 
@@ -67,11 +86,13 @@ namespace ZL.Unity.Unimo
                 currentHealth = 0f;
 
                 ++GatheringManager.Instance.GatheringCount;
-                if(gatheringVFX != null)
-                {
-                    gatheringVFX.SetActive(true);
-                    gatheringVFX.transform.SetParent(null, true);
-                }
+
+                var vfx = ObjectPoolManager.Instance.Clone<HarvestVFX>("Harvest VFX");
+
+                vfx.transform.position = transform.position;
+
+                vfx.Play(harvester);
+
                 Disappear();
             }
         }

@@ -107,17 +107,17 @@ public class ConstructBase :ScriptableObject//,IConstruct
     {
         if (IsRequiredFulFilled(constructBases) == false)
         {
-            Debug.Log("buildrequire");
+            //.Log("buildrequire");
             return false;
         }
         if (IsBuildCostEnough(ConstructManager.Instance.OwnBuildCostDic) == false)//딕셔너리 파이어베이스 받아서 넣기
         {
-            Debug.Log("notenoughcost");
+            //Debug.Log("notenoughcost");
             return false;
         }
         if (isBuildConstructed == true && isbuildRepeatable == false)
         {
-            Debug.Log("already builded");
+            //Debug.Log("already builded");
             return false;
         }
         //ConstructEnd();

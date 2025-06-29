@@ -10,17 +10,13 @@ namespace ZL.Unity.Unimo
 {
     public abstract class RandomSpawner : Spawner
     {
-        [SerializeField]
+        [Space]
+
+        [Text("<b>스폰 시 Y축 방향 (-1: 랜덤 방향)</b>")]
 
         [UsingCustomProperty]
 
-        [Line]
-
-        [Text("<b>랜덤 스포너 옵션</b>", FontSize = 16)]
-
-        [Margin]
-
-        [Text("<b>스폰 시 Y축 방향 (-1: 랜덤 방향)</b>")]
+        [SerializeField]
 
         private float lookAngle = -1f;
 

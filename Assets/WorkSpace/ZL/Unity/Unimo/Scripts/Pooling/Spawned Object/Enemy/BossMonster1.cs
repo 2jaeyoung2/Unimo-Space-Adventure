@@ -205,11 +205,11 @@ namespace ZL.Unity.Unimo
                     projectile = ObjectPoolManager.Instance.Clone<EnemyProjectile>(projectileName);
                 }
 
-                projectile.transform.SetPositionAndRotation(muzzle);
-
                 projectile.LifeTime = skillData.Duration;
 
                 projectile.Destination = EnemyManager.Instance.SkillTarget;
+
+                projectile.Muzzle = muzzle;
 
                 projectile.Appear();
 

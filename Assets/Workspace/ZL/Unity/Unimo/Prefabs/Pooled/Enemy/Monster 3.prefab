@@ -235,13 +235,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b7b44e411de794da6040779c62e786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawner: {fileID: 0}
-  collider: {fileID: 6449174564486501702}
-  rigidbody: {fileID: 8887072876688057377}
+  lifeTime: -1
   animatorGroup: {fileID: 1396940525537776517}
-  enemyData: {fileID: 11400000, guid: 677d81ad506f6a14baa7366d860bf7b4, type: 2}
+  destination: {fileID: 0}
   rotationSpeedMultiplier: 1
   movementSpeedMultiplier: 1
+  despawnDistance: -1
+  mainCollider: {fileID: 6449174564486501702}
+  rigidbody: {fileID: 8887072876688057377}
+  enemyData: {fileID: 11400000, guid: 677d81ad506f6a14baa7366d860bf7b4, type: 2}
+  enemyNameTable: {fileID: 0}
   dashSpeedMultiplier: 10
   detector: {fileID: 6289110256848449481}
 --- !u!1 &2317718931967917549

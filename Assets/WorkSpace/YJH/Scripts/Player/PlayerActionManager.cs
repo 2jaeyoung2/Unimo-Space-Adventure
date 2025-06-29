@@ -10,6 +10,8 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
+using ZL.Unity.Pooling;
+
 using ZL.Unity.Unimo;
 
 public partial class PlayerManager : IEnergizer
@@ -477,18 +479,18 @@ public partial class PlayerManager : IEnergizer
     // 아이템 채집중 사용할 코루틴
     private IEnumerator GatheringCoroutine()
     {
-        Gathering targetScript = null;
+        Gathering gathering = null;
 
         if (targetObject != null)
         {
-            targetScript = targetObject.GetComponent<Gathering>();
+            gathering = targetObject.GetComponent<Gathering>();
         }
 
         while (true)
         {
             if (targetObject == null)
             {
-                targetScript = null;
+                gathering = null;
 
                 isGatheringCoroutineWork = false;
 
@@ -497,9 +499,9 @@ public partial class PlayerManager : IEnergizer
 
             yield return new WaitForSeconds(playerStatus.gatheringDelay);
 
-            targetScript?.TakeDamage(playerStatus.gatheringSpeed);
+            gathering?.Harvest(playerStatus.gatheringSpeed, transform);
 
-            if (targetScript?.CurrentHealth <= 0f)
+            if (gathering?.CurrentHealth <= 0f)
             {
                 targetObject = null;
 

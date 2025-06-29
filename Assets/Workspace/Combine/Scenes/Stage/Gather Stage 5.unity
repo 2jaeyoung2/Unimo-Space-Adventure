@@ -506,7 +506,7 @@ PrefabInstance:
     - target: {fileID: 7684375842725569943, guid: cd57709b7c7884447868081d8ac64b80, type: 3}
       propertyPath: lookPoint
       value: 
-      objectReference: {fileID: 13672111}
+      objectReference: {fileID: 0}
     - target: {fileID: 7684375842725569943, guid: cd57709b7c7884447868081d8ac64b80, type: 3}
       propertyPath: waveCount
       value: 5
@@ -957,6 +957,10 @@ PrefabInstance:
       propertyPath: spawnDelay
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 4222109257374532055, guid: e36399e9475245647a91d3768089d9b5, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 3409879531882657980}
     - target: {fileID: 4222109257374532055, guid: e36399e9475245647a91d3768089d9b5, type: 3}
       propertyPath: waveInterval
       value: 0
@@ -1768,6 +1772,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 3409879531882657980}
+    - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
       propertyPath: waveInterval
       value: 6
       objectReference: {fileID: 0}
@@ -2141,6 +2149,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4222109257374532055, guid: e36399e9475245647a91d3768089d9b5, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 3409879531882657980}
+    - target: {fileID: 4222109257374532055, guid: e36399e9475245647a91d3768089d9b5, type: 3}
       propertyPath: waveInterval
       value: 0
       objectReference: {fileID: 0}
@@ -2263,6 +2275,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7684375842725569943, guid: cd57709b7c7884447868081d8ac64b80, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 3409879531882657980}
+    - target: {fileID: 7684375842725569943, guid: cd57709b7c7884447868081d8ac64b80, type: 3}
       propertyPath: waveInterval
       value: 1
       objectReference: {fileID: 0}
@@ -2363,7 +2379,7 @@ PrefabInstance:
     - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
       propertyPath: lookPoint
       value: 
-      objectReference: {fileID: 13672111}
+      objectReference: {fileID: 1132309945}
     - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
       propertyPath: waveCount
       value: 3
@@ -2372,6 +2388,10 @@ PrefabInstance:
       propertyPath: spawnDelay
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 3409879531882657980}
     - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
       propertyPath: waveInterval
       value: 6
@@ -2624,6 +2644,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 3409879531882657980}
+    - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
       propertyPath: waveInterval
       value: 6
       objectReference: {fileID: 0}
@@ -2724,7 +2748,7 @@ PrefabInstance:
     - target: {fileID: 3092274411697717799, guid: 4a871df222b33d046b349acd5dbf3358, type: 3}
       propertyPath: lookPoint
       value: 
-      objectReference: {fileID: 13672111}
+      objectReference: {fileID: 0}
     - target: {fileID: 3092274411697717799, guid: 4a871df222b33d046b349acd5dbf3358, type: 3}
       propertyPath: waveCount
       value: 1
@@ -2912,6 +2936,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 3409879531882657980}
+    - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
       propertyPath: waveInterval
       value: 6
       objectReference: {fileID: 0}
@@ -3065,6 +3093,10 @@ PrefabInstance:
       propertyPath: spawnDelay
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 3409879531882657980}
     - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
       propertyPath: waveInterval
       value: 6
@@ -3961,6 +3993,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 3409879531882657980}
+    - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
       propertyPath: waveInterval
       value: 6
       objectReference: {fileID: 0}
@@ -4409,7 +4445,7 @@ PrefabInstance:
     - target: {fileID: 3092274411697717799, guid: 4a871df222b33d046b349acd5dbf3358, type: 3}
       propertyPath: lookPoint
       value: 
-      objectReference: {fileID: 13672111}
+      objectReference: {fileID: 0}
     - target: {fileID: 3092274411697717799, guid: 4a871df222b33d046b349acd5dbf3358, type: 3}
       propertyPath: waveCount
       value: 1
@@ -4634,6 +4670,10 @@ PrefabInstance:
       propertyPath: spawnDelay
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 3409879531882657980}
     - target: {fileID: 2007614719317404093, guid: 3140537910d1fc445b2f602056dec5b2, type: 3}
       propertyPath: waveInterval
       value: 6
@@ -5068,18 +5108,18 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 80756909}
+  - {fileID: 1212986539}
+  - {fileID: 1734740596}
   - {fileID: 1116622207}
   - {fileID: 995515726}
   - {fileID: 370299586}
   - {fileID: 1097923855}
   - {fileID: 1263951616}
-  - {fileID: 1212986539}
-  - {fileID: 1734740596}
   - {fileID: 1230536334}
-  - {fileID: 1640782519}
-  - {fileID: 1186801411}
   - {fileID: 1132309945}
   - {fileID: 1771578519}
+  - {fileID: 1640782519}
+  - {fileID: 1186801411}
   m_Father: {fileID: 13672111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1990081881

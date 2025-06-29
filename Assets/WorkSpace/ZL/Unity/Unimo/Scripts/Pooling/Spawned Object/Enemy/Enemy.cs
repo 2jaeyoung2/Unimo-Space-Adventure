@@ -8,17 +8,17 @@ namespace ZL.Unity.Unimo
 {
     public abstract class Enemy : SpawnedObject, IDamageable
     {
-        [Space]
-
-        [SerializeField]
-
-        [UsingCustomProperty]
+        [Line]
 
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private Collider mainCollider = null;
 

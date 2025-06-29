@@ -12,10 +12,6 @@ namespace ZL.Unity.Unimo
 {
     public abstract class Spawner : MonoBehaviour
     {
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Line]
 
         [Text("<b>기본 옵션</b>", FontSize = 16)]
@@ -24,95 +20,89 @@ namespace ZL.Unity.Unimo
 
         [Text("<b>스폰 할 오브젝트 이름</b>")]
 
+        [UsingCustomProperty]
+
+        [SerializeField]
+
         private string spawnObjectName = "";
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>웨이브 횟수 (0: 무한)</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>웨이브 횟수 (0: 무한)</b>")]
+        [SerializeField]
 
         private int waveCount = 0;
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>첫 웨이브 간격 (-1: 지정 범위, 0: 즉시 첫 웨이브)</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>첫 웨이브 간격 (-1: 지정 범위, 0: 즉시 첫 웨이브)</b>")]
+        [SerializeField]
 
         private float waveInterval = -1f;
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>웨이브 최소 간격</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>웨이브 최소 간격</b>")]
+        [SerializeField]
 
         private float minWaveInterval = 0f;
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>웨이브 최대 간격</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>웨이브 최대 간격</b>")]
+        [SerializeField]
 
         private float maxWaveInterval = 0f;
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>스폰 사이의 딜레이</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>스폰 사이의 딜레이</b>")]
+        [SerializeField]
 
         protected float spawnDelay = 0f;
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>스폰된 오브젝트의 수명 (-1: 무한)</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>스폰된 오브젝트의 수명 (-1: 무한)</b>")]
+        [SerializeField]
 
         protected float lifeTime = -1f;
 
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
-        [Text("<b>스폰 시 바라볼 대상 (None: 지정 방향)</b>")]
-
-        protected Transform lookPoint = null;
-
-        [Space]
-
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Text("<b>추적할 목표</b>")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         protected Transform destination = null;
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>목표를 향해 회전하는 속도 배수</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>목표를 향해 회전하는 속도 배수</b>")]
+        [SerializeField]
 
         private float rotationSpeedMultiplier = 1f;
 
@@ -123,11 +113,11 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>목표를 향해 이동하는 속도 배수</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>목표를 향해 이동하는 속도 배수</b>")]
+        [SerializeField]
 
         private float movementSpeedMultiplier = 1f;
 
@@ -138,13 +128,23 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>오브젝트가 디스폰되는 거리 (-1: 무한)</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>오브젝트가 디스폰되는 거리 (-1: 무한)</b>")]
+        [SerializeField]
 
         protected float despawnDistance = -1f;
+
+        [Line]
+
+        [Text("<b>스폰 시 바라볼 대상 (None: 지정 방향)</b>")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
+
+        protected Transform lookPoint = null;
 
         protected int objectCount = 0;
 

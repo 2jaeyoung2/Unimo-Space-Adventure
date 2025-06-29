@@ -394,7 +394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[0].key
@@ -406,22 +406,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[2].key
-      value: Monster 1
+      value: Harvest VFX
       objectReference: {fileID: 0}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[3].key
-      value: Monster 2
+      value: Monster 1
       objectReference: {fileID: 0}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[4].key
-      value: Monster 2_Projectile
+      value: Monster 2
       objectReference: {fileID: 0}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[5].key
-      value: Monster 3
+      value: Monster 2_Projectile
       objectReference: {fileID: 0}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[6].key
+      value: Monster 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
+      propertyPath: poolDictionary.items.Array.data[7].key
       value: Monster 4
       objectReference: {fileID: 0}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
@@ -447,7 +451,7 @@ PrefabInstance:
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[2].value.prefab
       value: 
-      objectReference: {fileID: 4659687203206198561, guid: ec3ffdff68862444394a20a6f45065b8, type: 3}
+      objectReference: {fileID: 6549979977782394624, guid: 18ed176cbff37b84e86e6dd816e2f43f, type: 3}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[3].value.parent
       value: 
@@ -455,7 +459,7 @@ PrefabInstance:
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[3].value.prefab
       value: 
-      objectReference: {fileID: 4978132335410082396, guid: c668679261a6c434fb615f41352b806c, type: 3}
+      objectReference: {fileID: 4659687203206198561, guid: ec3ffdff68862444394a20a6f45065b8, type: 3}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[4].value.parent
       value: 
@@ -463,7 +467,7 @@ PrefabInstance:
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[4].value.prefab
       value: 
-      objectReference: {fileID: 6312806131985503414, guid: 2c6de9f36ef0d7a4a90744d9f0839b01, type: 3}
+      objectReference: {fileID: 4978132335410082396, guid: c668679261a6c434fb615f41352b806c, type: 3}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[5].value.parent
       value: 
@@ -471,13 +475,21 @@ PrefabInstance:
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[5].value.prefab
       value: 
-      objectReference: {fileID: 5605262362432766321, guid: 040b04344f77f314391c2168b0499525, type: 3}
+      objectReference: {fileID: 6312806131985503414, guid: 2c6de9f36ef0d7a4a90744d9f0839b01, type: 3}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[6].value.parent
       value: 
       objectReference: {fileID: 5400723385758222932}
     - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
       propertyPath: poolDictionary.items.Array.data[6].value.prefab
+      value: 
+      objectReference: {fileID: 5605262362432766321, guid: 040b04344f77f314391c2168b0499525, type: 3}
+    - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
+      propertyPath: poolDictionary.items.Array.data[7].value.parent
+      value: 
+      objectReference: {fileID: 5400723385758222932}
+    - target: {fileID: 6590740961201585749, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}
+      propertyPath: poolDictionary.items.Array.data[7].value.prefab
       value: 
       objectReference: {fileID: 4399845965428443121, guid: a10bbdc42d162644394dbbe56e6feb2c, type: 3}
     - target: {fileID: 6974974515049637171, guid: 6b1de5207ea9e6f44a90788d4e8fa56d, type: 3}

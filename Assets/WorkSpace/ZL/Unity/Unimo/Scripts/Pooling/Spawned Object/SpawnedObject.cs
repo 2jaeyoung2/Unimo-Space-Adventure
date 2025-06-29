@@ -8,17 +8,17 @@ namespace ZL.Unity.Unimo
 {
     public abstract class SpawnedObject : PooledObject
     {
-        [Space]
-
-        [SerializeField]
-
-        [UsingCustomProperty]
+        [Line]
 
         [GetComponentInChildren]
 
         [Essential]
 
         [ReadOnly(true)]
+        
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         protected AnimatorGroup animatorGroup = null;
 
@@ -54,8 +54,6 @@ namespace ZL.Unity.Unimo
 
             set => movementSpeedMultiplier = value;
         }
-
-        [Space]
 
         [SerializeField]
 

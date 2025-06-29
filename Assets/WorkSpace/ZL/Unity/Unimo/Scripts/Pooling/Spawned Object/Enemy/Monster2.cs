@@ -8,7 +8,9 @@ namespace ZL.Unity.Unimo
 
     public sealed class Monster2 : Enemy, IDamager
     {
-        [Space]
+        [Line]
+
+        [UsingCustomProperty]
 
         [SerializeField]
 
@@ -56,12 +58,9 @@ namespace ZL.Unity.Unimo
                 return;
             }
 
-            if (destination != null)
+            if (IsWithinRange(EnemyManager.Instance.SkillTarget.position, attackRange) == false)
             {
-                if (IsWithinRange(destination.position, attackRange) == true)
-                {
-                    return;
-                }
+                return;
             }
 
             attackCooldownTimer = attackCooldownTime;
@@ -80,12 +79,12 @@ namespace ZL.Unity.Unimo
         {
             if (IsWithinRange(destination.position, stopDistance) == true)
             {
-                movementSpeed = enemyData.MovementSpeed;
+                movementSpeed = 0f;
             }
 
             else
             {
-                movementSpeed = 0f;
+                movementSpeed = enemyData.MovementSpeed;
             }
 
             base.Move();
@@ -98,11 +97,11 @@ namespace ZL.Unity.Unimo
 
         public void Shoot()
         {
-            var projectile = ObjectPoolManager.Instance.Clone(projectileName);
+            var enemyProjectile = ObjectPoolManager.Instance.Clone<EnemyProjectile>(projectileName);
 
-            projectile.transform.SetPositionAndRotation(muzzle);
+            enemyProjectile.Muzzle = muzzle;
 
-            projectile.Appear();
+            enemyProjectile.Appear();
         }
     }
 }

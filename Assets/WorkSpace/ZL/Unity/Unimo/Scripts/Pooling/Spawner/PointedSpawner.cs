@@ -16,19 +16,15 @@ namespace ZL.Unity.Unimo
     {
         [Space]
 
-        [SerializeField]
+        [Text("<b>오브젝트의 Rotation을 스폰 지점과 동기화</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>Rotation을 스폰 지점과 동기화</b>")]
+        [SerializeField]
 
         private bool syncRotation = false;
 
         [Space]
-
-        [SerializeField]
-
-        [UsingCustomProperty]
 
         [Text("<b>스폰 지점 랜덤</b>")]
 
@@ -37,6 +33,10 @@ namespace ZL.Unity.Unimo
         [Margin]
 
         [Text("<b>스폰 지점들 (배열 순서대로 스폰)</b>")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private bool randomSpawnPoint = false;
 

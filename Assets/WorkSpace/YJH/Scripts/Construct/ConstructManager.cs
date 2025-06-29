@@ -96,18 +96,17 @@ public class ConstructManager : MonoBehaviour
 
         if (GameStateManager.IsClear == true)
         {
-            Debug.Log("스테이지 클리어");
+            //Debug.Log("스테이지 클리어");
             return;
         }
         else
         {
-            Debug.Log("스테이지 클리어 실패");
+            //Debug.Log("스테이지 클리어 실패");
             isBuildEffectAplly = false;
             PlayerManager.gainDamage = 0;
             PlayerManager.ResetStatus();
             //SetFinalStatusToPlayer();
         }
-
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -124,8 +123,6 @@ public class ConstructManager : MonoBehaviour
             PlayerManager.ResetStatus();
         }
     }
-
-
     private void OnDestroy()
     {
         //Debug.Log("건설매니저 사라짐");
@@ -388,7 +385,7 @@ public class ConstructManager : MonoBehaviour
     {
         if (isBuildEffectAplly == false)//static 변수를 통해서 초기화 조절
         {
-            Debug.Log("건설매니저가 플레이어 세팅");
+            //Debug.Log("건설매니저가 플레이어 세팅");
             playerStatus = PlayerManager.OriginStatus.Clone();
             ActiveBuildEffect();
             isBuildEffectAplly = true;
@@ -412,8 +409,6 @@ public class ConstructManager : MonoBehaviour
         float gatherDelaySum = 0;
         float damageSum = 0;
         float gatherRangeSum = 0;
-
-
 
         switch (buildeffect)
         {
