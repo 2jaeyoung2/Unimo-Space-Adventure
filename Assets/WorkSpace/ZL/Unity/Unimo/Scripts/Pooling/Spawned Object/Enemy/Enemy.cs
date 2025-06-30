@@ -118,16 +118,16 @@ namespace ZL.Unity.Unimo
                 return;
             }
 
-            Look();
+            LookTowards();
 
-            Move();
+            Movement();
 
             CheckDespawnCondition();
         }
 
-        protected virtual void Look()
+        protected virtual void LookTowards()
         {
-            if (destination  == null)
+            if (finalDestination == null)
             {
                 return;
             }
@@ -136,11 +136,11 @@ namespace ZL.Unity.Unimo
 
             if (rotationSpeed != 0f)
             {
-                rigidbody.LookTowards(destination.position, enemyData.RotationSpeed * Time.fixedDeltaTime, Axis.Y);
+                rigidbody.LookTowards(finalDestination.position, enemyData.RotationSpeed * Time.fixedDeltaTime, Axis.Y);
             }
         }
 
-        protected virtual void Move()
+        protected virtual void Movement()
         {
             float movementSpeed = this.movementSpeed * movementSpeedMultiplier;
 
@@ -190,6 +190,8 @@ namespace ZL.Unity.Unimo
 
         public override void OnDisappeared()
         {
+            finalDestination = null;
+
             rigidbody.velocity = Vector3.zero;
 
             OnHealthChangedAction = null;

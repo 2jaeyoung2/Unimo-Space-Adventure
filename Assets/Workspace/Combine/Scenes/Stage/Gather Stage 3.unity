@@ -5144,6 +5144,10 @@ PrefabInstance:
       propertyPath: relicDropTable
       value: 
       objectReference: {fileID: 11400000, guid: d925d52245236014b8f378fab161fadb, type: 2}
+    - target: {fileID: 1804249748648724, guid: cfb53b8af251d7645a829c8cd416a527, type: 3}
+      propertyPath: stageQuestData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d0bacd54cf4bb4408a70c8d1cf3446a, type: 2}
     - target: {fileID: 218292215920234307, guid: cfb53b8af251d7645a829c8cd416a527, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

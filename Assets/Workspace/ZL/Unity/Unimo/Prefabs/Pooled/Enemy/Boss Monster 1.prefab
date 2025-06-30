@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 4300569107004590329}
   - component: {fileID: 9133795306510195421}
   - component: {fileID: 8740797214541353937}
+  - component: {fileID: 6087548592123493524}
   m_Layer: 7
   m_Name: Boss Monster 1
   m_TagString: Untagged
@@ -146,15 +147,42 @@ MonoBehaviour:
   dashSkill:
     skillUser: {fileID: 8740797214541353937}
     skillData: {fileID: 11400000, guid: 0a12550a8aaec6b4caa5145146d6ad25, type: 2}
+    initialCooldownTimer: -1
     cooldownTimer: 0
     dashSFX: {fileID: 4917715346821602523}
   energyBoltSkill:
     skillUser: {fileID: 8740797214541353937}
     skillData: {fileID: 11400000, guid: 235204dab75176044b22b16adbc7ddb6, type: 2}
+    initialCooldownTimer: -1
     cooldownTimer: 0
+    detector: {fileID: 6087548592123493524}
+    angle: 30
     muzzle: {fileID: 5528713568172069907}
     projectileName: Boss Monster 1_Projectile
     projectileName_Enhanced: Boss Monster 1_Projectile_Enhanced
+  findEnergySkill:
+    skillUser: {fileID: 8740797214541353937}
+    skillData: {fileID: 11400000, guid: c03ee74909baf93408ad137c0e3b8d07, type: 2}
+    initialCooldownTimer: -1
+    cooldownTimer: 0
+    targetObjectName: Energy Item 1
+--- !u!114 &6087548592123493524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277967499474406009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe1b30d2b8f4584b81770adc07190e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 15
+  angle: 30
+  drawGizmo: 1
+  isWireGizmo: 0
+  defaultGizmoColor: {r: 1, g: 0, b: 0, a: 0.25}
 --- !u!1 &1389402741144541357
 GameObject:
   m_ObjectHideFlags: 0

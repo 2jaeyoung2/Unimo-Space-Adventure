@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55adb83e7988646489dd99c3b2eb4c40, type: 3}
+  m_Name: Stage Quest Data Sheet
+  m_EditorClassIdentifier: 
+  sheetConfig: {fileID: 11400000, guid: eceb55e450e6d5e4e87ce3ac20077d1e, type: 2}
+  containsMergedCells: 0
+  datas:
+  - {fileID: 11400000, guid: 08a54b40fb28dc54eb7e3d63de22b3ba, type: 2}
+  - {fileID: 11400000, guid: 7c3651ec9a1377e4f98cda592d37699d, type: 2}
+  - {fileID: 11400000, guid: 985a64b95506a094b9111ea3684c2a10, type: 2}
+  - {fileID: 11400000, guid: 6fd22a686e94e884f89cee4637104979, type: 2}
+  - {fileID: 11400000, guid: 5f4f19b2bde74964aa3f0f47f2beaae5, type: 2}
+  - {fileID: 11400000, guid: 3d0bacd54cf4bb4408a70c8d1cf3446a, type: 2}
+  - {fileID: 11400000, guid: 5246adb3a2fccde43a0e64fda0b08749, type: 2}
+  - {fileID: 11400000, guid: afa47fafb48eb6046b9a63613d95acd3, type: 2}
+  - {fileID: 11400000, guid: ac3d78a0b3ab42644aba10d3e81f70c4, type: 2}
+  - {fileID: 11400000, guid: 1d3653ee976eebf4db2304884711a38c, type: 2}
+  - {fileID: 11400000, guid: ab81e0bc6ad7bb7468e723788b475dcf, type: 2}
+  - {fileID: 11400000, guid: 9629d80f39e59bd428f7d0250b1283d0, type: 2}

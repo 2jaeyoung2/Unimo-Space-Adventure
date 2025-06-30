@@ -50,7 +50,7 @@ MonoBehaviour:
   angle: 60
   drawGizmo: 1
   isWireGizmo: 0
-  defaultGizmoColor: {r: 1, g: 0, b: 0, a: 0.5}
+  defaultGizmoColor: {r: 1, g: 0, b: 0, a: 0.2509804}
 --- !u!114 &4795550040867282969
 MonoBehaviour:
   m_ObjectHideFlags: 0

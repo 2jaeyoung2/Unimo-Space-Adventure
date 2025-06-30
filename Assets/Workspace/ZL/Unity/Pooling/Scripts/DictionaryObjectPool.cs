@@ -70,8 +70,11 @@ namespace ZL.Unity.Pooling
             {
                 clone.Disappear();
             }
+        }
 
-            clones.Clear();
+        public bool ContainsKey(TKey key)
+        {
+            return clones.ContainsKey(key);
         }
     }
 }

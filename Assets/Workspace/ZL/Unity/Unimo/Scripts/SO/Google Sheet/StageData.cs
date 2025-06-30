@@ -30,15 +30,6 @@ namespace ZL.Unity.Unimo
             get => fuelConsumptionAmount;
         }
 
-        [SerializeField]
-
-        private int targetGatheringCount = 0;
-
-        public int TargetGatheringCount
-        {
-            get => targetGatheringCount;
-        }
-
         [Space]
 
         [SerializeField]
@@ -129,6 +120,8 @@ namespace ZL.Unity.Unimo
 
         public static RelicData[] DropedRelicDatas { get; private set; } = null;
 
+        public static int TotalScore { get; private set;} = 0;
+
         public override List<string> GetHeaders()
         {
             return new List<string>()
@@ -136,8 +129,6 @@ namespace ZL.Unity.Unimo
                 nameof(name),
 
                 nameof(fuelConsumptionAmount),
-                
-                nameof(targetGatheringCount),
 
                 nameof(inGameMoneyAmountMin),
 
@@ -152,14 +143,14 @@ namespace ZL.Unity.Unimo
                 nameof(relicChance),
 
                 nameof(relicCount),
+
+                nameof(score),
             };
         }
 
         public override void Import(GstuSpreadSheet sheet)
         {
             fuelConsumptionAmount = float.Parse(sheet[name, nameof(fuelConsumptionAmount)].value);
-
-            targetGatheringCount = int.Parse(sheet[name, nameof(targetGatheringCount)].value);
 
             inGameMoneyAmountMin = int.Parse(sheet[name, nameof(inGameMoneyAmountMin)].value);
 
@@ -174,6 +165,8 @@ namespace ZL.Unity.Unimo
             relicChance = float.Parse(sheet[name, nameof(relicChance)].value);
 
             relicCount = int.Parse(sheet[name, nameof(relicCount)].value);
+
+            score = int.Parse(sheet[name, nameof(score)].value);
         }
 
         public override List<string> Export()
@@ -183,8 +176,6 @@ namespace ZL.Unity.Unimo
                 name.ToString(),
 
                 fuelConsumptionAmount.ToString(),
-
-                targetGatheringCount.ToString(),
 
                 inGameMoneyAmountMin.ToString(),
 
@@ -199,6 +190,8 @@ namespace ZL.Unity.Unimo
                 relicChance.ToString(),
 
                 relicCount.ToString(),
+
+                score.ToString(),
             };
         }
 
@@ -212,12 +205,12 @@ namespace ZL.Unity.Unimo
 
             DropedRelicDatas = null;
 
-            if (RandomEx.DrawLots(relicChance) == false)
+            if (RandomEx.DrawLots(relicChance) == true)
             {
-                return;
+                DropRelics();
             }
 
-            DropRelics();
+            TotalScore = score;
         }
 
         public void DropRelics()
@@ -234,6 +227,8 @@ namespace ZL.Unity.Unimo
             DropedBluePrintCount = 0;
 
             DropedRelicDatas = null;
+
+            TotalScore = 0;
         }
     }
 }

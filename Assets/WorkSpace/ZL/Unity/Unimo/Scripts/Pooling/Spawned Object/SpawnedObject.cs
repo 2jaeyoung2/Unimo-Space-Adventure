@@ -28,10 +28,12 @@ namespace ZL.Unity.Unimo
 
         protected Transform destination = null;
 
-        public virtual Transform Destination
+        public Transform Destination
         {
             set => destination = value;
         }
+
+        protected Transform finalDestination = null;
 
         [Space]
 
@@ -74,6 +76,8 @@ namespace ZL.Unity.Unimo
         public override void Appear()
         {
             gameObject.SetActive(true);
+
+            finalDestination = destination;
 
             spawnPosition = transform.position;
         }

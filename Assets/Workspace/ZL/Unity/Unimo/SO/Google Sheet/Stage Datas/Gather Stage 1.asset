@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Gather Stage 1
   m_EditorClassIdentifier: 
   fuelConsumptionAmount: 1
-  targetGatheringCount: 10
   inGameMoneyAmountMin: 40
   inGameMoneyAmountMax: 45
   outGameMoneyAmountMin: 20
@@ -21,4 +20,4 @@ MonoBehaviour:
   bluePrintCount: 0
   relicChance: 0.3
   relicCount: 3
-  score: 0
+  score: 20

@@ -48,8 +48,6 @@ namespace ZL.Unity.Pooling
             {
                 clone.Disappear();
             }
-
-            clones.Clear();
         }
     }
 }

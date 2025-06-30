@@ -10,8 +10,6 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
-using ZL.Unity.Pooling;
-
 using ZL.Unity.Unimo;
 
 public partial class PlayerManager : IEnergizer

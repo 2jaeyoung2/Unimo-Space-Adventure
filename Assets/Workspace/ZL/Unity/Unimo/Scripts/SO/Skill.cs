@@ -28,11 +28,46 @@ namespace ZL.Unity.Unimo
 
         [SerializeField]
 
+        protected float initialCooldownTimer = -1f;
+
+        [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
+
         protected float cooldownTimer = 0f;
 
-        public float CooldownTimer
+        public virtual void Construct()
         {
-            get => cooldownTimer;
+            if (initialCooldownTimer == -1f)
+            {
+                SetCooldownTimer();
+
+                return;
+            }
+
+            cooldownTimer = initialCooldownTimer;
+        }
+
+        public void SetCooldownTimer()
+        {
+            cooldownTimer = skillData.CooldownTime;
+        }
+
+        public void Cooldown()
+        {
+            cooldownTimer = 0f;
+        }
+
+        public virtual void Cooldown(float time)
+        {
+            cooldownTimer -= time;
+
+            if (cooldownTimer < 0f)
+            {
+                cooldownTimer = 0f;
+            }
         }
 
         public virtual float GetWeight()
@@ -47,24 +82,9 @@ namespace ZL.Unity.Unimo
 
         public abstract IEnumerator Routine();
 
-        public void SetCooldownTimer()
+        public virtual void Reset()
         {
-            cooldownTimer = skillData.CooldownTime;
-        }
-
-        public void Cooldown()
-        {
-            cooldownTimer = 0f;
-        }
-
-        public void Cooldown(float time)
-        {
-            cooldownTimer -= time;
-
-            if (cooldownTimer < 0f)
-            {
-                cooldownTimer = 0f;
-            }
+            Construct();
         }
     }
 }

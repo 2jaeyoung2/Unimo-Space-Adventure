@@ -85,7 +85,7 @@ namespace ZL.Unity.Unimo
             {
                 currentHealth = 0f;
 
-                ++GatheringManager.Instance.GatheringCount;
+                ++StageQuestList.Instance.GatheringCount;
 
                 var vfx = ObjectPoolManager.Instance.Clone<HarvestVFX>("Harvest VFX");
 

@@ -98,6 +98,7 @@ MonoBehaviour:
   stageClearPopupScreen: {fileID: 4616179779715535501}
   stageFailPopupScreen: {fileID: 2461263551246302834}
   stageData: {fileID: 0}
+  stageQuestData: {fileID: 0}
   relicDropTable: {fileID: 0}
   loadSceneName: Station
   isPlayerInvincible: 0
@@ -1330,14 +1331,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6876169387024305368, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
-      propertyPath: tweener
+    - target: {fileID: 5765984854698811016, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
+      propertyPath: onQuestCompletedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3532367196481440575}
-    - target: {fileID: 7266567692554884202, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
-      propertyPath: canvasGroup
-      value: 
-      objectReference: {fileID: 2401631434155040188}
+      objectReference: {fileID: 505581868855841616}
+    - target: {fileID: 5765984854698811016, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
+      propertyPath: onQuestCompletedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StageClear
+      objectReference: {fileID: 0}
     - target: {fileID: 8094952702167040515, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -1375,22 +1376,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
---- !u!225 &2401631434155040188 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 8397307844343202537, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
-  m_PrefabInstance: {fileID: 6187231132326862677}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3532367196481440575 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7266567692554884202, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
-  m_PrefabInstance: {fileID: 6187231132326862677}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baa6ef35b2c9ff1439d8656aa9dbd5f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3595530827887689582 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7221682333997506619, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}

@@ -75,7 +75,7 @@ namespace ZL.Unity.Unimo
             base.OnDisappeared();
         }
 
-        protected override void Move()
+        protected override void Movement()
         {
             if (IsWithinRange(destination.position, stopDistance) == true)
             {
@@ -87,7 +87,7 @@ namespace ZL.Unity.Unimo
                 movementSpeed = enemyData.MovementSpeed;
             }
 
-            base.Move();
+            base.Movement();
         }
 
         public void GiveDamage(IDamageable damageable, Vector3 contact)

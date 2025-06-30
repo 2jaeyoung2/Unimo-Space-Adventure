@@ -139,7 +139,6 @@ public partial class PlayerManager : IDamageable
 
         gainDamage += damage;
 
-
         if (PlayerStatus.currentHealth <= 0f)
         {
             PlayerStatus.currentHealth = 0f;

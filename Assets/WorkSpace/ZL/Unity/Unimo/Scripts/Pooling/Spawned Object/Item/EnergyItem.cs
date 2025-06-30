@@ -6,7 +6,9 @@ namespace ZL.Unity.Unimo
 
     public sealed class EnergyItem : Item
     {
-        [Space]
+        [Line]
+
+        [UsingCustomProperty]
 
         [SerializeField]
 

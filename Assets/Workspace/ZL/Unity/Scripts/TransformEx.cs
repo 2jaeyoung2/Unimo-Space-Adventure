@@ -329,5 +329,26 @@ namespace ZL.Unity
 
             return instance.rotation;
         }
+
+        public static Transform FindClosest<TComponent>(this Transform instance, IEnumerable<TComponent> targets, Axis ignoreAxes, float minDistance = float.MaxValue)
+
+            where TComponent : Component
+        {
+            Transform closest = null;
+
+            foreach (var target in targets)
+            {
+                float distance = instance.position.DistanceTo(target.transform.position, ignoreAxes);
+
+                if (minDistance >= distance)
+                {
+                    minDistance = distance;
+
+                    closest = target.transform;
+                }
+            }
+
+            return closest;
+        }
     }
 }

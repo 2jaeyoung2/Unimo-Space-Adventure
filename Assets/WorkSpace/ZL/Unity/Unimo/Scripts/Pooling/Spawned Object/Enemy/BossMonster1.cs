@@ -8,6 +8,8 @@ using UnityEngine.Animations;
 
 using ZL.Unity.Coroutines;
 
+using ZL.Unity.Phys;
+
 using ZL.Unity.Pooling;
 
 namespace ZL.Unity.Unimo
@@ -16,13 +18,13 @@ namespace ZL.Unity.Unimo
 
     public sealed class BossMonster1 : Enemy, IDamager, IEnergizer
     {
-        [Space]
+        [Line]
 
-        [SerializeField]
+        [Essential]
 
         [UsingCustomProperty]
 
-        [Essential]
+        [SerializeField]
 
         private GameObject hitVFX = null;
 
@@ -38,6 +40,12 @@ namespace ZL.Unity.Unimo
 
         private EnergyBoltSkill energyBoltSkill = null;
 
+        [Space]
+
+        [SerializeField]
+
+        private FindClosestObjectSkill findEnergySkill = null;
+
         private int energy = 0;
 
         public int Energy
@@ -51,17 +59,7 @@ namespace ZL.Unity.Unimo
 
         private void Awake()
         {
-            skillSequence = new(dashSkill, energyBoltSkill);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
-            {
-                var item = other.GetComponent<Item>();
-
-                item.GetItem(this);
-            }
+            skillSequence = new(dashSkill, energyBoltSkill, findEnergySkill);
         }
 
         public override void OnAppeared()
@@ -87,6 +85,15 @@ namespace ZL.Unity.Unimo
 
         public override void Disappear()
         {
+            if (skillSequenceRoutine != null)
+            {
+                StopCoroutine(skillSequenceRoutine);
+
+                skillSequenceRoutine = null;
+            }
+
+            skillSequence.Reset();
+
             EnemyUIScreen.Instance.DisappearNamedEnemyHealthBar(this);
 
             base.Disappear();
@@ -101,9 +108,28 @@ namespace ZL.Unity.Unimo
             base.TakeDamage(damage, contact);
         }
 
+        protected override void Kill()
+        {
+            ++StageQuestList.Instance.BossKillCount;
+
+            ScoreManager.Instance.CountBossKill();
+
+            base.Kill();
+        }
+
         public void GiveDamage(IDamageable damageable, Vector3 contact)
         {
             damageable.TakeDamage(enemyData.AttackPower, contact);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
+            {
+                var item = other.GetComponent<Item>();
+
+                item.GetItem(this);
+            }
         }
 
         public void GetEnergy(int value)
@@ -119,11 +145,11 @@ namespace ZL.Unity.Unimo
         {
             [Space]
 
-            [SerializeField]
+            [Essential]
 
             [UsingCustomProperty]
 
-            [Essential]
+            [SerializeField]
 
             private GameObject dashSFX = null;
 
@@ -151,37 +177,60 @@ namespace ZL.Unity.Unimo
         {
             [Space]
 
-            [SerializeField]
+            [Essential]
 
             [UsingCustomProperty]
 
+            [SerializeField]
+
+            private ArcedDetector detector = null;
+
+            [SerializeField]
+
+            private float angle = 0f;
+
+            [Space]
+
             [Essential]
+
+            [UsingCustomProperty]
+
+            [SerializeField]
 
             private Transform muzzle = null;
 
             [Space]
 
-            [SerializeField]
-
-            [UsingCustomProperty]
-
             [Essential]
 
-            private string projectileName = "";
+            [UsingCustomProperty]
 
             [SerializeField]
 
-            [UsingCustomProperty]
+            private string projectileName = "";
 
             [Essential]
 
             [Alias("Projectile Name (Enhanced)")]
 
+            [UsingCustomProperty]
+
+            [SerializeField]
+
             private string projectileName_Enhanced = "";
+
+            public override void Construct()
+            {
+                detector.Radius = skillData.Range;
+
+                detector.Angle = angle;
+
+                base.Construct();
+            }
 
             public override float GetWeight()
             {
-                if (skillUser.IsWithinRange(EnemyManager.Instance.SkillTarget.position, skillData.Range) == false)
+                if (detector.Detect(EnemyManager.Instance.SkillTarget) == false)
                 {
                     return 0f;
                 }
@@ -213,11 +262,94 @@ namespace ZL.Unity.Unimo
 
                 projectile.Appear();
 
-                skillUser.movementSpeed = 0f;
+                yield return WaitForEndOfFrameCache.Get();
+            }
+        }
 
-                yield return WaitForSecondsCache.Get(0.5f);
+        [Serializable]
 
-                skillUser.movementSpeed = skillUser.enemyData.MovementSpeed;
+        public sealed class FindClosestObjectSkill : Skill<BossMonster1>
+        {
+            [Space]
+
+            [SerializeField]
+
+            private string targetObjectName = "";
+
+            private Transform closestObject = null;
+
+            public override void Cooldown(float time)
+            {
+                if (findClosestObjectRoutine != null)
+                {
+                    return;
+                }
+
+                base.Cooldown(time);
+            }
+
+            public override float GetWeight()
+            {
+                if (cooldownTimer > 0f)
+                {
+                    return 0f;
+                }
+
+                closestObject = ObjectPoolManager.Instance.FindClosestObject(skillUser.transform, targetObjectName, Axis.Y, skillData.Range);
+
+                if (closestObject == null)
+                {
+                    return 0f;
+                }
+
+                return skillData.Weight;
+            }
+
+            public override IEnumerator Routine()
+            {
+                if (findClosestObjectRoutine == null)
+                {
+                    findClosestObjectRoutine = FindClosestObjectRoutine();
+
+                    skillUser.StartCoroutine(findClosestObjectRoutine);
+                }
+
+                yield return WaitForEndOfFrameCache.Get();
+            }
+
+            private IEnumerator findClosestObjectRoutine = null;
+
+            private IEnumerator FindClosestObjectRoutine()
+            {
+                skillUser.finalDestination = closestObject;
+
+                while (true)
+                {
+                    yield return WaitForSecondsCache.Get(0.5f);
+
+                    if (closestObject.gameObject.activeSelf == false)
+                    {
+                        break;
+                    }
+                }
+
+                skillUser.finalDestination = skillUser.destination;
+
+                findClosestObjectRoutine = null;
+            }
+
+            public override void Reset()
+            {
+                closestObject = null;
+
+                if (findClosestObjectRoutine != null)
+                {
+                    skillUser.StopCoroutine(findClosestObjectRoutine);
+
+                    findClosestObjectRoutine = null;
+                }
+
+                base.Reset();
             }
         }
     }

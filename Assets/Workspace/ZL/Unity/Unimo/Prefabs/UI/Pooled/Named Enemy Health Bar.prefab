@@ -49,7 +49,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3928992378966708910}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c2d2f0c50a6e842bb4adae0c06c023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: -1
   fader: {fileID: 4344819921487483233}
   enemyNameTextUI: {fileID: 6840367980173284037}
   healthBar: {fileID: 4315648556176970786}

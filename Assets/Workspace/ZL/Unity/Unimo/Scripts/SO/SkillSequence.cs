@@ -15,6 +15,11 @@ namespace ZL.Unity.Unimo
         public SkillSequence(params Skill<TSkillUser>[] skills)
         {
             this.skills = skills;
+
+            for (int i = 0; i < skills.Length; ++i)
+            {
+                skills[i].Construct();
+            }
         }
 
         public IEnumerator Routine()
@@ -45,6 +50,14 @@ namespace ZL.Unity.Unimo
         private float GetWeight(Skill<TSkillUser> skill)
         {
             return skill.GetWeight();
+        }
+
+        public void Reset()
+        {
+            for (int i = 0; i < skills.Length; ++i)
+            {
+                skills[i].Reset();
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 using UnityEngine;
+
 using UnityEngine.Serialization;
+
 using ZL.Unity.Pooling;
 
 using ZL.Unity.UI;
@@ -30,7 +32,10 @@ namespace ZL.Unity.Unimo
 
         public void DisappearNamedEnemyHealthBar(Enemy targetEnemy)
         {
-            enemyHealthBarPool[targetEnemy].Disappear();
+            if (enemyHealthBarPool.ContainsKey(targetEnemy) == true)
+            {
+                enemyHealthBarPool[targetEnemy].Disappear();
+            }
         }
     }
 }

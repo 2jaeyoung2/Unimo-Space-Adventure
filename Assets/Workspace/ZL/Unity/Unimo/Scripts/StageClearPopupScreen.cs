@@ -12,59 +12,67 @@ namespace ZL.Unity.Unimo
     {
         [Space]
 
-        [SerializeField]
+        [Essential]
 
         [UsingCustomProperty]
 
-        [Essential]
+        [SerializeField]
 
         private ForceLayoutRebuilder popupContent = null;
 
-        [SerializeField]
-
         [Essential]
-
-        [UsingCustomProperty]
 
         [Alias("Stage Play Time Text (UI)")]
 
-        private TextMeshProUGUI stagePlayTimeTextUI = null;
+        [UsingCustomProperty]
 
         [SerializeField]
+
+        private TextMeshProUGUI stagePlayTimeTextUI = null;
 
         [Essential]
 
-        [UsingCustomProperty]
-
         [Alias("In-Game Money Amount Text (UI)")]
 
-        private TextMeshProUGUI inGameMoneyAmountTextUI = null;
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private TextMeshProUGUI inGameMoneyAmountTextUI = null;
 
         [Essential]
 
         [Alias("Out-Game Money Amount Text (UI)")]
 
-        private TextMeshProUGUI outGameMoneyAmountTextUI = null;
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private TextMeshProUGUI outGameMoneyAmountTextUI = null;
 
         [Essential]
 
         [Alias("Blue Print Count Text (UI)")]
 
+        [UsingCustomProperty]
+
+        [SerializeField]
+
         private TextMeshProUGUI bluePrintCountTextUI = null;
+
+        [Essential]
+
+        [Alias("Score Amount Text (UI)")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
+
+        private TextMeshProUGUI scoreAmountTextUI = null;
 
         public override void Appear()
         {
             stagePlayTimeTextUI.text = $"ÇÃ·¹ÀÌ ½Ã°£: {SceneClock.Instance.GetTimeStamp()}";
-
-            inGameMoneyAmountTextUI.gameObject.SetActive(false);
 
             if (StageData.DropedInGameMoneyAmount != 0)
             {
@@ -73,7 +81,10 @@ namespace ZL.Unity.Unimo
                 inGameMoneyAmountTextUI.gameObject.SetActive(true);
             }
 
-            outGameMoneyAmountTextUI.gameObject.SetActive(false);
+            else
+            {
+                inGameMoneyAmountTextUI.gameObject.SetActive(false);
+            }
 
             if (StageData.DropedOutGameMoneyAmount != 0)
             {
@@ -82,13 +93,33 @@ namespace ZL.Unity.Unimo
                 outGameMoneyAmountTextUI.gameObject.SetActive(true);
             }
 
-            bluePrintCountTextUI.gameObject.SetActive(false);
+            else
+            {
+                outGameMoneyAmountTextUI.gameObject.SetActive(false);
+            }
 
             if (StageData.DropedBluePrintCount != 0)
             {
                 bluePrintCountTextUI.text = $"È¹µæ ¼³°èµµ: {StageData.DropedBluePrintCount}";
 
                 bluePrintCountTextUI.gameObject.SetActive(true);
+            }
+
+            else
+            {
+                bluePrintCountTextUI.gameObject.SetActive(false);
+            }
+
+            if (StageData.TotalScore != 0)
+            {
+                scoreAmountTextUI.text = $"È¹µæ Á¡¼ö: {StageData.TotalScore}";
+
+                scoreAmountTextUI.gameObject.SetActive(true);
+            }
+
+            else
+            {
+                scoreAmountTextUI.gameObject.SetActive(false);
             }
 
             popupContent.ForceRebuildLayout();

@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using UnityEngine.Animations;
+
 using ZL.Unity.Collections;
 
 using ZL.Unity.Singleton;
@@ -26,6 +28,19 @@ namespace ZL.Unity.Pooling
         public PooledObject Clone(string key)
         {
             return poolDictionary[key].Clone();
+        }
+
+        public void CollectAll()
+        {
+            foreach (var pool in poolDictionary.Values)
+            {
+                pool.CollectAll();
+            }
+        }
+
+        public Transform FindClosestObject(Transform from, string targetObjectName, Axis ignoreAxes, float minDistance = float.MaxValue)
+        {
+            return from.FindClosest(poolDictionary[targetObjectName].Clones, ignoreAxes, minDistance);
         }
     }
 }

@@ -6,7 +6,11 @@ using UnityEngine;
 
 using ZL.CS.Singleton;
 
+using ZL.Unity.Coroutines;
+
 using ZL.Unity.Directing;
+
+using ZL.Unity.Pooling;
 
 using ZL.Unity.UI;
 
@@ -79,6 +83,16 @@ namespace ZL.Unity.Unimo
         [Text("<b>스테이지 데이터</b>")]
 
         private StageData stageData = null;
+
+        [Space]
+
+        [SerializeField]
+
+        [UsingCustomProperty]
+
+        [Text("<b>스테이지 목표 데이터</b>")]
+
+        private StageQuestData stageQuestData = null;
 
         [Space]
 
@@ -216,12 +230,9 @@ namespace ZL.Unity.Unimo
 
             ISingleton<StageData>.TrySetInstance(stageData);
 
-            ISingleton<RelicDropTable>.TrySetInstance(relicDropTable);
+            ISingleton<StageQuestData>.TrySetInstance(stageQuestData);
 
-            if (GatheringManager.Instance != null)
-            {
-                GatheringManager.Instance.OnGatherCompletedAction += StageClear;
-            }
+            ISingleton<RelicDropTable>.TrySetInstance(relicDropTable);
 
             PlayerManager.Instance.OnPlayerDead += StageFail;
 
@@ -234,7 +245,10 @@ namespace ZL.Unity.Unimo
 
             playerUIScreen.Appear();
 
-            PlayerFuelManager.Instance.StartConsumFuel();
+            if (PlayerFuelManager.Instance != null)
+            {
+                PlayerFuelManager.Instance.StartConsumFuel();
+            }
 
             if (SpawnSequence.Instance != null)
             {
@@ -256,6 +270,8 @@ namespace ZL.Unity.Unimo
 
             ISingleton<StageData>.Release(stageData);
 
+            ISingleton<StageQuestData>.Release(stageQuestData);
+
             ISingleton<RelicDropTable>.Release(relicDropTable);
         }
 
@@ -275,9 +291,19 @@ namespace ZL.Unity.Unimo
 
         private IEnumerator StageClearRoutine()
         {
-            TimeEx.Pause();
-
             GameStateManager.IsClear = true;
+
+            if (PlayerFuelManager.Instance != null)
+            {
+                PlayerFuelManager.Instance.StopConsumFuel();
+            }
+
+            if (SpawnSequence.Instance != null)
+            {
+                SpawnSequence.Instance.gameObject.SetActive(false);
+
+                ObjectPoolManager.Instance.CollectAll();
+            }
 
             stageData.DropRewards();
 
@@ -290,8 +316,10 @@ namespace ZL.Unity.Unimo
 
             if (ScoreManager.Instance != null)
             {
-                ScoreManager.Instance.CountStageClear(stageData.Score);
+                ScoreManager.Instance.CountStageClear(StageData.TotalScore);
             }
+
+            yield return WaitForSecondsCache.Get(2f);
 
             stageClearPopupScreen.Appear();
 
@@ -340,11 +368,19 @@ namespace ZL.Unity.Unimo
 
         private IEnumerator StageFailRoutine()
         {
-            TimeEx.Pause();
-
             GameStateManager.IsClear = false;
 
             GameStateManager.IsRestoreMap = false;
+
+            if (PlayerFuelManager.Instance != null)
+            {
+                PlayerFuelManager.Instance.StopConsumFuel();
+            }
+
+            if (SpawnSequence.Instance != null)
+            {
+                SpawnSequence.Instance.gameObject.SetActive(false);
+            }
 
             if (FirebaseDataBaseMgr.Instance != null)
             {
@@ -352,6 +388,8 @@ namespace ZL.Unity.Unimo
 
                 ScoreManager.Instance.CalculateTotalScore();
             }
+
+            yield return WaitForSecondsCache.Get(2f);
 
             stageFailPopupScreen.Appear();
 

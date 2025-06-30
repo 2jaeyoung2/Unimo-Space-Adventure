@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84f9a577a5b5c7468021bd5a4531051, type: 3}
   m_Name: Boss Monster 1 Energy Bolt Data
   m_EditorClassIdentifier: 
-  weight: 0.5
-  cooldownTime: 10
-  range: 20
+  weight: 0.25
+  cooldownTime: 5
+  range: 15
   power: 0
   duration: 3

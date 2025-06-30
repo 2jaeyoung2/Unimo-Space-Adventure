@@ -18,7 +18,10 @@ namespace ZL.Unity.Phys
 
         private float radius = 1f;
 
-        [Space]
+        public float Radius
+        {
+            set => radius = value;
+        }
 
         [SerializeField]
 
@@ -26,8 +29,6 @@ namespace ZL.Unity.Phys
 
         public float Angle
         {
-            get => angle;
-
             set => angle = value;
         }
 
@@ -69,7 +70,7 @@ namespace ZL.Unity.Phys
 
         [Alias("Default Color")]
 
-        private Color defaultGizmoColor = new Color(1f, 0f, 0f, 0.5f);
+        private Color defaultGizmoColor = new(1f, 0f, 0f, 0.25f);
 
         private void OnDrawGizmosSelected()
         {

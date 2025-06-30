@@ -67,7 +67,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4251394a77c564ca9c928e5d3e5ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: -1
   animatorGroup: {fileID: 8797008826526892871}
+  destination: {fileID: 0}
+  rotationSpeedMultiplier: 1
+  movementSpeedMultiplier: 1
+  despawnDistance: -1
   mainCollider: {fileID: 6008873904048038932}
   damage: 1
 --- !u!1 &5377937143521081588
@@ -304,7 +309,7 @@ PrefabInstance:
     - target: {fileID: 2123997714140805619, guid: 5cdf4be5c5cf6b14db2a00642e27542c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f4b77da7dc6d36e49b6579e496f1bc6a, type: 2}
+      objectReference: {fileID: 2100000, guid: d756a35b7041c8541b495acadbdd9861, type: 2}
     - target: {fileID: 8406094008417046649, guid: 5cdf4be5c5cf6b14db2a00642e27542c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

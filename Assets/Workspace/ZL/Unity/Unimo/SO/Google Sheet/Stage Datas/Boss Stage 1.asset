@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Boss Stage 1
   m_EditorClassIdentifier: 
   fuelConsumptionAmount: 1
-  targetGatheringCount: 0
   inGameMoneyAmountMin: 40
   inGameMoneyAmountMax: 60
   outGameMoneyAmountMin: 20
@@ -21,4 +20,4 @@ MonoBehaviour:
   bluePrintCount: 1
   relicChance: 1
   relicCount: 3
-  score: 0
+  score: 40
