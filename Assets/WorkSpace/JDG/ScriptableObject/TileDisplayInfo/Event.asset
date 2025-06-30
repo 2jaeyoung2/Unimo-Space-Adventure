@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileType: 3
   DisplayName: Event
-  DisplayIcon: {fileID: 21300002, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  DisplayIcon: {fileID: 21300000, guid: ccaba9ea8de152a4fb65695a7f73b639, type: 3}
   ModeType: 0

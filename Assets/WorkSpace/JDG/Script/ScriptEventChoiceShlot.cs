@@ -214,7 +214,6 @@ namespace JDG
         {
             if (UIManager.Instance.IsResultUIOpen)
                 return;
-            Debug.Log("´­¸²");
             if (_choiceData == null)
             {
                 return;

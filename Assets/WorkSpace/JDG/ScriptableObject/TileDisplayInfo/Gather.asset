@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileType: 4
   DisplayName: Gather
-  DisplayIcon: {fileID: 21300008, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  DisplayIcon: {fileID: 21300000, guid: aa8fa20837202344aad0095517d53bc4, type: 3}
   ModeType: 2
