@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EventTileConfig
   m_EditorClassIdentifier: 
   _eventTileRatio: 0.15
-  _eventMinDistance: 2
+  _eventMinDistance: 3
   _eventTypes:
   - _eventType: 1
     _ratio: 0.5
