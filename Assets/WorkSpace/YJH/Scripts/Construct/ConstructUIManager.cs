@@ -167,7 +167,7 @@ public class ConstructUIManager : MonoBehaviour
     }
     public void ActiveBasePanel()
     {
-        StartCoroutine(FirebaseDataBaseMgr.Instance.UpdateRewardMetaCurrency(10000));//실험용 임시 함수
+        //StartCoroutine(FirebaseDataBaseMgr.Instance.UpdateRewardMetaCurrency(10000));//실험용 임시 함수
         //Debug.Log("건설 화면 등장");
         basePanel.SetActive(true);
         //Debug.Log(FirebaseDataBaseMgr.Blueprint);

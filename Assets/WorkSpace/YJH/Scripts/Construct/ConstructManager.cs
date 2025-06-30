@@ -74,7 +74,7 @@ public class ConstructManager : MonoBehaviour
         {
             temp.Value.LoadState();
         }
-        StartCoroutine(FirebaseDataBaseMgr.Instance.UpdateRewardMetaCurrency(500));
+        //StartCoroutine(FirebaseDataBaseMgr.Instance.UpdateRewardMetaCurrency(500));
         
 
         SetAllConstructImages();
