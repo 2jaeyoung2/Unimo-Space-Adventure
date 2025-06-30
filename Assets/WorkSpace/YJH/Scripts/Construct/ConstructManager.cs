@@ -2,6 +2,7 @@ using JDG;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class ConstructManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ConstructManager : MonoBehaviour
     public List<TechBuildBase> techConstructList = new List<TechBuildBase>();
     public List<UtilityBuildBase> utilityConstructList = new List<UtilityBuildBase>();
     public List<CombatBuildBase> combatConstructList = new List<CombatBuildBase>();
+    public List<BuildState> buildStates = new List<BuildState>();
     private Dictionary<string, ConstructBase> allBuildingDic = new Dictionary<string, ConstructBase>();
 
 
@@ -68,7 +70,12 @@ public class ConstructManager : MonoBehaviour
         //DecideProgress();//나중에 이미지 변경 시스템 완벽하게 바꾸면 변경하기
         ToDictionary();
         SetAllDic();
+        foreach (var temp in allBuildingDic)
+        {
+            temp.Value.LoadState();
+        }
 
+        
 
         SetAllConstructImages();
         //GameStateManager.IsClear = true;// 버그 터짐 이거 말고 다른 방법 써야 할듯
@@ -257,7 +264,13 @@ public class ConstructManager : MonoBehaviour
     }
 
 
-
+    private void OnApplicationQuit()
+    {
+        foreach (var temp in allBuildingDic)
+        {
+            temp.Value.SaveState();
+        }
+    }
 
     public void DecideProgress()//나중에 에셋 오면 변경 필요 -> 별도의 스크립트와 씬에서 캡쳐를 통해서 변화 반영하는 식으로 
     {

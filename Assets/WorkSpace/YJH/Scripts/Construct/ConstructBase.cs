@@ -9,11 +9,23 @@ public class BuildCost
     public string key;
     public int value;
 }
-
+[System.Serializable]
+public class BuildState
+{
+    public string key;
+    public bool value;
+    public BuildState() { }
+    public BuildState(string key, bool value) 
+    {
+        this.key = key;
+        this.value = value; 
+    }
+}
 
 [CreateAssetMenu(fileName = "ConstructInfo", menuName = "ScriptableObject/Construct")]
 public class ConstructBase :ScriptableObject//,IConstruct
 {
+    public BuildState state = new BuildState();
     public bool isBuildConstructed;
     public string buildID;
     public string buildName;
@@ -32,15 +44,16 @@ public class ConstructBase :ScriptableObject//,IConstruct
     public int imagePriority;
     public string buildType;
     public bool isbuildRepeatable;
+    private string SavePath => Application.persistentDataPath + $"/{buildID}_state.json";
     //public string buildPrefabDirection;//이것도 직접이 맞을듯 
     //public List<BuildEffect> buildEffects=new List<BuildEffect>();
     //public int spawnIndex;
-    
+
     //public string buildingDescription;
 
 
-    
-    
+
+
     public bool IsBuildConstructed()
     {
         return isBuildConstructed;
@@ -53,13 +66,35 @@ public class ConstructBase :ScriptableObject//,IConstruct
         {
             dict[pair.key] = pair.value;
         }
+        state.key=buildID;
+        state.value = isBuildConstructed;
         return buildCostDic= dict;
+        
     }
-    
+    public void SaveState()
+    {
+        string json = JsonUtility.ToJson(state);
+        System.IO.File.WriteAllText(SavePath, json);
+    }
+    public void LoadState()
+    {
+        if (System.IO.File.Exists(SavePath))
+        {
+            string json = System.IO.File.ReadAllText(SavePath);
+            JsonUtility.FromJsonOverwrite(json, state);
+            //Debug.Log($"BuildState 불러옴: {SavePath}");
+        }
+        else
+        {
+            //Debug.LogWarning($"BuildState 파일 없음: {SavePath}");
+        }
+    }
     public void ConstructEnd()
     {
         Debug.Log("buildcomplete");
         isBuildConstructed = true;
+        state.key = buildID;
+        state.value = true;
     }
     public bool TryConstruct(List<ConstructBase> constructBases)
     {
