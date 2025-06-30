@@ -74,7 +74,7 @@ public class ConstructManager : MonoBehaviour
         {
             temp.Value.LoadState();
         }
-
+        StartCoroutine(FirebaseDataBaseMgr.Instance.UpdateRewardMetaCurrency(500));
         
 
         SetAllConstructImages();
@@ -133,6 +133,10 @@ public class ConstructManager : MonoBehaviour
     private void OnDestroy()
     {
         //Debug.Log("건설매니저 사라짐");
+        foreach (var temp in allBuildingDic)
+        {
+            temp.Value.SaveState();
+        }
         OnConstructCostChange -= SetConstructCostText;
     }
     public void ToDictionary()
@@ -393,7 +397,7 @@ public class ConstructManager : MonoBehaviour
 
     }
 
-
+    
     public void SetPlayer()// 게임 종료시 스테이터스 초기화 필요
     {
         if (isBuildEffectAplly == false)//static 변수를 통해서 초기화 조절

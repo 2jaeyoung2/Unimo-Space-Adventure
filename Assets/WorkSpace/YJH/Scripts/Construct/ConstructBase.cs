@@ -73,8 +73,11 @@ public class ConstructBase :ScriptableObject//,IConstruct
     }
     public void SaveState()
     {
+        state.key = buildID;
+        state.value = isBuildConstructed;
         string json = JsonUtility.ToJson(state);
         System.IO.File.WriteAllText(SavePath, json);
+        Debug.Log("파일 저장됨");
     }
     public void LoadState()
     {
@@ -82,11 +85,13 @@ public class ConstructBase :ScriptableObject//,IConstruct
         {
             string json = System.IO.File.ReadAllText(SavePath);
             JsonUtility.FromJsonOverwrite(json, state);
-            //Debug.Log($"BuildState 불러옴: {SavePath}");
+            Debug.Log($"BuildState 불러옴: {SavePath}");
+            Debug.Log(state.key);
+            Debug.Log(state.value);
         }
         else
         {
-            //Debug.LogWarning($"BuildState 파일 없음: {SavePath}");
+            Debug.Log("파일 없음");
         }
     }
     public void ConstructEnd()
@@ -95,6 +100,7 @@ public class ConstructBase :ScriptableObject//,IConstruct
         isBuildConstructed = true;
         state.key = buildID;
         state.value = true;
+        SaveState();
     }
     public bool TryConstruct(List<ConstructBase> constructBases)
     {

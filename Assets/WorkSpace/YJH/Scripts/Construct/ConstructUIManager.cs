@@ -58,9 +58,12 @@ public class ConstructUIManager : MonoBehaviour
             Instantiate(constructManager);
         }
         SetAllButtons();
+        
+    }
+    private void Start()
+    {
         ChangeButtonsSpriteAll();
     }
-
     public void SetAllButtons()
     {
         allButtons = new List<Button>();
@@ -164,12 +167,14 @@ public class ConstructUIManager : MonoBehaviour
     }
     public void ActiveBasePanel()
     {
+        StartCoroutine(FirebaseDataBaseMgr.Instance.UpdateRewardMetaCurrency(10000));//실험용 임시 함수
         //Debug.Log("건설 화면 등장");
         basePanel.SetActive(true);
         //Debug.Log(FirebaseDataBaseMgr.Blueprint);
         //Debug.Log(FirebaseDataBaseMgr.MetaCurrency);
+
         ConstructManager.Instance.SetOwnCost();
-        //StartCoroutine(FirebaseDataBaseMgr.Instance.UpdateRewardMetaCurrency(10000));//실험용 임시 함수
+        ChangeButtonsSpriteAll();
         //Debug.Log("실험용 임시 자원 추가");
     }
     public void EndConstructButtonPressed()
@@ -310,6 +315,8 @@ public class ConstructUIManager : MonoBehaviour
         buildInfoBuildButton.onClick.RemoveAllListeners();
         buildInfoBuildButton.onClick.AddListener(() => ConstructManager.Instance.TryConstruct(buildingInfo));
         buildInfoBuildButton.onClick.AddListener(() => ConstructSuccessSoundPlay());
+        buildInfoBuildButton.onClick.AddListener(() => ChangeButtonsSpriteAll());
+        buildInfoBuildButton.onClick.AddListener(() => buildingInfo.SaveState());
 
 
 
