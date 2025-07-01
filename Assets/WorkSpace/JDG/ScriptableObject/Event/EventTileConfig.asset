@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: EventTileConfig
   m_EditorClassIdentifier: 
   _eventTileRatio: 0.15
-  _eventMinDistance: 2
+  _eventMinDistance: 3
   _eventTypes:
   - _eventType: 1
-    _ratio: 0.5
+    _ratio: 0.35
     _eventData:
     - {fileID: 11400000, guid: 236578a8a72f6d5449c107fa518d3057, type: 2}
   - _eventType: 2
-    _ratio: 0.5
+    _ratio: 0.65
     _eventData:
     - {fileID: 11400000, guid: 890c603c91f39814886b55f0fcbe4378, type: 2}
     - {fileID: 11400000, guid: 4ac498f2673b6874186706c0ee262358, type: 2}
