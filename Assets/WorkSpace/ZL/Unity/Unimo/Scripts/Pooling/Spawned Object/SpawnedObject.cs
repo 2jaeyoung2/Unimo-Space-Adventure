@@ -77,6 +77,8 @@ namespace ZL.Unity.Unimo
         {
             gameObject.SetActive(true);
 
+            animatorGroup.SetTrigger(nameof(Appear));
+
             finalDestination = destination;
 
             spawnPosition = transform.position;
@@ -91,6 +93,8 @@ namespace ZL.Unity.Unimo
 
         protected virtual void OnDisappear()
         {
+            animatorGroup.Rebind();
+
             animatorGroup.SetTrigger("Disappear");
         }
 

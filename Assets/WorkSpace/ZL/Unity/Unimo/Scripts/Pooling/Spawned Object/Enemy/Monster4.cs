@@ -21,11 +21,11 @@ namespace ZL.Unity.Unimo
 
         public override void OnAppeared()
         {
+            base.OnAppeared();
+
             animatorGroup.SetFloat(nameof(chargeDashTime), chargeDashTime);
 
             animatorGroup.SetTrigger("Dash");
-
-            base.OnAppeared();
         }
 
         public void GiveDamage(IDamageable damageable, Vector3 contact)

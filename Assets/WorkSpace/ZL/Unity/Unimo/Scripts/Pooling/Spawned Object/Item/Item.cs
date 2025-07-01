@@ -25,9 +25,9 @@ namespace ZL.Unity.Unimo
 
         public override void OnAppeared()
         {
-            mainCollider.enabled = true;
-
             base.OnAppeared();
+
+            mainCollider.enabled = true;
         }
 
         public override void Disappear()

@@ -302,6 +302,8 @@ namespace ZL.Unity.Unimo
             {
                 SpawnSequence.Instance.gameObject.SetActive(false);
 
+                yield return null;
+
                 ObjectPoolManager.Instance.CollectAll();
             }
 

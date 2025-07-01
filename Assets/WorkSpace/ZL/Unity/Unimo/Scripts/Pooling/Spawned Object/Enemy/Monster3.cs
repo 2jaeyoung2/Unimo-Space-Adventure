@@ -30,6 +30,11 @@ namespace ZL.Unity.Unimo
 
         private void Update()
         {
+            if (isStoped == true)
+            {
+                return;
+            }
+
             if (detector.Detect(EnemyManager.Instance.SkillTarget) == true)
             {
                 detector.enabled = false;
@@ -44,9 +49,9 @@ namespace ZL.Unity.Unimo
 
         public override void OnAppeared()
         {
-            detector.enabled = true;
-
             base.OnAppeared();
+
+            detector.enabled = true;
         }
 
         public override void Disappear()
@@ -58,6 +63,8 @@ namespace ZL.Unity.Unimo
 
         protected override void OnDisappear()
         {
+            animatorGroup.Rebind();
+
             if (isDashing == true)
             {
                 animatorGroup.SetTrigger("DashToDisappear");
