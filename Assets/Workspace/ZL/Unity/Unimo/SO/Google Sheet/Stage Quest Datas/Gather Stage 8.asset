@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17028bd2548d0347b092c1ce6927311, type: 3}
   m_Name: Gather Stage 8
   m_EditorClassIdentifier: 
-  targetGatheringCount: 10
+  targetGatheringCount: 20
   targetBossKillCount: 0

@@ -278,7 +278,7 @@ MonoBehaviour:
   isStunning: 0
   canMove: 1
   onHitTime: 1
-  onHitBlinkTime: 0.5
+  onHitBlinkTime: 0.25
   cartRenderer: {fileID: 6459899133926012848}
   bodyRenderer: {fileID: 4998327257316745850}
   faceRenderer: {fileID: 7958886399952576924}
