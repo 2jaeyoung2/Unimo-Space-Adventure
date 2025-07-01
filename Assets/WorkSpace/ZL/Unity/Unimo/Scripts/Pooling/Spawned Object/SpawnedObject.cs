@@ -59,14 +59,14 @@ namespace ZL.Unity.Unimo
 
         [SerializeField]
 
-        private float despawnDistance = -1f;
+        protected float despawnDistance = -1f;
 
         public float DespawnDistance
         {
             set => despawnDistance = value;
         }
 
-        private Vector3 spawnPosition = Vector3.zero;
+        protected Vector3 spawnPosition = Vector3.zero;
 
         public Vector3 SpawnPosition
         {

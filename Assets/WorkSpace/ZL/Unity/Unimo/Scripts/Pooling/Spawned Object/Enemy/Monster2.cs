@@ -36,6 +36,10 @@ namespace ZL.Unity.Unimo
 
         [SerializeField]
 
+        private float projectileLifeTime = 0f;
+
+        [SerializeField]
+
         [UsingCustomProperty]
 
         [Essential]
@@ -99,9 +103,15 @@ namespace ZL.Unity.Unimo
         {
             var enemyProjectile = ObjectPoolManager.Instance.Clone<EnemyProjectile>(projectileName);
 
+            enemyProjectile.LifeTime = projectileLifeTime;
+
             enemyProjectile.Muzzle = muzzle;
 
             enemyProjectile.Appear();
+
+            enemyProjectile.DespawnDistance = despawnDistance;
+
+            enemyProjectile.SpawnPosition = spawnPosition;
         }
     }
 }

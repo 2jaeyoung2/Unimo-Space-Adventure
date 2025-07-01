@@ -626,6 +626,7 @@ MonoBehaviour:
   attackCooldownTime: 5
   attackRange: 30
   projectileName: Monster 2_Projectile
+  projectileLifeTime: 5
   muzzle: {fileID: 3057050897555738153}
 --- !u!1 &4682660945450320919
 GameObject:

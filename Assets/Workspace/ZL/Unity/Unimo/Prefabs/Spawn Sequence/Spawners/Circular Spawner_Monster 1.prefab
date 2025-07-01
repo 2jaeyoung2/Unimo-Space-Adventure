@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5403129013590394957
 Transform:
@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18995b4600249734da80c595fd6b6a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookPoint: {fileID: 0}
-  lookAngle: -1
   spawnObjectName: Monster 1
   waveCount: 0
   waveInterval: -1
@@ -53,6 +51,12 @@ MonoBehaviour:
   maxWaveInterval: 0
   spawnDelay: 0
   lifeTime: -1
+  destination: {fileID: 0}
+  rotationSpeedMultiplier: 1
+  movementSpeedMultiplier: 1
+  despawnDistance: -1
+  lookPoint: {fileID: 0}
+  lookAngle: -1
   minSpawnCount: 0
   maxSpawnCount: 0
   maxObjectCount: -1
