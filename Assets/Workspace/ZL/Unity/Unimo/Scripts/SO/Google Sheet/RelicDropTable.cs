@@ -140,10 +140,11 @@ namespace ZL.Unity.Unimo
 
         private float GetWeight(KeyValuePair<RelicRarity, float> table)
         {
-            // 유물 중복 출현 방지 조건
             if (false)
             {
-                return 0f;
+                // 유물 중복 출현 방지 조건
+
+                //return 0f;
             }
 
             return table.Value;

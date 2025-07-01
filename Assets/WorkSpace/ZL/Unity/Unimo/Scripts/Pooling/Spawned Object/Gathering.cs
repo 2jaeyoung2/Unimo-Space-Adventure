@@ -87,11 +87,11 @@ namespace ZL.Unity.Unimo
 
                 ++StageQuestList.Instance.GatheringCount;
 
-                var vfx = ObjectPoolManager.Instance.Clone<HarvestVFX>("Harvest VFX");
+                var harvestVFX = ObjectPoolManager.Instance.Clone<HarvestVFX>("Harvest VFX");
 
-                vfx.transform.position = transform.position;
+                harvestVFX.transform.position = transform.position;
 
-                vfx.Play(harvester);
+                harvestVFX.Play(harvester);
 
                 Disappear();
             }

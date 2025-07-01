@@ -23,7 +23,7 @@ namespace ZL.Unity.Unimo
         {
             animatorGroup.SetFloat(nameof(chargeDashTime), chargeDashTime);
 
-            animatorGroup.SetTrigger("ChargeDash");
+            animatorGroup.SetTrigger("Dash");
 
             base.OnAppeared();
         }

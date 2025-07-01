@@ -23,11 +23,6 @@ namespace ZL.CS.Pooling
 
         private sealed class Pool : Pool<TClass>
         {
-            public TClass Clone()
-            {
-                return pool.Clone();
-            }
-
             public override TClass Instantiate()
             {
                 return new TClass();

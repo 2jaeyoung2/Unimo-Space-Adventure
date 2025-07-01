@@ -339,8 +339,6 @@ namespace ZL.Unity.Unimo
 
             if (StageData.DropedRelicDatas != null)
             {
-                FixedDebug.Log("À¯¹° µå¶øµÊ");
-
                 relicSelectionScreen.Appear();
 
                 while (relicSelectionScreen.gameObject.activeSelf == true)

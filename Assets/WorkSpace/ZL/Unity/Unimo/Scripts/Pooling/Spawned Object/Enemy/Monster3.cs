@@ -30,16 +30,16 @@ namespace ZL.Unity.Unimo
 
         private void Update()
         {
-            if (detector.Detect(EnemyManager.Instance.SkillTarget) == false)
+            if (detector.Detect(EnemyManager.Instance.SkillTarget) == true)
             {
-                return;
+                detector.enabled = false;
+
+                movementSpeed = 0f;
+
+                animatorGroup.SetTrigger("Encounter");
+
+                CancelInvoke(nameof(Disappear));
             }
-
-            movementSpeed = 0f;
-
-            detector.enabled = false;
-
-            animatorGroup.SetTrigger("Encounter");
         }
 
         public override void OnAppeared()

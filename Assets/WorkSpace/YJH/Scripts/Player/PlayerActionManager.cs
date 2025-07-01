@@ -69,7 +69,7 @@ public partial class PlayerManager : IEnergizer
 
     public delegate void OnTargetSet();
 
-    public event OnTargetSet OnTargetObjectSet;
+    //public event OnTargetSet OnTargetObjectSet;
 
     private Vector3 firePos;
 
@@ -94,7 +94,7 @@ public partial class PlayerManager : IEnergizer
 
     private bool isSkillRejectActive = false;
 
-    private bool isItemNear = false;
+    //private bool isItemNear = false;
 
     [SerializeField]
 

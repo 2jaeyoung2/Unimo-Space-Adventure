@@ -21,7 +21,7 @@ public partial class PlayerManager : ISingleton<PlayerManager>
 
     private int debnum = 0;
 
-    private static bool isFirstRelicActive = true;
+    //private static bool isFirstRelicActive = true;
 
     public static PlayerStatus PlayerStatus
     {  
@@ -92,7 +92,7 @@ public partial class PlayerManager : ISingleton<PlayerManager>
 
         isSkillRejectActive = false;
 
-        isItemNear = false;
+        //isItemNear = false;
 
         isGathering = false;
 
@@ -167,7 +167,7 @@ public partial class PlayerManager : ISingleton<PlayerManager>
 
         isSkillRejectActive = false;
 
-        isItemNear = false;
+        //isItemNear = false;
 
         isGathering = false;
 

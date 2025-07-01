@@ -49,8 +49,6 @@ namespace ZL.Unity.Unimo
             relicRerollableCountMax = 99;
 
             RelicRerollableCount = 99;
-
-            FixedDebug.Log("¿Œ∫•≈‰∏Æ √ ±‚»≠µ ");
         }
 
         public static void AddRelic(RelicData relicData)
@@ -61,13 +59,13 @@ namespace ZL.Unity.Unimo
             }
 
             relicDatas.Add(relicData);
+
             PlayerManager.ActiveRelic(relicData);
+
             if (ScoreManager.Instance != null)
             {
                 ScoreManager.Instance.CountGetItem(relicData.Score);
             }
-
-            FixedDebug.Log($"{relicData.name} »πµÊ");
         }
 
         public static void RemoveRelic(RelicData relicData)
@@ -78,8 +76,8 @@ namespace ZL.Unity.Unimo
             }
 
             relicDatas.Remove(relicData);
+
             PlayerManager.DeactiveRelic(relicData);
-            FixedDebug.Log($"{relicData.name} ¿“¿Ω");
         }
     }
 }

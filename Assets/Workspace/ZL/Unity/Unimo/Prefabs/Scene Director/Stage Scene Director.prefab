@@ -33,10 +33,10 @@ Transform:
   - {fileID: 5592065934865065583}
   - {fileID: 1889629455493278755}
   - {fileID: 7995555349925566746}
-  - {fileID: 2162133989525056468}
   - {fileID: 5616377675911195152}
   - {fileID: 8535901162070648529}
   - {fileID: 6674085508533527557}
+  - {fileID: 2162133989525056468}
   - {fileID: 940218399450545821}
   m_Father: {fileID: 2649296402356393829}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -966,6 +966,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5867775148574940190, guid: b94360179beb234479adebbc3f639bc4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867775148574940190, guid: b94360179beb234479adebbc3f639bc4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867775148574940190, guid: b94360179beb234479adebbc3f639bc4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867775148574940190, guid: b94360179beb234479adebbc3f639bc4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867775148574940190, guid: b94360179beb234479adebbc3f639bc4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6774761662855044812, guid: b94360179beb234479adebbc3f639bc4, type: 3}
       propertyPath: canvasGroup
       value: 
@@ -1147,7 +1167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2903841717181312051, guid: b9b43ae8f99a72b44afb0b085c703804, type: 3}
       propertyPath: m_Name
-      value: Google Sheet Manager
+      value: Relic Data Manager
       objectReference: {fileID: 0}
     - target: {fileID: 5889327211557510762, guid: b9b43ae8f99a72b44afb0b085c703804, type: 3}
       propertyPath: stageDataSheets.Array.size
@@ -1376,6 +1396,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
+--- !u!114 &3058467926085823563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9199914717203788574, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
+  m_PrefabInstance: {fileID: 6187231132326862677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3595530827887689582 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7221682333997506619, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
@@ -1392,6 +1423,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2263106824945221862, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
   m_PrefabInstance: {fileID: 6187231132326862677}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6847389910898674287 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 782400614647797050, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
+  m_PrefabInstance: {fileID: 6187231132326862677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7168507250596918392 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3938066593781689133, guid: f4aa7d1fdc2aa484db8a26d440853a12, type: 3}
@@ -1621,6 +1663,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8588383655159521857, guid: 092da50c42af37045a61cbc85f9a2c65, type: 3}
+      propertyPath: progressBarText
+      value: 
+      objectReference: {fileID: 6847389910898674287}
+    - target: {fileID: 8588383655159521857, guid: 092da50c42af37045a61cbc85f9a2c65, type: 3}
       propertyPath: skillRejectText
       value: 
       objectReference: {fileID: 7168507250596918392}
@@ -1628,6 +1674,10 @@ PrefabInstance:
       propertyPath: tempAttackPrefab
       value: 
       objectReference: {fileID: 7503936081269918129, guid: 07c22d31208dbd6418c693b8554433d7, type: 3}
+    - target: {fileID: 8588383655159521857, guid: 092da50c42af37045a61cbc85f9a2c65, type: 3}
+      propertyPath: progressBarCircle
+      value: 
+      objectReference: {fileID: 3058467926085823563}
     - target: {fileID: 8588383655159521857, guid: 092da50c42af37045a61cbc85f9a2c65, type: 3}
       propertyPath: onPlayerDead.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1846,6 +1896,26 @@ PrefabInstance:
       propertyPath: screenGroup
       value: 
       objectReference: {fileID: 5283080510546697029}
+    - target: {fileID: 6060829574879111783, guid: 9909fda67a88a8643aec6108425cf325, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6060829574879111783, guid: 9909fda67a88a8643aec6108425cf325, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6060829574879111783, guid: 9909fda67a88a8643aec6108425cf325, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6060829574879111783, guid: 9909fda67a88a8643aec6108425cf325, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6060829574879111783, guid: 9909fda67a88a8643aec6108425cf325, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6906468876867587834, guid: 9909fda67a88a8643aec6108425cf325, type: 3}
       propertyPath: tweener
       value: 
@@ -2252,7 +2322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7332494622313930771, guid: 1e21d577a634e63459666f8a97688395, type: 3}
       propertyPath: cursorVisible
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

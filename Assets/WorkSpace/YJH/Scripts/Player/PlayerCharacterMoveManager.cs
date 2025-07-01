@@ -1,8 +1,8 @@
+using Photon.Pun;
+
 using UnityEngine;
 
 using UnityEngine.InputSystem;
-
-using Photon.Pun;
 
 public partial class PlayerManager : MonoBehaviourPun
 {
@@ -13,8 +13,6 @@ public partial class PlayerManager : MonoBehaviourPun
     private Vector3 playerMoveDirection;
 
     private Vector3 playerPushDirection;
-
-    private Transform playerTransform;
 
     public Rigidbody PlayerRigBody { get { return playerCharacterBody; } }
 
@@ -34,21 +32,7 @@ public partial class PlayerManager : MonoBehaviourPun
 
     private bool isMoveSoundPlay = false;
 
-    [Header("속도들")]
-
-    //[SerializeField]
-
-    // 최종속도
-    //private float moveSpeed = 4f;
-
-    //[SerializeField]
-
-    // 기본 속도
-    //private float baseSpeed = 4f;
-
-    //[SerializeField]
-    //
-    //float pushSpeed = 3f;
+    [Space]
 
     [SerializeField]
 
@@ -73,18 +57,21 @@ public partial class PlayerManager : MonoBehaviourPun
 
     public void PlayerMoveBySpeed()
     {
-        //Debug.Log("움직이는 중");
-        Vector3 center = Vector3.zero; // 기준 중심 (원점 기준이면)
+        // 기준 중심 (원점 기준이면)
+        Vector3 center = Vector3.zero;
+
         float radius = 20f;
 
         Vector3 offset = transform.position - center;
+
         if (offset.sqrMagnitude > radius * radius)
         {
             // 원 밖이면 반지름 거리로 끌어당김
             transform.position = center + offset.normalized * radius;
-            playerSpellType.StopSpell();
 
+            playerSpellType.StopSpell();
         }
+
         if (canMove == true)
         {
             Vector2 headDirection = new Vector2(playerMoveDirection.x, playerMoveDirection.z);
@@ -92,34 +79,16 @@ public partial class PlayerManager : MonoBehaviourPun
             if (playerMoveDirection.magnitude > float.Epsilon)
             {
                 isMoveSoundPlay = true;
-
-                //Vector2 headDirection = new Vector2(playerMoveDirection.x, playerMoveDirection.z);
             }
 
             else
             {
                 isMoveSoundPlay = false;
-
-                //Vector2 headDirection = new Vector2(playerMoveDirection.x, playerMoveDirection.z);
-
-                //GetRotate(transform.forward);
             }
-
-            //Debug.Log(headDirection);
 
             GetRotate(headDirection);
 
-            transform.position += PlayerStatus.moveSpeed * Time.deltaTime * playerMoveDirection;// + pushSpeed * Time.deltaTime * playerPushDirection;
-            //Vector3 center = Vector3.zero; // 기준 중심 (원점 기준이면)
-            //float radius = 20f;
-            //
-            //Vector3 offset = transform.position - center;
-            //if (offset.sqrMagnitude > radius * radius)
-            //{
-            //    // 원 밖이면 반지름 거리로 끌어당김
-            //    transform.position = center + offset.normalized * radius;
-            //}
-            //Debug.Log(playerStatus.moveSpeed);
+            transform.position += PlayerStatus.moveSpeed * Time.deltaTime * playerMoveDirection;
 
             if (isMoveSoundPlay == true)
             {
@@ -131,8 +100,6 @@ public partial class PlayerManager : MonoBehaviourPun
                 moveSoundSource?.Stop();
             }
         }
-
-        
     }
 
     public void SetMoveSoundPlayOn()
@@ -157,11 +124,6 @@ public partial class PlayerManager : MonoBehaviourPun
         playerPushDirection = pushVector;
     }
 
-    public void SetTransform(Transform transform)
-    {
-        playerTransform = transform;
-    }
-
     public void GetRotate(Vector2 headDirection)
     {
         Vector3 headingVector3 = new Vector3(headDirection.x, 0f, headDirection.y);
@@ -171,8 +133,6 @@ public partial class PlayerManager : MonoBehaviourPun
             Vector3 headDir = new Vector3(targetObject.transform.position.x, transform.position.y, targetObject.transform.position.z);
 
             transform.LookAt(headDir);
-
-            //Debug.Log(headDir);
 
             gatheringEffect.transform.LookAt(targetObject.transform);
         }
@@ -188,11 +148,7 @@ public partial class PlayerManager : MonoBehaviourPun
 
             Quaternion firstRotation = Quaternion.LookRotation(new Vector3(transform.forward.x, 0f, transform.forward.z));
 
-            //Debug.Log("notgathering");
-
             transform.rotation = Quaternion.SlerpUnclamped(firstRotation, nextRotation, rotateSpeed * Time.deltaTime);
-
-            //transform.rotation = nextRotation;
         }
     }
 

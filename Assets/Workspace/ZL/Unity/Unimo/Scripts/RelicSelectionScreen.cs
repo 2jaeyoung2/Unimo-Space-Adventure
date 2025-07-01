@@ -76,7 +76,7 @@ namespace ZL.Unity.Unimo
 
         public void RerollRelics()
         {
-            if (PlayerInventoryManager.RelicRerollableCount == 0)
+            if (PlayerInventoryManager.RelicRerollableCount > 0)
             {
                 PlayerInventoryManager.RelicRerollableCount--;
 
@@ -105,11 +105,11 @@ namespace ZL.Unity.Unimo
             {
                 var relicCard = relicCardPool.Clone();
 
-                relicCard.Initialize(relicData);
-
                 relicCard.OnSelectAction += SelectRelicCard;
 
                 relicCard.OnDeselectAction += DeselectRelicCard;
+
+                relicCard.Initialize(relicData);
 
                 relicCard.Appear();
             }
