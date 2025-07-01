@@ -39,8 +39,6 @@ namespace JDG
 
             _relicPrice.text = data.Price.ToString();
 
-            //_isBuy = false;
-
             _disabledOverlay.SetActive(false);
 
             _buyButton.interactable = true;

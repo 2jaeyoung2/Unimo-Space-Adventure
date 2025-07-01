@@ -214,7 +214,6 @@ namespace JDG
         {
             if (UIManager.Instance.IsResultUIOpen)
                 return;
-            Debug.Log("´­¸²");
             if (_choiceData == null)
             {
                 return;
@@ -238,13 +237,23 @@ namespace JDG
 
                 if (random <= temp)
                 {
-                    foreach (var effect in prob._effects)
+                    if(prob._effects.Count > 0)
                     {
-                        EffectExecutor.ExecuteEffect(effect);
-                        UIManager.Instance.ScriptEventUI.ShowResultUI(prob._resultSprit, prob._resultName, prob._resultDescription, prob._result);
+                        foreach (var effect in prob._effects)
+                        {
+                            EffectExecutor.ExecuteEffect(effect);
+                            UIManager.Instance.ScriptEventUI.ShowResultUI(prob._resultSprit, prob._resultName, prob._resultDescription, prob._result);
+                        }
+
+                        break;
                     }
 
-                    break;
+                    else
+                    {
+                        UIManager.Instance.ScriptEventUI.ShowResultUI(prob._resultSprit, prob._resultName, prob._resultDescription, prob._result);
+
+                        break;
+                    }
                 }
             }
         }

@@ -421,6 +421,8 @@ public class FirebaseAuthMgr : MonoBehaviour
         // 초기 인게임 재화 생성(크레딧)
         var DBTask = DBRef.Child("users").Child(User.UserId).Child("nickname").SetValueAsync(User.DisplayName);
 
+        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
         // 초기 인게임 재화 생성(크레딧)
         DBTask = DBRef.Child("users").Child(User.UserId).Child("rewardIngameCurrency").SetValueAsync(0);
 
