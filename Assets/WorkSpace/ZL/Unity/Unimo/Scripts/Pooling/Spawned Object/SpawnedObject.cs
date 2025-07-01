@@ -124,9 +124,19 @@ namespace ZL.Unity.Unimo
             Disappear();
         }
 
-        protected bool IsWithinRange(Vector3 position, float distance)
+        protected bool IsWithinRange(Transform target, float distance)
         {
-            return transform.position.DistanceTo(position, Axis.Y) <= distance;
+            if (target == null)
+            {
+                return false;
+            }
+
+            return IsWithinRange(target.position, distance);
+        }
+
+        protected bool IsWithinRange(Vector3 targetPosition, float distance)
+        {
+            return transform.position.DistanceTo(targetPosition, Axis.Y) <= distance;
         }
     }
 }

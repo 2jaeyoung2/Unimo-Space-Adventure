@@ -58,7 +58,7 @@ namespace ZL.Unity.Unimo
                 return;
             }
 
-            if (IsWithinRange(EnemyManager.Instance.SkillTarget.position, attackRange) == false)
+            if (IsWithinRange(EnemyManager.Instance.SkillTarget, attackRange) == false)
             {
                 return;
             }
@@ -77,7 +77,7 @@ namespace ZL.Unity.Unimo
 
         protected override void Movement()
         {
-            if (IsWithinRange(destination.position, stopDistance) == true)
+            if (IsWithinRange(destination, stopDistance) == true)
             {
                 movementSpeed = 0f;
             }
