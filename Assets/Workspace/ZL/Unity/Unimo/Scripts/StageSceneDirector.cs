@@ -302,8 +302,6 @@ namespace ZL.Unity.Unimo
             {
                 SpawnSequence.Instance.gameObject.SetActive(false);
 
-                yield return null;
-
                 ObjectPoolManager.Instance.CollectAll();
             }
 
@@ -371,6 +369,10 @@ namespace ZL.Unity.Unimo
             GameStateManager.IsClear = false;
 
             GameStateManager.IsRestoreMap = false;
+
+            PlayerManager.Instance.StopPlayerBlink();
+
+            PlayerManager.Instance.IsOnHit = true;
 
             if (PlayerFuelManager.Instance != null)
             {
