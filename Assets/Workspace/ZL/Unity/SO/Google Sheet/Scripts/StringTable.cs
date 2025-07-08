@@ -8,11 +8,9 @@ using UnityEngine;
 
 using ZL.Unity.Collections;
 
-using ZL.Unity.SO.GoogleSheet;
-
-namespace ZL.Unity.Unimo
+namespace ZL.Unity.SO.GoogleSheet
 {
-    [CreateAssetMenu(menuName = "ZL/Unimo/SO/String Table", fileName = "String Table 1")]
+    [CreateAssetMenu(menuName = "ZL/SO/Google Sheet/String Table", fileName = "String Table 1")]
 
     public sealed class StringTable : ScriptableGoogleSheetData
     {

@@ -1,4 +1,4 @@
-namespace ZL.Unity.Unimo
+namespace ZL.Unity.SO.GoogleSheet
 {
     public enum StringTableLanguage
     {

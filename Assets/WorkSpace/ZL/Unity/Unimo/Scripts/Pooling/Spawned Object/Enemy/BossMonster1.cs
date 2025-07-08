@@ -55,7 +55,7 @@ namespace ZL.Unity.Unimo
             set => energy = value;
         }
 
-        private SkillSequence<BossMonster1> skillSequence = null;
+        private SkillSequence<BossMonster1, SkillData> skillSequence = null;
 
         private void Awake()
         {
@@ -141,7 +141,7 @@ namespace ZL.Unity.Unimo
 
         [Serializable]
 
-        public sealed class DashSkill : Skill<BossMonster1>
+        public sealed class DashSkill : Skill<BossMonster1, SkillData>
         {
             [Space]
 
@@ -173,7 +173,7 @@ namespace ZL.Unity.Unimo
 
         [Serializable]
 
-        public sealed class EnergyBoltSkill : Skill<BossMonster1>
+        public sealed class EnergyBoltSkill : Skill<BossMonster1, SkillData>
         {
             [Space]
 
@@ -268,7 +268,7 @@ namespace ZL.Unity.Unimo
 
         [Serializable]
 
-        public sealed class FindClosestObjectSkill : Skill<BossMonster1>
+        public sealed class FindClosestObjectSkill : Skill<BossMonster1, SkillData>
         {
             [Space]
 

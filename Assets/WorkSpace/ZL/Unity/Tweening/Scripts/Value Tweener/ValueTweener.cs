@@ -14,6 +14,24 @@ namespace ZL.Unity.Tweening
 
         where TPlugOptions : struct, IPlugOptions
     {
+        [SerializeField]
+
+        private T2 endValue = default;
+
+        [SerializeField]
+
+        private float duration = 0f;
+
+        [SerializeField]
+
+        private float delay = 0f;
+
+        [SerializeField]
+
+        [Tooltip(easeTooltip)]
+
+        private Ease ease = Ease.Linear;
+
         #region Ease Tooltip
 
         private const string easeTooltip =
@@ -58,24 +76,6 @@ namespace ZL.Unity.Tweening
             "INTERNAL_Custom = 37";
 
         #endregion
-
-        [SerializeField]
-
-        private T2 endValue = default;
-
-        [SerializeField]
-
-        private float duration = 0f;
-
-        [SerializeField]
-
-        private float delay = 0f;
-
-        [SerializeField]
-
-        [Tooltip(easeTooltip)]
-
-        private Ease ease = Ease.Linear;
 
         [SerializeField]
 
@@ -141,6 +141,15 @@ namespace ZL.Unity.Tweening
             set => setter = value;
         }
 
+        protected object target = null;
+
+        public object Target
+        {
+            get => target;
+
+            set => target = value;
+        }
+
         public TweenerCore<T1, T2, TPlugOptions> Current { get; private set; } = null;
 
         public void SetEndValue(T2 endValue)
@@ -188,6 +197,8 @@ namespace ZL.Unity.Tweening
             Current.Kill();
 
             Current = To(getter, setter, endValue, duration);
+
+            Current.SetTarget(Target);
 
             if (delay != 0f)
             {

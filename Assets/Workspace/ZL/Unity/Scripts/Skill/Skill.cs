@@ -2,11 +2,13 @@ using System.Collections;
 
 using UnityEngine;
 
-namespace ZL.Unity.Unimo
+namespace ZL.Unity
 {
-    public abstract class Skill<TSkillUser>
+    public abstract class Skill<TSkillUser, TSkillData>
 
         where TSkillUser : class
+
+        where TSkillData : class, ISkillData
     {
         [SerializeField]
 
@@ -22,7 +24,7 @@ namespace ZL.Unity.Unimo
 
         [Essential]
 
-        protected SkillData skillData = null;
+        protected TSkillData skillData = null;
 
         [Space]
 

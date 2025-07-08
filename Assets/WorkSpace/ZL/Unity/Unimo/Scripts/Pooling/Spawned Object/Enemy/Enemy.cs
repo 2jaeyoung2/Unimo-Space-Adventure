@@ -4,6 +4,8 @@ using UnityEngine;
 
 using UnityEngine.Animations;
 
+using ZL.Unity.SO.GoogleSheet;
+
 namespace ZL.Unity.Unimo
 {
     public abstract class Enemy : SpawnedObject, IDamageable

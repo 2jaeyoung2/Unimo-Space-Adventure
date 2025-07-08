@@ -10,7 +10,7 @@ namespace ZL.Unity.Unimo
 {
     [CreateAssetMenu(menuName = "ZL/Unimo/SO/Skill Data", fileName = "Skill Data")]
 
-    public sealed class SkillData : ScriptableGoogleSheetData
+    public sealed class SkillData : ScriptableGoogleSheetData, ISkillData
     {
         [Space]
 

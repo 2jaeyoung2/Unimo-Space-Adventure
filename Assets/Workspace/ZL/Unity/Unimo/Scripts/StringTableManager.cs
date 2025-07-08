@@ -6,9 +6,9 @@ using ZL.Unity.IO;
 
 using ZL.Unity.Singleton;
 
-namespace ZL.Unity.Unimo
+namespace ZL.Unity.SO.GoogleSheet
 {
-    [AddComponentMenu("ZL/Unimo/String Table Manager (Singleton)")]
+    [AddComponentMenu("ZL/SO/Google Sheet/String Table Manager (Singleton)")]
 
     public sealed class StringTableManager : MonoSingleton<StringTableManager>
     {
