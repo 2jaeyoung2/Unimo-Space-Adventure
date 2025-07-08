@@ -10,15 +10,15 @@ namespace ZL.Unity.SO.GoogleSheet
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [PropertyField]
 
         [Margin]
 
         [Button(nameof(ReadAllSheets))]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private bool readAllSheetsOnAwake = true;
 

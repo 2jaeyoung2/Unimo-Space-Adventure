@@ -10,9 +10,9 @@ namespace ZL.Unity.Audio
     {
         [Space]
 
-        [SerializeField]
-
         [Range(0f, 1f)]
+
+        [SerializeField]
 
         private float volume = 0f;
 

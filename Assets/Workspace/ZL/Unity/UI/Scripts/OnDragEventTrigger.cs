@@ -28,11 +28,11 @@ namespace ZL.Unity.UI
 
         [Space]
 
-        [SerializeField]
-        
+        [ReadOnly(true)]
+
         [UsingCustomProperty]
 
-        [ReadOnly(true)]
+        [SerializeField]
 
         private Vector2 startPoint = Vector2.zero;
 
@@ -41,11 +41,11 @@ namespace ZL.Unity.UI
             get => startPoint;
         }
 
-        [SerializeField]
+        [ReadOnly(true)]
 
         [UsingCustomProperty]
 
-        [ReadOnly(true)]
+        [SerializeField]
 
         private Vector2 endPoint = Vector2.zero;
 
@@ -56,11 +56,11 @@ namespace ZL.Unity.UI
 
         [Space]
 
-        [SerializeField]
-        
+        [ReadOnly(true)]
+
         [UsingCustomProperty]
 
-        [ReadOnly(true)]
+        [SerializeField]
 
         private Vector2 dragDirection = Vector2.zero;
 
@@ -84,27 +84,27 @@ namespace ZL.Unity.UI
 
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Line(Margin = 0)]
 
         [Text("<b>Debugging</b>", FontSize = 16)]
 
         [Margin]
 
-        private bool drawGizmo = true;
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private bool drawGizmo = true;
 
         [ToggleIf(nameof(drawGizmo), false)]
 
         [AddIndent(1)]
 
         [Alias("Color")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private Color gizmoColor = new Color(0f, 1f, 0f, 0.5f);
 

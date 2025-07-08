@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ZL.Unity
 {
-    public static partial class Mathv
+    public static partial class MathV
     {
         public static Vector2 Round(this Vector2 v, int digits)
         {

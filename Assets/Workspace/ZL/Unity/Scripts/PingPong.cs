@@ -10,15 +10,15 @@ namespace ZL.Unity
     {
         [Space]
 
-        [SerializeField]
-        
         [Range(-2f, 2f)]
+
+        [SerializeField]
 
         private float theta = 0f;
 
-        [SerializeField]
-        
         [Range(0f, 1f)]
+
+        [SerializeField]
 
         private float sin = 0.5f;
 

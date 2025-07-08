@@ -10,15 +10,15 @@ namespace ZL.Unity
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [ReadOnlyWhenPlayMode]
 
         [Button(nameof(FindAnimators))]
 
         [Margin]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private Animator mainAnimator = null;
 

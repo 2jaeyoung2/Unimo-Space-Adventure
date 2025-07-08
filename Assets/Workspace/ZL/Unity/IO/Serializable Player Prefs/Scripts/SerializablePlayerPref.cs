@@ -8,11 +8,11 @@ namespace ZL.Unity.IO
 {
     public abstract class SerializablePlayerPref<TValue> : PlayerPrefs, IKeyValuePair<string, TValue>
     {
-        [SerializeField]
+        [ReadOnlyWhenPlayMode]
 
         [UsingCustomProperty]
 
-        [ReadOnlyWhenPlayMode]
+        [SerializeField]
 
         protected string key = "";
 

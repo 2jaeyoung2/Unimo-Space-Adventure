@@ -10,29 +10,29 @@ namespace ZL.Unity.UI
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
 
-        private RectTransform rectTransform;
-
-        [Space]
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private RectTransform rectTransform;
+
+        [Space]
 
         [GetComponentInParent]
 
         [Essential]
 
         [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private Canvas canvas;
 

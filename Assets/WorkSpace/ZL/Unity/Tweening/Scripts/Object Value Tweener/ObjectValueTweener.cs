@@ -51,6 +51,8 @@ namespace ZL.Unity.Tweening
             ValueTweener.Getter = () => Value;
 
             ValueTweener.Setter = (value) => Value = value;
+
+            ValueTweener.Target = this;
         }
 
         public void SetEndValue(T2 endValue)

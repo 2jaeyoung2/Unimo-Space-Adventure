@@ -10,15 +10,15 @@ namespace ZL.Unity.Audio
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private AudioSource audioSource = null;
 

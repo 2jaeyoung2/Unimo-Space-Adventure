@@ -10,10 +10,6 @@ namespace ZL.Unity.UI
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
@@ -23,6 +19,10 @@ namespace ZL.Unity.UI
         [Alias("Text (UI)")]
 
         [PropertyField]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private TMP_Text textUI = null;
 

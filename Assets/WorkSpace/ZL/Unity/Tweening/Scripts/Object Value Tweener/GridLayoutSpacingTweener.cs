@@ -12,11 +12,11 @@ namespace ZL.Unity.Tweening
     {
         [Space]
 
-        [SerializeField]
+        [GetComponent]
 
         [UsingCustomProperty]
 
-        [GetComponent]
+        [SerializeField]
 
         private GridLayoutGroup gridLayoutGroup = null;
 

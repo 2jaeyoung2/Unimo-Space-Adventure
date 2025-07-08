@@ -16,25 +16,25 @@ namespace ZL.Unity.Unimo
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         [Alias("Enemy Name Text (UI)")]
 
         private TextMeshProUGUI enemyNameTextUI = null;
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private SliderValueDisplayer healthBar = null;
 

@@ -10,23 +10,23 @@ namespace ZL.Unity.UI
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
 
+        [UsingCustomProperty]
+
+        [SerializeField]
+
         private Image image = null;
 
         [Space]
 
-        [SerializeField]
-        
         [Range(0f, 1f)]
+
+        [SerializeField]
 
         private float alphaHitTestMinimumThreshold = 0f;
 

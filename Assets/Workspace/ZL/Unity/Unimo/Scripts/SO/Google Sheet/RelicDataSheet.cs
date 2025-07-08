@@ -23,9 +23,9 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
-
         [UsingCustomProperty]
+
+        [SerializeField]
 
         private SerializableDictionary<RelicRarity, List<RelicData>> relicDictionary = null;
 
@@ -38,7 +38,7 @@ namespace ZL.Unity.Unimo
         {
             relicDictionary.Clear();
 
-            foreach (var relicRarity in EnumEx.GetValues<RelicRarity>())
+            foreach (var relicRarity in CS.EnumEx.GetValues<RelicRarity>())
             {
                 relicDictionary.Add(relicRarity, new());
             }

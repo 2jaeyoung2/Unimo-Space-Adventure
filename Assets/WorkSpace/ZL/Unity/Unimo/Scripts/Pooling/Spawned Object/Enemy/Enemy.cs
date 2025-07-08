@@ -4,6 +4,8 @@ using UnityEngine;
 
 using UnityEngine.Animations;
 
+using ZL.Unity.Combat;
+
 using ZL.Unity.SO.GoogleSheet;
 
 namespace ZL.Unity.Unimo
@@ -29,15 +31,15 @@ namespace ZL.Unity.Unimo
             get => mainCollider;
         }
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         #pragma warning disable CS0108
 
@@ -47,11 +49,11 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
+        [Essential]
 
         [UsingCustomProperty]
 
-        [Essential]
+        [SerializeField]
 
         protected EnemyData enemyData = null;
 

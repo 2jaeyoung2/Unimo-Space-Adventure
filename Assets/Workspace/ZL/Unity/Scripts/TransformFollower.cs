@@ -8,11 +8,11 @@ namespace ZL.Unity
     {
         [Space]
 
-        [SerializeField]
+        [Essential]
 
         [UsingCustomProperty]
 
-        [Essential]
+        [SerializeField]
 
         private Transform targetTransform = null;
 

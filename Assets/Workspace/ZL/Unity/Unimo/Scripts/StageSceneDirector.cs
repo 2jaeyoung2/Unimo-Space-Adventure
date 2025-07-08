@@ -8,8 +8,6 @@ using ZL.CS.Singleton;
 
 using ZL.Unity.Coroutines;
 
-using ZL.Unity.Directing;
-
 using ZL.Unity.Pooling;
 
 using ZL.Unity.UI;
@@ -24,53 +22,49 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private ScreenUI playerUIScreen = null;
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private RelicSelectionScreen relicSelectionScreen = null;
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private StageClearPopupScreen stageClearPopupScreen = null;
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private StageFailPopupScreen stageFailPopupScreen = null;
 
         #endregion
 
         #region 스테이지 옵션
-
-        [SerializeField]
-
-        [UsingCustomProperty]
 
         [Line]
 
@@ -82,35 +76,39 @@ namespace ZL.Unity.Unimo
 
         [Text("<b>스테이지 데이터</b>")]
 
+        [UsingCustomProperty]
+
+        [SerializeField]
+
         private StageData stageData = null;
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>스테이지 목표 데이터</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>스테이지 목표 데이터</b>")]
+        [SerializeField]
 
         private StageQuestData stageQuestData = null;
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>유물 드랍 테이블</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>유물 드랍 테이블</b>")]
+        [SerializeField]
 
         private RelicDropTable relicDropTable = null;
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>로드할 씬 이름</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>로드할 씬 이름</b>")]
+        [SerializeField]
 
         private string loadSceneName = "Station";
 
@@ -120,10 +118,6 @@ namespace ZL.Unity.Unimo
 
         #if UNITY_EDITOR
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Line]
 
         [Text("<b>테스트 옵션</b>", FontSize = 16)]
@@ -131,6 +125,10 @@ namespace ZL.Unity.Unimo
         [Margin]
 
         [Text("<b>플레이어 무적</b>")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private bool isPlayerInvincible = false;
 
@@ -159,11 +157,11 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>연료 소모 여부</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>연료 소모 여부</b>")]
+        [SerializeField]
 
         private bool isConsumFuel = true;
 
@@ -190,10 +188,6 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Text("<b>유물 항상 드롭</b>")]
 
         [PropertyField]
@@ -205,6 +199,10 @@ namespace ZL.Unity.Unimo
         [Button(nameof(StageClear))]
 
         [Button(nameof(StageFail))]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private bool alwaysDropRelics = false;
 

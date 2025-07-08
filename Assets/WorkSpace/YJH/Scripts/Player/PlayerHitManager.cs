@@ -10,7 +10,7 @@ using UnityEngine.Animations;
 
 using ZL.Unity;
 
-using ZL.Unity.Unimo;
+using ZL.Unity.Combat;
 
 public partial class PlayerManager : IDamageable
 {

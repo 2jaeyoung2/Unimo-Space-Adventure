@@ -60,10 +60,6 @@ namespace ZL.Unity.Phys
 
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Line(Margin = 0)]
 
         [Text("<b>Debugging</b>", FontSize = 16)]
@@ -71,6 +67,10 @@ namespace ZL.Unity.Phys
         [Margin]
 
         [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private bool isChecked = false;
 
@@ -82,21 +82,17 @@ namespace ZL.Unity.Phys
 
         protected bool drawGizmo = true;
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [ToggleIf(nameof(drawGizmo), false)]
 
         [AddIndent(1)]
 
         [Alias("Is Wire")]
 
-        protected bool isWireGizmo = false;
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        protected bool isWireGizmo = false;
 
         [ToggleIf(nameof(drawGizmo), false)]
 
@@ -104,17 +100,21 @@ namespace ZL.Unity.Phys
 
         [Alias("Default Color")]
 
-        private Color defaultGizmoColor = new Color(0f, 1f, 0f, 0.5f);
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private Color defaultGizmoColor = new Color(0f, 1f, 0f, 0.5f);
 
         [ToggleIf(nameof(drawGizmo), false)]
 
         [AddIndent(1)]
 
         [Alias("Collided Color")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private Color collidedGizmoColor = new Color(1f, 0f, 0f, 0.5f);
 

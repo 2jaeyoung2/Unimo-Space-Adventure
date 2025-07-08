@@ -6,7 +6,7 @@ namespace ZL.Unity
 {
     public static partial class ObjectCreator
     {
-        public static TComponent CreateComponent<TComponent>(Transform parent, params Type[] components)
+        public static TComponent CreateComponent<TComponent>(Transform parent, params System.Type[] components)
 
             where TComponent : Component
         {
@@ -15,7 +15,7 @@ namespace ZL.Unity
             return CreateComponent<TComponent>(name, parent, components);
         }
 
-        public static TComponent CreateComponent<TComponent>(string name, Transform parent, params Type[] components)
+        public static TComponent CreateComponent<TComponent>(string name, Transform parent, params System.Type[] components)
 
             where TComponent : Component
         {
@@ -35,7 +35,7 @@ namespace ZL.Unity
             return gameObject.AddComponent<TComponent>();
         }
 
-        public static GameObject CreateGameObject(string name, Transform parent, params Type[] components)
+        public static GameObject CreateGameObject(string name, Transform parent, params System.Type[] components)
         {
             var gameObject = CreateGameObject(name, components);
 
@@ -44,7 +44,7 @@ namespace ZL.Unity
             return gameObject;
         }
 
-        public static GameObject CreateGameObject(string name, params Type[] components)
+        public static GameObject CreateGameObject(string name, params System.Type[] components)
         {
             var gameObject = new GameObject(name, components);
 

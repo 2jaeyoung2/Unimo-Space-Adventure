@@ -4,6 +4,8 @@ using ZL.CS.Singleton;
 
 using ZL.Unity;
 
+using ZL.Unity.Combat;
+
 using ZL.Unity.Phys;
 
 using ZL.Unity.Unimo;
@@ -20,8 +22,6 @@ public partial class PlayerManager : ISingleton<PlayerManager>
     private static PlayerStatus playerStatus = new PlayerStatus();
 
     private int debnum = 0;
-
-    //private static bool isFirstRelicActive = true;
 
     public static PlayerStatus PlayerStatus
     {  

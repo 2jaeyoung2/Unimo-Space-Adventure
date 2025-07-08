@@ -14,15 +14,15 @@ namespace ZL.Unity.Audio
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private AudioSource audioSource = null;
 
@@ -38,10 +38,6 @@ namespace ZL.Unity.Audio
 
         private bool playOnAwake = true;
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [PropertyField]
 
         [Button(nameof(Play))]
@@ -49,6 +45,10 @@ namespace ZL.Unity.Audio
         [Button(nameof(Pause))]
 
         [Button(nameof(Resume))]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private AudioTrackPlayMode playMode = AudioTrackPlayMode.RepeatOne;
 
@@ -59,11 +59,11 @@ namespace ZL.Unity.Audio
 
         [Space]
 
-        [SerializeField]
+        [ToggleIf("playMode", AudioTrackPlayMode.Shuffle, true)]
 
         [UsingCustomProperty]
 
-        [ToggleIf("playMode", AudioTrackPlayMode.Shuffle, true)]
+        [SerializeField]
 
         private int playlistIndex = 0;
 

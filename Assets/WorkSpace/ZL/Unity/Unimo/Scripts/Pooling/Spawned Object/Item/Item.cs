@@ -6,15 +6,15 @@ namespace ZL.Unity.Unimo
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         protected Collider mainCollider = null;
 

@@ -22,31 +22,31 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>웨이브에 소환할 최소 오브젝트 수</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>웨이브에 소환할 최소 오브젝트 수</b>")]
+        [SerializeField]
 
         protected int minSpawnCount = 0;
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>웨이브에 소환할 최대 오브젝트 수</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>웨이브에 소환할 최대 오브젝트 수</b>")]
+        [SerializeField]
 
         protected int maxSpawnCount = 0;
 
         [Space]
 
-        [SerializeField]
+        [Text("<b>소환 가능한 오브젝트 수 (-1: 무제한)</b>")]
 
         [UsingCustomProperty]
 
-        [Text("<b>소환 가능한 오브젝트 수 (-1: 무제한)</b>")]
+        [SerializeField]
 
         protected int maxObjectCount = -1;
 

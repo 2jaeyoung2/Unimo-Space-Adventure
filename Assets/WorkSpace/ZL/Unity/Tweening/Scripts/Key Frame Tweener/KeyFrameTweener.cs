@@ -16,15 +16,15 @@ namespace ZL.Unity.Tweening
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         protected TObjectValueTweener objectVaueTweener = null;
 

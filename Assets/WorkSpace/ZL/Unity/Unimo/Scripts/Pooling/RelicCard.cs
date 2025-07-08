@@ -6,6 +6,8 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
+using ZL.Unity.SO;
+
 using ZL.Unity.SO.GoogleSheet;
 
 using ZL.Unity.Pooling;
@@ -18,15 +20,15 @@ namespace ZL.Unity.Unimo
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private Toggle toggle = null;
 
@@ -37,43 +39,43 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [Alias("Rarity Hightlight Image (UI)")]
 
-        private Image rarityHightlightImageUI = null;
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private Image rarityHightlightImageUI = null;
 
         [Essential]
 
         [Alias("Relic Image (UI)")]
 
-        private Image relicImageUI = null;
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private Image relicImageUI = null;
 
         [Essential]
 
         [Alias("Relic Name Text (UI)")]
 
-        private TextMeshProUGUI relicNameTextUI = null;
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private TextMeshProUGUI relicNameTextUI = null;
 
         [Essential]
 
         [Alias("Relic Description Text (UI)")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private TextMeshProUGUI relicDescriptionTextUI = null;
 
@@ -83,19 +85,19 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
+        [Essential]
 
         [UsingCustomProperty]
 
-        [Essential]
+        [SerializeField]
 
         private ImageTable relicImageTable = null;
 
-        [SerializeField]
+        [Essential]
 
         [UsingCustomProperty]
 
-        [Essential]
+        [SerializeField]
 
         private StringTableSheet relicStringTableSheet = null;
 

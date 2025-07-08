@@ -19,11 +19,11 @@ namespace ZL.Unity.Pooling
 
         where TClone : PooledObject
     {
-        [SerializeField]
+        [Essential]
 
         [UsingCustomProperty]
 
-        [Essential]
+        [SerializeField]
 
         protected TClone prefab = null;
 

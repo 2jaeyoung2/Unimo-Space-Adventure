@@ -6,21 +6,19 @@ using UnityEngine;
 
 using ZL.Unity.Coroutines;
 
-using ZL.Unity.UI;
-
-namespace ZL.Unity
+namespace ZL.Unity.UI
 {
-    [AddComponentMenu("ZL/Clock")]
+    [AddComponentMenu("ZL/UI/Clock")]
 
     public class Clock : MonoBehaviour
     {
         [Space]
 
-        [SerializeField]
+        [Alias("Time Stamp Text (UI)")]
 
         [UsingCustomProperty]
 
-        [Alias("Time Stamp Text (UI)")]
+        [SerializeField]
 
         private TextController timeStampTextUI = null;
 
@@ -104,31 +102,29 @@ namespace ZL.Unity
             }
         }
 
-        [SerializeField]
+        [ToggleIf(nameof(isBlinking), false)]
 
         [UsingCustomProperty]
 
-        [ToggleIf(nameof(isBlinking), false)]
+        [SerializeField]
 
         private bool syncBlinking = false;
 
         [Space]
 
-        [SerializeField]
-
         [Tooltip("{0} = Hour\n{1} = Minute\n{2} = Seconds")]
+
+        [SerializeField]
 
         private string timeStampFormat = "{0:D2}:{1:D2}:{2:D2}";
-
-        [SerializeField]
-
-        [Tooltip("{0} = Hour\n{1} = Minute\n{2} = Seconds")]
-
-        [UsingCustomProperty]
 
         [ToggleIf(nameof(isBlinking), false)]
 
         [Alias("Time Stamp Format (Blinked)")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private string timeStampFormat_Blinked = "{0:D2} {1:D2} {2:D2}";
 

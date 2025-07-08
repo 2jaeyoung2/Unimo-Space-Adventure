@@ -170,7 +170,7 @@ namespace ZL.Unity
                 {
                     DrawPropertyField();
                 }
-
+                
                 GUI.enabled = enabled;
 
                 EditorGUI.indentLevel = indentLevel;
@@ -188,6 +188,19 @@ namespace ZL.Unity
                     EditorGUI.PropertyField(drawPosition, Property, PropertyLabel, true);
 
                     Margin(EditorGUI.GetPropertyHeight(Property, PropertyLabel, true) + 2f);
+                }
+
+                catch
+                {
+
+                }
+            }
+
+            public void DrawEmptyPropertyField()
+            {
+                try
+                {
+                    DrawText(0f, GUIContent.none);
                 }
 
                 catch

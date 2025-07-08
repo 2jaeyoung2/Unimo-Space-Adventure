@@ -14,7 +14,7 @@ namespace ZL.Unity
 
         [SerializeField]
 
-        private BoolPref runInBackgroundPref = new("Run In Background", false);
+        private BoolPref runInBackgroundPref = new("RunInBackground", false);
 
         public BoolPref RunInBackgroundPref
         {
@@ -25,7 +25,7 @@ namespace ZL.Unity
 
         [SerializeField]
 
-        private IntPref targetFrameRatePref = new("Target Frame Rate", 60);
+        private IntPref targetFrameRatePref = new("TargetFrameRate", 60);
 
         public IntPref TargetFrameRatePref
         {
@@ -34,33 +34,29 @@ namespace ZL.Unity
 
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Text("Cursor")]
 
         [AddIndent]
 
         [Alias("Visible")]
 
-        private bool cursorVisible = true;
-
         [UsingCustomProperty]
+
+        [SerializeField]
+
+        private bool cursorVisible = true;
 
         [AddIndent]
 
         [Alias("Lock State")]
+
+        [UsingCustomProperty]
 
         [SerializeField]
 
         private CursorLockMode cursorLockState = CursorLockMode.None;
 
         [Space]
-
-        [SerializeField]
-
-        [UsingCustomProperty]
 
         [PropertyField]
 
@@ -69,6 +65,10 @@ namespace ZL.Unity
         [Button(nameof(Resume))]
 
         [Button(nameof(Quit))]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private float timeScale = 1f;
 

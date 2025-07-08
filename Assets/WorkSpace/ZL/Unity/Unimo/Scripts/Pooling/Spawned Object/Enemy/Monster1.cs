@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using ZL.Unity.Combat;
+
 namespace ZL.Unity.Unimo
 {
     [AddComponentMenu("ZL/Unimo/Monster 1 (Spawned)")]

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using ZL.Unity.Combat;
+
 using ZL.Unity.SO.GoogleSheet;
 
 namespace ZL.Unity.Unimo

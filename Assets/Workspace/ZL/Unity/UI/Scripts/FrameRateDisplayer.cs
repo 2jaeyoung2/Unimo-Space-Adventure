@@ -12,13 +12,13 @@ namespace ZL.Unity.UI
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private TextController textController = null;
 
@@ -30,10 +30,6 @@ namespace ZL.Unity.UI
 
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [PropertyField]
 
         [AddIndent(3)]
@@ -41,6 +37,10 @@ namespace ZL.Unity.UI
         [Button(nameof(Load))]
 
         [Button(nameof(Save))]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private BoolPref displayFrameRatePref = new BoolPref("Display Frame Rate", true);
 

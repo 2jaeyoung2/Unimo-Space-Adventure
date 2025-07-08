@@ -951,6 +951,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1285388739}
     - target: {fileID: 9184632104216881429, guid: 0a49836cf492e0948a91c66622bc71ce, type: 3}
+      propertyPath: spawnRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184632104216881429, guid: 0a49836cf492e0948a91c66622bc71ce, type: 3}
       propertyPath: destination
       value: 
       objectReference: {fileID: 1285388739}
@@ -1313,6 +1317,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1285388739}
     - target: {fileID: 323628661999585018, guid: 9dc22e349a4be224dae79280f205d1fc, type: 3}
+      propertyPath: spawnRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 323628661999585018, guid: 9dc22e349a4be224dae79280f205d1fc, type: 3}
       propertyPath: destination
       value: 
       objectReference: {fileID: 1285388739}
@@ -1566,6 +1574,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1285388739}
     - target: {fileID: 5655769168370886956, guid: b4fdb32411103b44daef791c7b18fafd, type: 3}
+      propertyPath: spawnRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5655769168370886956, guid: b4fdb32411103b44daef791c7b18fafd, type: 3}
       propertyPath: destination
       value: 
       objectReference: {fileID: 1285388739}
@@ -1636,6 +1648,10 @@ PrefabInstance:
       propertyPath: lookPoint
       value: 
       objectReference: {fileID: 1072620765}
+    - target: {fileID: 1836794826559318971, guid: 1ae53aaaf52028240970795b7591145e, type: 3}
+      propertyPath: spawnRange
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1836794826559318971, guid: 1ae53aaaf52028240970795b7591145e, type: 3}
       propertyPath: destination
       value: 
@@ -2727,6 +2743,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1285388739}
     - target: {fileID: 1836794826559318971, guid: 1ae53aaaf52028240970795b7591145e, type: 3}
+      propertyPath: spawnRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836794826559318971, guid: 1ae53aaaf52028240970795b7591145e, type: 3}
       propertyPath: destination
       value: 
       objectReference: {fileID: 1285388739}
@@ -3200,6 +3220,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1072620765}
     - target: {fileID: 5655769168370886956, guid: b4fdb32411103b44daef791c7b18fafd, type: 3}
+      propertyPath: spawnRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5655769168370886956, guid: b4fdb32411103b44daef791c7b18fafd, type: 3}
       propertyPath: destination
       value: 
       objectReference: {fileID: 1072620765}
@@ -3384,6 +3408,10 @@ PrefabInstance:
       propertyPath: lookPoint
       value: 
       objectReference: {fileID: 1072620765}
+    - target: {fileID: 323628661999585018, guid: 9dc22e349a4be224dae79280f205d1fc, type: 3}
+      propertyPath: spawnRange
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 323628661999585018, guid: 9dc22e349a4be224dae79280f205d1fc, type: 3}
       propertyPath: destination
       value: 
@@ -3680,6 +3708,10 @@ PrefabInstance:
       propertyPath: lookPoint
       value: 
       objectReference: {fileID: 1072620765}
+    - target: {fileID: 9184632104216881429, guid: 0a49836cf492e0948a91c66622bc71ce, type: 3}
+      propertyPath: spawnRange
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 9184632104216881429, guid: 0a49836cf492e0948a91c66622bc71ce, type: 3}
       propertyPath: destination
       value: 
@@ -4014,6 +4046,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2762421689213287928, guid: cfb53b8af251d7645a829c8cd416a527, type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2776121349630569456, guid: cfb53b8af251d7645a829c8cd416a527, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -4041,6 +4077,14 @@ PrefabInstance:
     - target: {fileID: 2884133748963384064, guid: cfb53b8af251d7645a829c8cd416a527, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007240264726818767, guid: cfb53b8af251d7645a829c8cd416a527, type: 3}
+      propertyPath: isBlinking
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007240264726818767, guid: cfb53b8af251d7645a829c8cd416a527, type: 3}
+      propertyPath: syncBlinking
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4082017837543653918, guid: cfb53b8af251d7645a829c8cd416a527, type: 3}
       propertyPath: m_AnchorMax.y

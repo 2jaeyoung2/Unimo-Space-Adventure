@@ -2,9 +2,9 @@ using UnityEngine;
 
 using ZL.CS.Singleton;
 
-namespace ZL.Unity
+namespace ZL.Unity.UI
 {
-    [AddComponentMenu("ZL/Scene Clock (Singleton)")]
+    [AddComponentMenu("ZL/UI/Scene Clock (Singleton)")]
 
     public sealed class SceneClock : Clock, ISingleton<SceneClock>
     {

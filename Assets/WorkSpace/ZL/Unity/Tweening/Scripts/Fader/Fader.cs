@@ -14,10 +14,6 @@ namespace ZL.Unity.Tweening
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
@@ -31,6 +27,10 @@ namespace ZL.Unity.Tweening
         [Button(nameof(FadeIn))]
 
         [Button(nameof(FadeOut))]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private ObjectValueTweener<FloatTweener, float, float, FloatOptions> tweener = null;
 

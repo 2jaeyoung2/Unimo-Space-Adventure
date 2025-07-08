@@ -12,13 +12,13 @@ namespace ZL.Unity.UI
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private Slider slider = null;
 
@@ -27,15 +27,15 @@ namespace ZL.Unity.UI
             get => slider;
         }
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
 
         [Alias("Slider Value Text (UI)")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private TextController sliderValueTextUI = null;
 

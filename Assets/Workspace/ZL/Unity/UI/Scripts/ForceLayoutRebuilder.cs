@@ -12,10 +12,6 @@ namespace ZL.Unity.UI
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
@@ -27,6 +23,10 @@ namespace ZL.Unity.UI
         [ReadOnly(false)]
 
         [Button(nameof(ForceRebuildLayout))]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private RectTransform rectTransform = null;
 

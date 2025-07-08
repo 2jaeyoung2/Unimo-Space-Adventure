@@ -8,10 +8,6 @@ namespace ZL.Unity.Pooling
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
@@ -27,6 +23,10 @@ namespace ZL.Unity.Pooling
         [Button(nameof(Appear))]
 
         [Button(nameof(Disappear))]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         protected Fader fader = null;
 

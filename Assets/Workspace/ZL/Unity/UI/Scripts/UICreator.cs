@@ -66,14 +66,14 @@ namespace ZL.Unity.UI
             return textMeshPro;
         }
 
-        public static TGraphic CreateGraphic<TGraphic>(params Type[] component)
+        public static TGraphic CreateGraphic<TGraphic>(params System.Type[] component)
 
             where TGraphic : Graphic
         {
             return CreateGraphic<TGraphic>(typeof(TGraphic).Name.ToTitleCase(), component);
         }
 
-        public static TGraphic CreateGraphic<TGraphic>(string name, params Type[] component)
+        public static TGraphic CreateGraphic<TGraphic>(string name, params System.Type[] component)
 
             where TGraphic : Graphic
         {
@@ -84,21 +84,21 @@ namespace ZL.Unity.UI
             return graphic;
         }
 
-        public static TUIBehaviour CreateUI<TUIBehaviour>(params Type[] component)
+        public static TUIBehaviour CreateUI<TUIBehaviour>(params System.Type[] component)
 
             where TUIBehaviour : UIBehaviour
         {
             return CreateUI<TUIBehaviour>(typeof(TUIBehaviour).Name.ToTitleCase(), component);
         }
 
-        public static TUIBehaviour CreateUI<TUIBehaviour>(string name, params Type[] component)
+        public static TUIBehaviour CreateUI<TUIBehaviour>(string name, params System.Type[] component)
 
             where TUIBehaviour : UIBehaviour
         {
             return CreateUI<TUIBehaviour>(name, null, component);
         }
 
-        public static TUIBehaviour CreateUI<TUIBehaviour>(string name, Transform parent, params Type[] component)
+        public static TUIBehaviour CreateUI<TUIBehaviour>(string name, Transform parent, params System.Type[] component)
 
             where TUIBehaviour : UIBehaviour
         {

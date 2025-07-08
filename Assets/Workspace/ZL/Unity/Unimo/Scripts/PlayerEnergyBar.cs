@@ -10,15 +10,15 @@ namespace ZL.Unity.Unimo
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private SliderValueDisplayer sliderValueDisplayer = null;
 

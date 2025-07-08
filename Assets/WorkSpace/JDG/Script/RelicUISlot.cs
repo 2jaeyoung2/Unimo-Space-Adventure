@@ -1,9 +1,8 @@
-using JDG;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using ZL.Unity.Pooling;
+using ZL.Unity.SO;
 using ZL.Unity.Unimo;
 
 public class RelicUISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -13,6 +12,7 @@ public class RelicUISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private ImageTable _imageTable;
     [SerializeField] private Transform _parent;
     [SerializeField] private Vector3 _offset;
+
     private RelicData _data;
     private RelicCard _activeCard;
 

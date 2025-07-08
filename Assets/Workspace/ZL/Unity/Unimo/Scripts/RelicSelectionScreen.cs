@@ -16,29 +16,29 @@ namespace ZL.Unity.Unimo
     {
         [Space]
 
-        [SerializeField]
+        [Essential]
 
         [UsingCustomProperty]
 
-        [Essential]
+        [SerializeField]
 
         private Button confirmSelectionButton = null;
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
-        private Button rerollRelicsButton = null;
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private Button rerollRelicsButton = null;
 
         [Essential]
 
         [Alias("Reroll Relics Button Text (UI)")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private TextMeshProUGUI rerollRelicsButtonTextUI = null;
 

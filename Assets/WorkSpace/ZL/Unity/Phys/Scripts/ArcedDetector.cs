@@ -36,21 +36,17 @@ namespace ZL.Unity.Phys
 
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Line(Margin = 0)]
 
         [Text("<b>Debugging</b>", FontSize = 16)]
 
         [Margin]
 
-        private bool drawGizmo = true;
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private bool drawGizmo = true;
 
         [ToggleIf(nameof(drawGizmo), false)]
 
@@ -58,17 +54,21 @@ namespace ZL.Unity.Phys
 
         [Alias("Is Wire")]
 
-        private bool isWireGizmo = false;
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private bool isWireGizmo = false;
 
         [ToggleIf(nameof(drawGizmo), false)]
 
         [AddIndent(1)]
 
         [Alias("Default Color")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private Color defaultGizmoColor = new(1f, 0f, 0f, 0.25f);
 

@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using ZL.Unity.Combat;
+
 using ZL.Unity.Pooling;
 
 namespace ZL.Unity.Unimo
@@ -38,13 +40,13 @@ namespace ZL.Unity.Unimo
 
         private float projectileLifeTime = 0f;
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private Transform muzzle = null;
 

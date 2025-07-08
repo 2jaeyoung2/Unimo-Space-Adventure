@@ -18,10 +18,6 @@ namespace ZL.Unity.UI
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
@@ -35,6 +31,10 @@ namespace ZL.Unity.UI
         [ReadOnly(false)]
 
         [Button(nameof(ForceMeshUpdate))]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private TMP_Text targetTextUI = null;
 

@@ -12,27 +12,27 @@ namespace ZL.Unity.UI
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
 
-        private GridLayoutGroup gridLayoutGroup = null;
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private GridLayoutGroup gridLayoutGroup = null;
 
         [GetComponentInParentOnly]
 
         [Essential]
 
         [Button(nameof(Fit))]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private RectTransform container = null;
 

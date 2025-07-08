@@ -24,7 +24,7 @@ namespace ZL.Unity
             return component != null;
         }
 
-        public static bool TryGetComponentInChildren(this Transform instance, Type type, out Component component)
+        public static bool TryGetComponentInChildren(this Transform instance, System.Type type, out Component component)
         {
             if (instance.TryGetComponent(type, out component) == false)
             {
@@ -43,7 +43,7 @@ namespace ZL.Unity
             return component != null;
         }
 
-        public static bool TryGetComponentInChildrenOnly(this Transform instance, Type type, out Component component)
+        public static bool TryGetComponentInChildrenOnly(this Transform instance, System.Type type, out Component component)
         {
             component = GetComponentInChildrenOnly(instance, type);
 
@@ -72,7 +72,7 @@ namespace ZL.Unity
             return null;
         }
 
-        private static Component GetComponentInChildrenOnly(this Transform instance, Type type)
+        private static Component GetComponentInChildrenOnly(this Transform instance, System.Type type)
         {
             foreach (Transform child in instance)
             {
@@ -147,7 +147,7 @@ namespace ZL.Unity
             return component != null;
         }
 
-        public static bool TryGetComponentInParent(this Transform instance, Type type, out Component component)
+        public static bool TryGetComponentInParent(this Transform instance, System.Type type, out Component component)
         {
             component = GetComponentInParent(instance, type);
 
@@ -163,7 +163,7 @@ namespace ZL.Unity
             return component != null;
         }
 
-        public static bool TryGetComponentInParentOnly(this Transform instance, Type type, out Component component)
+        public static bool TryGetComponentInParentOnly(this Transform instance, System.Type type, out Component component)
         {
             component = GetComponentInParent(instance.parent, type);
 
@@ -187,7 +187,7 @@ namespace ZL.Unity
             return null;
         }
 
-        private static Component GetComponentInParent(this Transform instance, Type type)
+        private static Component GetComponentInParent(this Transform instance, System.Type type)
         {
             while (instance != null)
             {

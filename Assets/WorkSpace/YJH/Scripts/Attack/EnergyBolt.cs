@@ -4,7 +4,7 @@ using UnityEngine;
 
 using ZL.Unity;
 
-using ZL.Unity.Unimo;
+using ZL.Unity.Combat;  
 
 public class EnergyBolt : MonoBehaviour, IAttackType
 {
@@ -77,8 +77,6 @@ public class EnergyBolt : MonoBehaviour, IAttackType
     public void Shoot(Vector3 fireDirection)
     {
         Vector3 tempVelocity = new Vector3(fireDirection.x, 0, fireDirection.z);
-
-        //fireDirection.normalized * speed;
 
         firePos = transform;
 

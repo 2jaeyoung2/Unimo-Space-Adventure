@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using ZL.Unity.Combat;
+
 using ZL.Unity.Phys;
 
 namespace ZL.Unity.Unimo
@@ -16,13 +18,13 @@ namespace ZL.Unity.Unimo
 
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [Essential]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private ArcedDetector detector = null;
 

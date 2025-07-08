@@ -14,6 +14,8 @@ using UnityEngine;
 
 using ZL.Unity.Collections;
 
+using ZL.Unity.IO;
+
 namespace ZL.Unity.SO.GoogleSheet
 {
     public abstract class ScriptableGoogleSheet<TKey, TGoogleSheetData> : ScriptableGoogleSheet<TGoogleSheetData>
@@ -22,11 +24,11 @@ namespace ZL.Unity.SO.GoogleSheet
     {
         [Space]
 
-        [SerializeField]
+        [Button(nameof(Serialize))]
 
         [UsingCustomProperty]
 
-        [Button(nameof(Serialize))]
+        [SerializeField]
 
         protected SerializableDictionary<TKey, TGoogleSheetData> dataDictionary = null;
 
@@ -65,19 +67,15 @@ namespace ZL.Unity.SO.GoogleSheet
     {
         [Space]
 
-        [SerializeField]
+        [Button("CreateNewConfig")]
 
         [UsingCustomProperty]
 
-        [Button("CreateNewConfig")]
+        [SerializeField]
 
         private ScriptableGoogleSheetConfig sheetConfig = null;
 
         [Space]
-
-        [SerializeField]
-
-        [UsingCustomProperty]
 
         [PropertyField]
 
@@ -94,6 +92,10 @@ namespace ZL.Unity.SO.GoogleSheet
         [Button("ClearDatas")]
 
         [Button("LoadAllDatasAtPath")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private bool containsMergedCells = false;
 

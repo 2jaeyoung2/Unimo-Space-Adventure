@@ -12,23 +12,23 @@ namespace ZL.Unity.Tweening
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [ReadOnly(true)]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private MaterialController materialController = null;
 
         [Space]
 
-        [SerializeField]
+        [ToggleIf(nameof(materialController), null, false)]
 
         [UsingCustomProperty]
 
-        [ToggleIf(nameof(materialController), null, false)]
+        [SerializeField]
 
         private Material material = null;
 

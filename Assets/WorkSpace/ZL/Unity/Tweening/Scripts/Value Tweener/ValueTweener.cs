@@ -26,9 +26,9 @@ namespace ZL.Unity.Tweening
 
         private float delay = 0f;
 
-        [SerializeField]
-
         [Tooltip(easeTooltip)]
+
+        [SerializeField]
 
         private Ease ease = Ease.Linear;
 
@@ -81,15 +81,11 @@ namespace ZL.Unity.Tweening
 
         private bool isIndependentUpdate = true;
 
-        [SerializeField]
-
         [Tooltip("1 = Loop once (Default)\n-1 = Infinity loop")]
 
-        private int loops = 1;
-
         [SerializeField]
 
-        [UsingCustomProperty]
+        private int loops = 1;
 
         [ToggleIf(nameof(loops), 0, true)]
 
@@ -98,6 +94,10 @@ namespace ZL.Unity.Tweening
         [AddIndent]
 
         [PropertyField]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private LoopType loopType = LoopType.Restart;
 
@@ -197,8 +197,6 @@ namespace ZL.Unity.Tweening
             Current.Kill();
 
             Current = To(getter, setter, endValue, duration);
-
-            Current.SetTarget(Target);
 
             if (delay != 0f)
             {

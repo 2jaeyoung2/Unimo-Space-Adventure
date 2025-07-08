@@ -8,10 +8,6 @@ namespace ZL.Unity.UI
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
@@ -19,6 +15,10 @@ namespace ZL.Unity.UI
         [ReadOnly(true)]
 
         [Alias("Text (UI)")]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private TextMesh textUI = null;
 

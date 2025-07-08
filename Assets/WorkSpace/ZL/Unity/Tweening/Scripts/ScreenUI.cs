@@ -34,10 +34,6 @@ namespace ZL.Unity.UI
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
@@ -53,6 +49,10 @@ namespace ZL.Unity.UI
         [Button(nameof(Appear))]
 
         [Button(nameof(Disappear))]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private Fader fader = null;
 

@@ -8,23 +8,19 @@ namespace ZL.Unity.UI
     {
         [Space]
 
-        [SerializeField]
-
-        [UsingCustomProperty]
-
         [GetComponent]
 
         [Essential]
 
         [ReadOnly(true)]
 
-        private RectTransform rectTransform = null;
-
-        [Space]
+        [UsingCustomProperty]
 
         [SerializeField]
 
-        [UsingCustomProperty]
+        private RectTransform rectTransform = null;
+
+        [Space]
 
         [Essential]
 
@@ -33,6 +29,10 @@ namespace ZL.Unity.UI
         [Button(nameof(FitParentSizeMax))]
 
         [ReadOnlyWhenPlayMode]
+
+        [UsingCustomProperty]
+
+        [SerializeField]
 
         private RectTransform fitTarget = null;
 
