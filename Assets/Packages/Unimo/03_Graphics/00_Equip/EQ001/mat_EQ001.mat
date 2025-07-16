@@ -21,14 +21,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mat_EQ001
-  m_Shader: {fileID: -6465566751694194690, guid: b9ecf7d7d4ac7e84598999151f1ad7e6,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b9ecf7d7d4ac7e84598999151f1ad7e6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -82,6 +81,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture2D:
         m_Texture: {fileID: 2800000, guid: 73ffa72eec8d3934dbd7f19ca83dc213, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -101,6 +104,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _AmbientMulti: 0.2
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -114,8 +118,11 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _GradientPower: 1
+    - _Invincible: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
+    - _Offset: 0
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -138,4 +145,3 @@ Material:
     - _RimColor: {r: 1.6055588, g: 1.6055588, b: 1.6055588, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1
