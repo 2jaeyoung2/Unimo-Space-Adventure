@@ -14,9 +14,9 @@ namespace ZL.Unity.SO.GoogleSheet
     {
         [Space]
 
-        [Button(nameof(LoadLanguage))]
+        [Button(nameof(LoadLanguage), "Load")]
 
-        [Button(nameof(SaveLanguage))]
+        [Button(nameof(SaveLanguage), "Save")]
 
         [Margin]
 
