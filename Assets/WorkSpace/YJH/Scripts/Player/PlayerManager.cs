@@ -186,6 +186,12 @@ public partial class PlayerManager : ISingleton<PlayerManager>
         {
             StopCoroutine(gatheringCoroutine);
         }
+
+        if (findItemCoroutine != null)
+        {
+            StopCoroutine(findItemCoroutine);
+        }
+        findItemCoroutine= StartCoroutine(FindItemCoroutine());
     }
 
     public static void ResetStatus()

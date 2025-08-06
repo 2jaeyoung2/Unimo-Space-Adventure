@@ -176,7 +176,7 @@ public partial class PlayerManager : IEnergizer
             }
         }
 
-        FindItemUpdate();
+       // FindItemUpdate();
     }
 
     public static void SetAttackType(GameObject attackType)

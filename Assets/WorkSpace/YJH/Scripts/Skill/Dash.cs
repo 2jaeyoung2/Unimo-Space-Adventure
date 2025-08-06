@@ -110,7 +110,7 @@ public class Dash : ISpellType,IStackSpell
         //    chargeTimer= skillInfo.chargeTime-float.Epsilon;
         //}
         //chargeTimer += Time.deltaTime;
-        if (playerManager.canMove == false)
+        if (playerManager?.canMove == false)
         {
             dashTimer += Time.deltaTime;
         }
@@ -156,6 +156,10 @@ public class Dash : ISpellType,IStackSpell
            // Debug.Log("스킬 정보 존재함");
         }
             chargeTimer = 0;
+        if(playerManager == null)
+        {
+            playerManager = PlayerManager.Instance;
+        }
     }
 
     public void SetPlayer(PlayerManager player)
