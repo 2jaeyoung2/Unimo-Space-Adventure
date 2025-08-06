@@ -103,6 +103,7 @@ public partial class PlayerManager : IEnergizer
     public static event Action<float> OnEnergyChanged = null;
 
     private Coroutine gatheringCoroutine;
+    private Coroutine findItemCoroutine;
 
     // 멀티용으로 리펙토링한거 나중에 다 해체하기
     public void ActionStart()
@@ -473,7 +474,95 @@ public partial class PlayerManager : IEnergizer
             }
         }
     }
+    IEnumerator FindItemCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.01f);
 
+            if (targetObject == null)
+            {
+                isGathering = false;
+            }
+
+            else
+            {
+                if (Vector3.Distance(transform.position, targetObject.transform.position) > playerStatus.itemDetectionRange + float.Epsilon)
+                {
+                    isGathering = false;
+
+                    targetObject = null;
+                }
+            }
+
+            if (isGathering == false && playerSpellType.ReturnState() == false)
+            {
+                Collider[] detectedColliders = Physics.OverlapSphere(transform.position, playerStatus.itemDetectionRange, itemLayerMask);
+
+                if (detectedColliders.Length > 0)
+                {
+                    float distance = float.MaxValue;
+
+                    foreach (Collider collider in detectedColliders)
+                    {
+                        // 감지된 콜라이더와의 거리
+                        float distanceBetween = Vector3.Distance(transform.position, collider.transform.position);
+
+                        // 1.거리 비교 조건
+                        if (distance > distanceBetween)
+                        {
+                            distance = distanceBetween;
+
+                            targetObject = collider.gameObject;
+                        }
+
+                        else if (distance == distanceBetween)
+                        {
+                            if (targetObject != null)
+                            {
+                                var targetScript = targetObject.GetComponent<Gathering>();
+
+                                var colliderScript = collider.GetComponent<Gathering>();
+
+                                // 2. 체력 비교 조건
+                                if (targetScript.CurrentHealth > colliderScript.CurrentHealth)
+                                {
+                                    targetObject = collider.gameObject;
+                                }
+
+                                // 3. 등급 비교 조건
+                                else if (targetScript.CurrentHealth == colliderScript.CurrentHealth)
+                                {
+                                    if (targetScript.GatheringData.MaxHealth < colliderScript.GatheringData.MaxHealth)
+                                    {
+                                        targetObject = collider.gameObject;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    isGathering = true;
+
+                    if (targetObject != null)
+                    {
+                        ActiveGatheringBeam();
+                    }
+
+                    GatheringItem();
+                }
+
+                else
+                {
+                    isGathering = false;
+
+                    DeactiveGatheringBeam();
+
+                    targetObject = null;
+                }
+            }
+        }
+    }
     // 아이템 채집중 사용할 코루틴
     private IEnumerator GatheringCoroutine()
     {
